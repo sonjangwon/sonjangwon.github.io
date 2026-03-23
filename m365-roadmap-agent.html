@@ -160,14 +160,8 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
 
 <div class="page">
 
-  <!-- TOPBAR -->
-  <div class="topbar fade">
-    <span class="topbar-id">PORTFOLIO · 2026 · M365 ROADMAP AGENT</span>
-  </div>
-
   <!-- HERO -->
   <div class="hero fade">
-    <div class="eyebrow">Project 01 — Automation &amp; AI Agent</div>
     <h1>Microsoft 365<br><em>Roadmap Copilot Agent</em></h1>
     <p class="hero-lead">
       M365 Roadmap 업데이트를 자동으로 수집·분류해 Copilot 에이전트로 바로 조회할 수 있는 시스템.
@@ -211,7 +205,7 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
     <div class="sec-label">문제 정의 &amp; 해결</div>
     <div class="ps">
       <div class="ps-box">
-        <div class="ps-head">Before — 기존 방식의 한계</div>
+        <div class="ps-head">Before</div>
         <ul class="ps-list">
           <li>M365 제품 업데이트는 시기와 범위를 예측하기 어려워 지속적인 추적 필요</li>
           <li>담당자가 직접 M365 Roadmap 페이지를 주기적으로 방문해 수동 확인</li>
@@ -220,7 +214,7 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         </ul>
       </div>
       <div class="ps-box sol">
-        <div class="ps-head">After — 이 시스템이 해결한 것</div>
+        <div class="ps-head">After</div>
         <ul class="ps-list">
           <li>Power Automate 스케줄로 매일 자동 데이터 수집 및 갱신</li>
           <li>Azure Blob Storage 캐싱으로 빠른 응답, 중복 API 호출 제거</li>
@@ -228,6 +222,49 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
           <li>신규/변경 아이템 감지 후 Exchange Online으로 자동 메일 발송</li>
         </ul>
       </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ARCHITECTURE -->
+  <div class="sec fade">
+    <div class="sec-label">시스템 아키텍처</div>
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="arch-icon">🌐</div>
+        <div class="arch-name">M365 Roadmap</div>
+        <div class="arch-sub">공개 API</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-icon hi">⚡</div>
+        <div class="arch-name">Azure Functions</div>
+        <div class="arch-sub">Python</div>
+      </div>
+      <div class="arch-arrow">⇄</div>
+      <div class="arch-node">
+        <div class="arch-icon hi">🗄</div>
+        <div class="arch-name">Blob Storage</div>
+        <div class="arch-sub">108개 JSON · 24h 갱신</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-icon hi">🤖</div>
+        <div class="arch-name">Copilot Studio</div>
+        <div class="arch-sub">에이전트</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-icon">💬</div>
+        <div class="arch-name">Teams / Copilot</div>
+        <div class="arch-sub">사용자</div>
+      </div>
+    </div>
+    <div class="arch-note">
+      <strong>Power Automate</strong> 플로우가 매일 오전 3시 자동 실행 → 로드맵 데이터 수집·갱신 →
+      <strong>Exchange Online</strong>으로 결과 메일 자동 발송.
+      Copilot Studio 에이전트는 사용자가 제품과 상태를 선택하면 Azure Function을 호출해 결과를 반환.
     </div>
   </div>
 
@@ -297,26 +334,24 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
 
     <!-- 2. 메일 발송 -->
     <div class="ss-block">
-      <div class="ss-block-label">② Exchange Online — 메일 발송</div>
+      <div class="ss-block-label">② Exchange Online — 메일 발송 (자동 배치 · 사용자 트리거)</div>
       <div class="ss-grid-2">
         <div class="ss-card">
           <img src="img3.png" alt="일일 업데이트 메일" class="tall" onclick="openLb(this)">
           <div class="ss-cap">
-            <div class="ss-cap-title">M365 Roadmap 일일 업데이트</div>
-            <div class="ss-cap-sub">2026-03-20 · 제품별 개발중/배포중/출시완료 집계</div>
+            <div class="ss-cap-title">Power Automate 자동 배치 메일</div>
+            <div class="ss-cap-sub">매일 오전 자동 발송 · 제품별 개발중/배포중/출시완료 집계</div>
           </div>
         </div>
         <div class="ss-card">
           <img src="img4.png" alt="Outlook 상세 메일" class="tall" onclick="openLb(this)">
           <div class="ss-cap">
-            <div class="ss-cap-title">M365 Roadmap - Outlook In development</div>
-            <div class="ss-cap-sub">2026-03-21 · 개발 중 항목 49개 상세 내용</div>
+            <div class="ss-cap-title">Copilot 에이전트 요청으로 발송된 메일</div>
+            <div class="ss-cap-sub">사용자 트리거 · Outlook In Development 49개 상세 내용</div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- 3. Copilot Studio + Power Automate 구성 -->
     <div class="ss-block">
       <div class="ss-block-label">③ Copilot Studio &amp; Power Automate — 구성</div>
       <div class="ss-grid-2">
@@ -328,10 +363,10 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
           </div>
         </div>
         <div class="ss-card">
-          <img src="img6.png" alt="DailyBatch 플로우" onclick="openLb(this)">
+          <img src="img6.png" alt="Power Automate 흐름 목록" onclick="openLb(this)">
           <div class="ss-cap">
-            <div class="ss-cap-title">Power Automate — DailyBatch 플로우</div>
-            <div class="ss-cap-sub">매일 오전 3시 · 로드맵 데이터 수집·갱신</div>
+            <div class="ss-cap-title">Power Automate — 흐름 목록</div>
+            <div class="ss-cap-sub">Roadmap 메일 발송 · DailyBatch · 일일 메일 (총 3개)</div>
           </div>
         </div>
       </div>
@@ -342,74 +377,31 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
       <div class="ss-block-label">④ Azure 인프라 — Function App &amp; Blob Storage</div>
       <div class="ss-grid-2">
         <div class="ss-card">
-          <img src="img7.png" alt="DailyBatch 호출 로그" class="tall" onclick="openLb(this)">
+          <img src="img7.png" alt="GetRoadmap 호출 로그" class="tall" onclick="openLb(this)">
           <div class="ss-cap">
-            <div class="ss-cap-title">DailyBatch 호출 로그</div>
-            <div class="ss-cap-sub">성공률 100% · 오류 0건 · 지난 30일</div>
+            <div class="ss-cap-title">Azure Functions — 실행 로그</div>
+            <div class="ss-cap-sub">성공 411회 · 오류 0건 · 지난 30일</div>
           </div>
         </div>
         <div class="ss-card">
           <img src="img8.png" alt="Blob Storage roadmap-cache" class="tall" onclick="openLb(this)">
           <div class="ss-cap">
-            <div class="ss-cap-title">Blob Storage — roadmap-cache</div>
-            <div class="ss-cap-sub">JSON · 제품×상태 조합 캐시</div>
+            <div class="ss-cap-title">Blob Storage — 제품×상태 JSON 캐시</div>
+            <div class="ss-cap-sub">108개 JSON · 제품×상태 조합 캐시</div>
           </div>
         </div>
       </div>
       <div style="margin-top:12px;">
         <div class="ss-grid-1">
           <div class="ss-card">
-            <img src="img9.png" alt="Application Insights 대시보드" class="short" onclick="openLb(this)">
+            <img src="img9.png" alt="Application Insights 성능" class="short" onclick="openLb(this)">
             <div class="ss-cap">
-              <div class="ss-cap-title">Application Insights — 모니터링 대시보드</div>
-              <div class="ss-cap-sub">실패 요청 0 · 서버 요청 146회 · 평균 응답시간 1.63분 · 7일 기준</div>
+              <div class="ss-cap-title">Application Insights — 함수별 성능</div>
+              <div class="ss-cap-sub">전체 454회 실행 · DailyBatch 56회 · GetRoadmap 387회 · GetBatchStatus 11회</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- ARCHITECTURE -->
-  <div class="sec fade">
-    <div class="sec-label">시스템 아키텍처</div>
-    <div class="arch-flow">
-      <div class="arch-node">
-        <div class="arch-icon">🌐</div>
-        <div class="arch-name">M365 Roadmap</div>
-        <div class="arch-sub">공개 API</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon hi">⚡</div>
-        <div class="arch-name">Azure Functions</div>
-        <div class="arch-sub">Python</div>
-      </div>
-      <div class="arch-arrow">⇄</div>
-      <div class="arch-node">
-        <div class="arch-icon hi">🗄</div>
-        <div class="arch-name">Blob Storage</div>
-        <div class="arch-sub">108개 JSON · 24h 갱신</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon hi">🤖</div>
-        <div class="arch-name">Copilot Studio</div>
-        <div class="arch-sub">에이전트</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon">💬</div>
-        <div class="arch-name">Teams / Copilot</div>
-        <div class="arch-sub">사용자</div>
-      </div>
-    </div>
-    <div class="arch-note">
-      <strong>Power Automate</strong> 플로우가 매일 오전 3시 자동 실행 → 로드맵 데이터 수집·갱신 →
-      <strong>Exchange Online</strong>으로 결과 메일 자동 발송.
-      Copilot Studio 에이전트는 사용자가 제품과 상태를 선택하면 Azure Function을 호출해 결과를 반환.
     </div>
   </div>
 
