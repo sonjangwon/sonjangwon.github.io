@@ -216,7 +216,6 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-
 
   <div class="intro fade">
     <div class="intro-name">Jangwon Son</div>
-    <p style="font-size: 14px; color: var(--ink3); margin-top: 12px;">배우며 성장하는 것을 즐깁니다.</p>
   </div>
 
   <!-- BIO -->
@@ -239,7 +238,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-
         <div class="bio-sub">석사, Computer Software Engineering<br><em>2024.03 — 2026.02</em></div>
       </div>
       <div class="bio-item">
-        <div class="bio-title">세종대학교</div>
+        <div class="bio-title">Sejong University</div>
         <div class="bio-sub">Computer Science<br><em>2013.03 — 2019.02</em></div>
       </div>
     </div>
@@ -261,9 +260,33 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-
     <div class="projects">
 
       <!-- Project 01 -->
-      <a href="m365-roadmap-agent.html" class="proj-card">
+      <a href="ecall-portfolio.html" class="proj-card">
         <div class="proj-card-top">
           <span class="proj-num">01</span>
+          <span class="proj-title">E-Call AI.ssistant</span>
+          <span class="proj-arrow">↗</span>
+        </div>
+        <p class="proj-desc">
+          긴급신고 전화(112·119)를 실시간 STT로 변환하고, GPT-4o-mini로 위험도·사건유형·위치를 자동 분석해
+          접수 요원의 판단을 보조하는 AI 대응 시스템. 50개 시나리오 벤치마크로 GPT-4o-mini를 최종 선정 —
+          89.7% 정확도, 390ms 응답속도, GPT-4o 대비 연간 $201 비용 절감.
+        </p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">GPT-4o-mini</span>
+          <span class="proj-tag hi">RAG</span>
+          <span class="proj-tag hi">Clova STT</span>
+          <span class="proj-tag">Spring Boot</span>
+          <span class="proj-tag">WebSocket</span>
+          <span class="proj-tag">Supabase</span>
+          <span class="proj-tag">Java 17</span>
+          <span class="proj-tag">GitHub Actions</span>
+        </div>
+      </a>
+
+      <!-- Project 02 -->
+      <a href="m365-roadmap-agent.html" class="proj-card">
+        <div class="proj-card-top">
+          <span class="proj-num">02</span>
           <span class="proj-title">M365 Roadmap Copilot Agent</span>
           <span class="proj-arrow">↗</span>
         </div>
@@ -280,16 +303,6 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-
           <span class="proj-tag">Exchange Online</span>
         </div>
       </a>
-
-      <!-- Project 02 (WIP placeholder) -->
-      <div class="proj-card wip">
-        <div class="proj-card-top">
-          <span class="proj-num">02</span>
-          <span class="proj-title">Coming Soon</span>
-          <span class="wip-badge">WIP</span>
-        </div>
-        <p class="proj-desc">다음 프로젝트 준비 중</p>
-      </div>
 
     </div>
   </div>
