@@ -140,12 +140,6 @@ body {
   align-items: center;
   gap: 12px;
 }
-.sec-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
-}
 
 /* ── DIVIDER ── */
 hr { border: none; border-top: 1px solid var(--rule); margin: 0 0 52px; }
@@ -233,10 +227,10 @@ code {
 .arch-sub  { font-size: 10px; color: var(--ink3); margin-top: 2px; white-space: nowrap; }
 .arch-arrow {
   flex: 1; min-width: 20px;
-  display: flex; align-items: center; justify-content: center;
-  padding-bottom: 28px;
-  color: #d0d0cc;
-  font-size: 13px;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 15px;
+  color: #999;
+  font-size: 16px;
   font-family: var(--mono);
 }
 
@@ -418,7 +412,7 @@ code {
 .step-num { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
 .shot-step figure { margin: 0; }
 .shot-step img { width: 100%; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-.shot-flow-arrow { flex: 0 0 auto; align-self: center; color: #ccc; font-size: 16px; font-family: var(--mono); padding-bottom: 20px; }
+.shot-flow-arrow { flex: 0 0 auto; align-self: center; color: #ccc; font-size: 16px; font-family: var(--mono); padding-top: 0; }
 .shot-step figcaption, .shot-single figcaption, .shot-pair figcaption { font-size: 11.5px; color: var(--ink3); margin-top: 8px; line-height: 1.55; }
 .shot-step figcaption strong, .shot-single figcaption strong, .shot-pair figcaption strong { display: block; color: var(--ink2); font-weight: 600; font-size: 12px; margin-bottom: 1px; }
 
@@ -523,6 +517,8 @@ code {
     </div>
   </div>
 
+
+
   <hr>
 
   <!-- PROBLEM / SOLUTION -->
@@ -549,6 +545,8 @@ code {
       </div>
     </div>
   </div>
+
+
 
   <hr>
 
@@ -593,12 +591,14 @@ code {
       </div>
     </div>
     <div class="arch-note">
-      ① 신고 전화가 연결되면 Clova STT가 통화를 실시간으로 텍스트 전사합니다.<br>
-      ② GPT-4o-mini가 전사 내용을 분석해 사건 유형·위험도·위치를 자동 분류합니다.<br>
-      ③ 분류 결과를 바탕으로 대응 매뉴얼과 출동 부대가 즉시 추천되고, 기록은 Supabase에 저장됩니다.<br><br>
-      평균 응답 2.1초 / STT·LLM 이중화 폴백 구조로 무중단 운영을 보장합니다.
+      <div style="display:flex; gap:8px; margin-bottom:5px;"><span style="flex-shrink:0;">·</span><span>신고 전화가 연결되면 Clova STT가 통화를 실시간으로 텍스트 전사합니다.</span></div>
+      <div style="display:flex; gap:8px; margin-bottom:5px;"><span style="flex-shrink:0;">·</span><span>GPT-4o-mini가 전사 내용을 분석해 사건 유형·위험도·위치를 자동 분류합니다.</span></div>
+      <div style="display:flex; gap:8px; margin-bottom:5px;"><span style="flex-shrink:0;">·</span><span>분류 결과를 바탕으로 대응 매뉴얼과 출동 부대가 즉시 추천되고, 기록은 Supabase에 저장됩니다.</span></div>
+      <div style="display:flex; gap:8px;"><span style="flex-shrink:0;">·</span><span>평균 응답 2.1초 / STT·LLM 이중화 폴백 구조로 무중단 운영을 보장합니다.</span></div>
     </div>
   </div>
+
+
 
   <hr>
 
@@ -606,7 +606,7 @@ code {
   <div class="sec fade">
     <div class="sec-label">시스템 아키텍처</div>
     <div style="background:#fff; border:1px solid var(--rule); border-radius:10px; padding:24px; overflow-x:auto;">
-      <div style="display:grid; grid-template-columns:80px 1fr 24px 1fr; gap:12px; min-width:620px; align-items:start;">
+      <div style="display:grid; grid-template-columns:80px 1fr 1fr; gap:12px; min-width:620px; align-items:start;">
 
         <div>
           <div style="font-family:var(--mono); font-size:8.5px; letter-spacing:0.1em; color:var(--ink3); text-transform:uppercase; margin-bottom:10px; text-align:center;">User</div>
@@ -620,72 +620,68 @@ code {
         <div>
           <div style="font-family:var(--mono); font-size:8.5px; letter-spacing:0.1em; color:#888; text-transform:uppercase; margin-bottom:10px; text-align:center;">Internal Resources</div>
           <div style="border:1.5px solid #c5d8fb; border-radius:8px; padding:12px; margin-bottom:8px; background:#f8faff;">
-            <div style="font-size:10px; font-weight:700; color:var(--accent); margin-bottom:8px;">Client Layer (HTML)</div>
+            <div style="font-size:12px; font-weight:700; color:var(--accent); margin-bottom:8px; text-align:center;">Client Layer (HTML)</div>
             <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:4px;">
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">대시보드</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">신고 접수</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">출동 콘솔</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">신고 이력</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">통계·보고</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">부서 관리</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">매뉴얼</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">환경설정</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">대시보드</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">신고 접수</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">출동 콘솔</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">신고 이력</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">통계·보고</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">부서 관리</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">매뉴얼</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">환경설정</div>
             </div>
           </div>
           <div style="border:1.5px solid #c5d8fb; border-radius:8px; padding:12px; margin-bottom:8px; background:#f8faff;">
-            <div style="font-size:10px; font-weight:700; color:var(--accent); margin-bottom:8px;">Backend Layer (Spring Boot)</div>
+            <div style="font-size:12px; font-weight:700; color:var(--accent); margin-bottom:8px; text-align:center;">Backend Layer (Spring Boot)</div>
             <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:4px;">
-              <div style="background:#fff; border-radius:4px; padding:7px 6px; font-size:9px; text-align:center; border:1px solid #dde8ff; line-height:1.4;">REST API<br>Controllers</div>
-              <div style="background:#fff; border-radius:4px; padding:7px 6px; font-size:9px; text-align:center; border:1px solid #dde8ff; line-height:1.4;">WebSocket<br>/ws/voice</div>
-              <div style="background:#fff; border-radius:4px; padding:7px 6px; font-size:9px; text-align:center; border:1px solid #dde8ff; line-height:1.4;">Service<br>Layer</div>
+              <div style="background:#fff; border-radius:4px; padding:8px 6px; font-size:11px; text-align:center; border:1px solid #dde8ff; line-height:1.4;">REST API<br>Controllers</div>
+              <div style="background:#fff; border-radius:4px; padding:8px 6px; font-size:11px; text-align:center; border:1px solid #dde8ff; line-height:1.4;">WebSocket<br>/ws/voice</div>
+              <div style="background:#fff; border-radius:4px; padding:8px 6px; font-size:11px; text-align:center; border:1px solid #dde8ff; line-height:1.4;">Service<br>Layer</div>
             </div>
           </div>
           <div style="border:1.5px solid #c5d8fb; border-radius:8px; padding:12px; background:#f8faff;">
-            <div style="font-size:10px; font-weight:700; color:var(--accent); margin-bottom:8px;">Data Layer (Supabase / PostgreSQL)</div>
+            <div style="font-size:12px; font-weight:700; color:var(--accent); margin-bottom:8px; text-align:center;">Data Layer (Supabase / PostgreSQL)</div>
             <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:4px;">
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">Caller</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">Operator</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">Emergency</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">Dispatch</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">Unit</div>
-              <div style="background:#fff; border-radius:4px; padding:5px 4px; font-size:9px; text-align:center; border:1px solid #dde8ff;">Storage</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">Caller</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">Operator</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">Emergency</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">Dispatch</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">Unit</div>
+              <div style="background:#fff; border-radius:4px; padding:6px 4px; font-size:11px; text-align:center; border:1px solid #dde8ff;">Storage</div>
             </div>
           </div>
-        </div>
-
-        <div style="display:flex; flex-direction:column; align-items:center; padding-top:24px;">
-          <div style="width:1px; flex:1; background: repeating-linear-gradient(to bottom, #ccc 0, #ccc 5px, transparent 5px, transparent 10px);"></div>
         </div>
 
         <div>
           <div style="font-family:var(--mono); font-size:8.5px; letter-spacing:0.1em; color:#888; text-transform:uppercase; margin-bottom:10px; text-align:center;">External Resources</div>
-          <div style="background:#3a3a3a; border-radius:8px; padding:12px; margin-bottom:8px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:7px; flex-wrap:wrap; gap:4px;">
-              <div style="font-size:10px; font-weight:600; color:#fff;">Naver Clova Speech API</div>
-              <div style="font-size:8px; color:#ccc; font-family:var(--mono); background:#555; border-radius:3px; padding:2px 7px;">폴백 → Azure Speech</div>
+          <div style="border:1.5px solid #c5d8fb; border-radius:8px; padding:12px; margin-bottom:8px; background:#f8faff;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:4px;">
+              <div style="font-size:12px; font-weight:700; color:var(--accent);">Naver Clova Speech API</div>
+              <div style="font-size:9px; color:#888; font-family:var(--mono); background:#eef2ff; border-radius:3px; padding:2px 7px; border:1px solid #dde8ff;">폴백 → Azure Speech</div>
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">음성 텍스트 변환 (STT)</div>
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">발화자 분리 (Diarization)</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">음성 텍스트 변환 (STT)</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">발화자 분리 (Diarization)</div>
             </div>
           </div>
-          <div style="background:#3a3a3a; border-radius:8px; padding:12px; margin-bottom:8px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:7px; flex-wrap:wrap; gap:4px;">
-              <div style="font-size:10px; font-weight:600; color:#fff;">OpenAI GPT-4o-mini</div>
-              <div style="font-size:8px; color:#ccc; font-family:var(--mono); background:#555; border-radius:3px; padding:2px 7px;">폴백 → claude-haiku</div>
+          <div style="border:1.5px solid #c5d8fb; border-radius:8px; padding:12px; margin-bottom:8px; background:#f8faff;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:4px;">
+              <div style="font-size:12px; font-weight:700; color:var(--accent);">OpenAI GPT-4o-mini</div>
+              <div style="font-size:9px; color:#888; font-family:var(--mono); background:#eef2ff; border-radius:3px; padding:2px 7px; border:1px solid #dde8ff;">폴백 → claude-haiku</div>
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">신고자 위치 정보</div>
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">사건 유형 분류</div>
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">사건 위험도 평가</div>
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">AI 출동 부대 추천</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">신고자 위치 정보</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">사건 유형 분류</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">사건 위험도 평가</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">AI 출동 부대 추천</div>
             </div>
           </div>
-          <div style="background:#3a3a3a; border-radius:8px; padding:12px;">
-            <div style="font-size:10px; font-weight:600; color:#fff; margin-bottom:7px;">Kakao Maps API</div>
+          <div style="border:1.5px solid #c5d8fb; border-radius:8px; padding:12px; background:#f8faff;">
+            <div style="font-size:12px; font-weight:700; color:var(--accent); margin-bottom:8px;">Kakao Maps API</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">주소 변환 / Geocoding</div>
-              <div style="background:#555; border-radius:4px; padding:6px; font-size:9px; color:#ddd; text-align:center;">출동지도 시각화</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">주소 변환 / Geocoding</div>
+              <div style="background:#fff; border-radius:4px; padding:6px; font-size:11px; color:#444; text-align:center; border:1px solid #dde8ff;">출동지도 시각화</div>
             </div>
           </div>
         </div>
@@ -693,6 +689,8 @@ code {
       </div>
     </div>
   </div>
+
+
 
   <hr>
 
@@ -803,6 +801,79 @@ code {
       </div>
     </div>
 
+  </div>
+
+
+
+  <hr>
+
+  <!-- BENCHMARK -->
+  <div class="sec fade">
+    <div class="sec-label">AI 모델 벤치마크 — 5개 LLM 비교 (연간 비용: 월 1만 콜 기준)</div>
+    <div class="bench-wrap">
+      <table class="bench-tbl">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>정확도</th>
+            <th>응답속도</th>
+            <th>연간 비용 <span style="font-size:8.5px;letter-spacing:0">(월 1만 콜)</span></th>
+            <th>일관성</th>
+            <th>종합 ↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="winner">
+            <td>gpt-4o-mini<span class="winner-tag">선정</span></td>
+            <td><div class="bar-wrap">0.84<div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div></div></td>
+            <td>2,130 ms</td>
+            <td>$12.36</td>
+            <td>0.993</td>
+            <td>0.668</td>
+          </tr>
+          <tr>
+            <td>claude-haiku-4-5</td>
+            <td><div class="bar-wrap">0.86<div class="bar-bg"><div class="bar-fill" style="width:86%; background:#bbb"></div></div></div></td>
+            <td>1,859 ms</td>
+            <td>$160.08</td>
+            <td>1.000</td>
+            <td>0.660</td>
+          </tr>
+          <tr>
+            <td>gpt-4o</td>
+            <td><div class="bar-wrap">0.85<div class="bar-bg"><div class="bar-fill" style="width:85%; background:#bbb"></div></div></div></td>
+            <td>1,145 ms</td>
+            <td>$210.24</td>
+            <td>1.000</td>
+            <td>0.637</td>
+          </tr>
+          <tr>
+            <td>gemini-2.5-flash-lite</td>
+            <td><div class="bar-wrap">0.85<div class="bar-bg"><div class="bar-fill" style="width:85%; background:#bbb"></div></div></div></td>
+            <td>2,534 ms</td>
+            <td>$8.88</td>
+            <td>1.000</td>
+            <td>0.620</td>
+          </tr>
+          <tr>
+            <td>gemini-2.5-flash</td>
+            <td><div class="bar-wrap">0.70<div class="bar-bg"><div class="bar-fill" style="width:70%; background:#bbb"></div></div></div></td>
+            <td>6,733 ms</td>
+            <td>$34.20</td>
+            <td>0.813</td>
+            <td>0.606</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bench-note">
+      평가 기준 — <strong>정확도 40% · 응답속도 25% · 비용 25% · 일관성 10%</strong>.
+      테스트 샘플: 100개 한국어 구어체 시나리오 (당황한 신고자 어조, 불완전한 위치, 복합 케이스).
+      위험도 4–5 고위험 신고를 전체의 66%로 집중 배분. 2025.10 기준 API 가격 반영.
+      <br><br>
+      정확도는 카테고리 exact match 기준으로, 초기 벤치마크(영어 시나리오, 부분 점수 포함)보다
+      엄격한 조건에서 측정되었습니다. <strong>gpt-4o-mini</strong>는 비용(월 $1.03)과 종합 점수(0.668) 모두에서 1위를 기록했습니다.
+    </div>
   </div>
 
   <hr>
@@ -969,76 +1040,7 @@ code {
     </ul>
   </div>
 
-  <hr>
 
-  <!-- BENCHMARK -->
-  <div class="sec fade">
-    <div class="sec-label">AI 모델 벤치마크 — 5개 LLM 비교 (연간 비용: 월 1만 콜 기준)</div>
-    <div class="bench-wrap">
-      <table class="bench-tbl">
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>정확도</th>
-            <th>응답속도</th>
-            <th>연간 비용 <span style="font-size:8.5px;letter-spacing:0">(월 1만 콜)</span></th>
-            <th>일관성</th>
-            <th>종합 ↑</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="winner">
-            <td>gpt-4o-mini<span class="winner-tag">선정</span></td>
-            <td><div class="bar-wrap">0.84<div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div></div></td>
-            <td>2,130 ms</td>
-            <td>$12.36</td>
-            <td>0.993</td>
-            <td>0.668</td>
-          </tr>
-          <tr>
-            <td>claude-haiku-4-5</td>
-            <td><div class="bar-wrap">0.86<div class="bar-bg"><div class="bar-fill" style="width:86%; background:#bbb"></div></div></div></td>
-            <td>1,859 ms</td>
-            <td>$160.08</td>
-            <td>1.000</td>
-            <td>0.660</td>
-          </tr>
-          <tr>
-            <td>gpt-4o</td>
-            <td><div class="bar-wrap">0.85<div class="bar-bg"><div class="bar-fill" style="width:85%; background:#bbb"></div></div></div></td>
-            <td>1,145 ms</td>
-            <td>$210.24</td>
-            <td>1.000</td>
-            <td>0.637</td>
-          </tr>
-          <tr>
-            <td>gemini-2.5-flash-lite</td>
-            <td><div class="bar-wrap">0.85<div class="bar-bg"><div class="bar-fill" style="width:85%; background:#bbb"></div></div></div></td>
-            <td>2,534 ms</td>
-            <td>$8.88</td>
-            <td>1.000</td>
-            <td>0.620</td>
-          </tr>
-          <tr>
-            <td>gemini-2.5-flash</td>
-            <td><div class="bar-wrap">0.70<div class="bar-bg"><div class="bar-fill" style="width:70%; background:#bbb"></div></div></div></td>
-            <td>6,733 ms</td>
-            <td>$34.20</td>
-            <td>0.813</td>
-            <td>0.606</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="bench-note">
-      평가 기준 — <strong>정확도 40% · 응답속도 25% · 비용 25% · 일관성 10%</strong>.
-      테스트 샘플: 100개 한국어 구어체 시나리오 (당황한 신고자 어조, 불완전한 위치, 복합 케이스).
-      위험도 4–5 고위험 신고를 전체의 66%로 집중 배분. 2025.10 기준 API 가격 반영.
-      <br><br>
-      정확도는 카테고리 exact match 기준으로, 초기 벤치마크(영어 시나리오, 부분 점수 포함)보다
-      엄격한 조건에서 측정되었습니다. <strong>gpt-4o-mini</strong>는 비용(월 $1.03)과 종합 점수(0.668) 모두에서 1위를 기록했습니다.
-    </div>
-  </div>
 
   <hr>
 
