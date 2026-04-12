@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>손장원</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f8f8f6;
+  --text: #191919;
+  --sub: #777;
+  --muted: #aaa;
+  --accent: #1558d6;
+  --border: #e4e4e0;
+  --card: #fcfcfa;
+  --sans: "Noto Sans KR", sans-serif;
+  --mono: "DM Mono", monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 72px 24px 100px;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 56px;
+}
+
+.hero-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: #e8e8e4;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.hero-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.hero-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-links a,
+.hero-links span {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.hero-links a:hover { color: var(--accent); }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+.label {
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.tl-item:last-child { margin-bottom: 0; }
+
+.tl-period {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  padding-top: 2px;
+}
+
+.tl-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+}
+
+.tl-org {
+  font-size: 0.83rem;
+  color: var(--sub);
+  margin-bottom: 4px;
+}
+
+.tl-desc {
+  font-size: 0.81rem;
+  color: #888;
+  line-height: 1.65;
+}
+
+.proj-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+.proj-item:last-child { margin-bottom: 0; }
+
+.proj-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+}
+
+.proj-name a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.proj-name a:hover { color: var(--accent); }
+
+.proj-sub {
+  font-size: 0.8rem;
+  color: var(--sub);
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cert-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.award-item,
+.activity-item {
+  margin-bottom: 20px;
+}
+.award-item:last-child,
+.activity-item:last-child { margin-bottom: 0; }
+
+.award-head,
+.activity-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 2px;
+}
+
+.award-title,
+.activity-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.award-meta,
+.activity-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.award-role,
+.activity-role {
+  font-size: 0.8rem;
+  color: var(--sub);
+  margin-bottom: 4px;
+}
+
+.award-desc,
+.activity-desc {
+  font-size: 0.81rem;
+  color: #888;
+}
+
+ul.compact-list {
+  margin: 6px 0 0 18px;
+}
+
+ul.compact-list li {
+  font-size: 0.81rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+footer {
+  margin-top: 80px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .cert-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .wrap { padding: 56px 20px 84px; }
+  .hero { gap: 18px; }
+  .hero-photo { width: 68px; height: 68px; }
+  .tl-item { grid-template-columns: 1fr; gap: 3px; }
+  .tl-period { font-size: 0.67rem; }
+  .award-head,
+  .activity-head { flex-direction: column; gap: 2px; }
+  .award-meta,
+  .activity-meta { white-space: normal; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hero">
+<img class="hero-photo" src="img/손장원_2023.jpg" alt="손장원">
+<div>
+<div class="hero-name">손장원</div>
+<div class="hero-links">
+<a href="https://linkedin.com/in/jangwon-son/" rel="noopener noreferrer" target="_blank">linkedin.com/in/jangwon-son</a>
+<a href="mailto:jangwonson31@gmail.com">jangwonson31@gmail.com</a>
+</div>
+</div>
+</div>
+<div class="label">Projects</div>
+<div class="proj-item">
+<div>
+<div class="proj-name"><a href="ecall-portfolio.html">E-Call AI.ssistant →</a></div>
+<div class="proj-sub">112/119 긴급신고 실시간 AI 분석</div>
+</div>
+</div>
+<div class="proj-item">
+<div>
+<div class="proj-name"><a href="m365-roadmap-agent.html">M365 Roadmap Agent →</a></div>
+<div class="proj-sub">Microsoft 365 로드맵 자동 분석 에이전트</div>
+</div>
+</div>
+<div class="proj-item">
+<div>
+<div class="proj-name"><a href="exchange-migration-advisor.html">Exchange Migration Advisor →</a></div>
+<div class="proj-sub">온프레미스 Exchange 환경 분석 및 M365 마이그레이션 자동 진단·전략 추천</div>
+</div>
+</div>
+<hr/>
+<div class="label">Experience</div>
+<div class="tl-item">
+<div class="tl-period">2022 – 현재</div>
+<div>
+<div class="tl-title">Support Escalation Engineer</div>
+<div class="tl-org">Microsoft · Modern Workplace</div>
+<div class="tl-desc">
+        Troubleshooting technical issues encountered by enterprise customers across supported products. Collaborating with product teams to improve solution behaviors based on customer requirements. Managing an Azure lab environment that replicates customer infrastructures for issue reproduction and analysis.
+        <br/><br/>
+        Exchange Online, Outlook, Exchange Server, M365 Copilot · Security &amp; Compliance (Defender for Office 365, Purview, DLP, AIP) · M365 Identity (Hybrid Connect Sync, ADFS)
+      </div>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-period">2018.12 – 2020.08</div>
+<div>
+<div class="tl-title">System Engineer</div>
+<div class="tl-org">Hanwha Systems · Groupware Team</div>
+<div class="tl-desc">
+        Operated Exchange Servers across all Hanwha Group affiliates, managing services for ~50,000 users and 40+ servers. Implemented custom features on top of the Exchange Server environment and participated in new server environment setup for the holding company.
+      </div>
+</div>
+</div>
+<hr/>
+<div class="label">Education</div>
+<div class="tl-item">
+<div class="tl-period">2024 – 2026</div>
+<div>
+<div class="tl-title">Master's, Computer Software</div>
+<div class="tl-org">Yonsei University (연세대학교)</div>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-period">2013 – 2019</div>
+<div>
+<div class="tl-title">Bachelor's, Computer Science</div>
+<div class="tl-org">Sejong University (세종대학교)</div>
+</div>
+</div>
+<hr/>
+<div class="label">Certifications</div>
+<div class="cert-grid"><div class="cert-item">AWS Solutions Architect – Associate</div><div class="cert-item">네트워크 관리사 2급</div><div class="cert-item">AI-900<br/>Microsoft Azure AI Fundamentals</div><div class="cert-item">AZ-104<br/>Microsoft Azure Administrator</div><div class="cert-item">AZ-900<br/>Microsoft Azure Fundamentals</div><div class="cert-item">MS-900<br/>Microsoft 365 Fundamentals</div></div>
+<hr/>
+<div class="label">Awards</div>
+<div class="award-item">
+<div class="award-head">
+<div class="award-title">Microsoft Imagine Cup 2018 World Finals, World Finalists</div>
+<div class="award-meta">Seoul, Korea · Jul 2018</div>
+</div>
+<div class="award-role">Team lead, Developer</div>
+<div class="award-desc">Microsoft Imagine Cup 2018 Asia Pacific Regional Finals · Microsoft Imagine Cup 2018 Korea Finals</div>
+</div>
+<div class="award-item">
+<div class="award-head">
+<div class="award-title">29th Global Software Competition, Prime Minister Award</div>
+<div class="award-meta">Seoul, Korea · Dec 2017</div>
+</div>
+<div class="award-role">Team lead, Developer</div>
+</div>
+<div class="award-item">
+<div class="award-head">
+<div class="award-title">2017 Seoul Application Competition, Seoul Mayor Award</div>
+<div class="award-meta">Seoul, Korea · Nov 2017</div>
+</div>
+<div class="award-role">Team lead, Developer</div>
+</div>
+<hr/>
+<div class="label">Activity</div>
+<div class="activity-item">
+<div class="activity-head">
+<div class="activity-title">En# Lab</div>
+<div class="activity-meta">Mar 2017 – Feb 2019</div>
+</div>
+<ul class="compact-list">
+<li>Participated in a programming research group, focusing on C# development</li>
+<li>Developed various projects and participated in competitions</li>
+</ul>
+</div>
+<footer>sonjangwon.github.io</footer>
+</div>
+</body>
+</html>

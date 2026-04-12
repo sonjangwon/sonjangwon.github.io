@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>M365 Roadmap Agent — 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f8f8f6;
+  --white: #ffffff;
+  --ink: #111111;
+  --ink2: #3a3a3a;
+  --ink3: #888888;
+  --rule: #e2e2de;
+  --accent: #1558d6;
+  --accent-lt: #eef3ff;
+  --green: #15803d;
+  --green-lt: #f0fdf4;
+  --tag: #efefeb;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Noto Sans KR', sans-serif;
+}
+html { font-size: 15px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+.page { max-width: 820px; margin: 0 auto; padding: 72px 36px 120px; }
+
+/* TOPBAR */
+.topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 28px; border-bottom: 2px solid var(--ink); margin-bottom: 60px; }
+.topbar-id { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; }
+.status-pill { display: flex; align-items: center; gap: 6px; background: var(--green-lt); border: 1px solid #bbf7d0; border-radius: 999px; padding: 4px 12px; }
+.status-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 2.5s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.status-text { font-family: var(--mono); font-size: 10px; color: var(--green); letter-spacing: 0.1em; font-weight: 500; }
+
+/* HERO */
+.hero { margin-bottom: 64px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-lead { font-size: 15px; color: var(--ink2); line-height: 1.8; max-width: 640px; margin-bottom: 26px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag { background: var(--tag); color: #444; font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 4px; }
+.tag.hi { background: var(--accent-lt); color: var(--accent); }
+
+/* METRICS */
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 64px; }
+.metric { background: var(--white); padding: 22px 16px; }
+.metric-val { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--ink); letter-spacing: -0.03em; line-height: 1; margin-bottom: 5px; }
+.metric-val span { font-size: 13px; color: var(--accent); }
+.metric-desc { font-size: 11px; color: var(--ink3); line-height: 1.5; }
+
+/* SECTION */
+.sec { margin-bottom: 60px; }
+.sec-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+hr { border: none; border-top: 1px solid var(--rule); margin: 0 0 56px; }
+code { font-family: var(--mono); font-size: 12px; background: var(--tag); padding: 1px 5px; border-radius: 3px; color: #333; }
+
+/* PROBLEM / SOLUTION */
+.ps { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ps-box { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 22px; }
+.ps-box.sol { border-color: #bfdbfe; background: #f8faff; }
+.ps-head { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; }
+.ps-box.sol .ps-head { color: var(--accent); }
+.ps-list { list-style: none; display: grid; gap: 9px; }
+.ps-list li { font-size: 13px; color: var(--ink2); line-height: 1.6; padding-left: 18px; position: relative; }
+.ps-list li::before { content: '—'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
+.ps-box.sol .ps-list li::before { content: '✓'; color: var(--accent); font-size: 12px; }
+
+/* BUILT LIST */
+.built { list-style: none; }
+.built-item { display: grid; grid-template-columns: 48px 1fr; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.built-item:last-child { border-bottom: none; }
+.built-n { font-family: var(--mono); font-size: 11px; color: var(--ink3); padding-top: 2px; }
+.built-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.built-badge { font-family: var(--mono); font-size: 10px; background: var(--accent-lt); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-weight: 400; }
+.built-desc { font-size: 13px; color: var(--ink2); line-height: 1.75; margin-bottom: 10px; }
+.built-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--tag); color: #555; font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; }
+
+/* SCREENSHOTS */
+.ss-block { margin-bottom: 40px; }
+.ss-block-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.ss-block-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.ss-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ss-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.ss-grid-1 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.ss-card {
+  background: var(--white); border: 1px solid var(--rule); border-radius: 10px;
+  overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ss-card:hover { border-color: #93c5fd; box-shadow: 0 4px 16px rgba(21,88,214,0.08); }
+.ss-card img { width: 100%; display: block; cursor: zoom-in; object-fit: cover; }
+.ss-card img.tall { max-height: 300px; object-position: top; }
+.ss-card img.short { max-height: 200px; }
+.ss-cap { padding: 10px 14px; border-top: 1px solid var(--rule); }
+.ss-cap-title { font-weight: 700; font-size: 12px; margin-bottom: 2px; color: var(--ink); }
+.ss-cap-sub { font-size: 10px; color: var(--ink3); font-family: var(--mono); }
+
+/* ARCH */
+.arch-flow { display: flex; align-items: flex-start; overflow-x: auto; padding: 24px 0 8px; }
+.arch-node { text-align: center; flex-shrink: 0; min-width: 96px; }
+.arch-icon { width: 48px; height: 48px; background: var(--white); border: 1.5px solid var(--rule); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 6px; }
+.arch-icon.hi { border-color: #bfdbfe; background: var(--accent-lt); }
+.arch-name { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.arch-sub { font-size: 10px; color: var(--ink3); white-space: nowrap; margin-top: 2px; }
+.arch-arrow { flex: 1; min-width: 24px; display: flex; align-items: center; justify-content: center; padding-bottom: 26px; color: #ccc; font-size: 16px; }
+.arch-note { margin-top: 12px; background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 6px; padding: 12px 16px; font-size: 12px; color: var(--ink3); line-height: 1.65; }
+.arch-note strong { color: var(--ink); }
+
+/* STACK TABLE */
+.stack-tbl { width: 100%; border-collapse: collapse; }
+.stack-tbl tr { border-bottom: 1px solid var(--rule); }
+.stack-tbl tr:last-child { border-bottom: none; }
+.stack-tbl td { padding: 13px 0; font-size: 13px; vertical-align: middle; }
+.stack-tbl td:first-child { font-family: var(--mono); font-size: 10px; color: var(--ink3); width: 110px; padding-right: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
+.s-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.s-chip { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 3px 10px; font-family: var(--mono); font-size: 11px; color: var(--ink2); }
+
+/* PRODUCTS */
+.prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; }
+.prod-item { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 9px 14px; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; }
+.prod-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* FOOTER */
+.footer { border-top: 2px solid var(--ink); padding-top: 28px; margin-top: 72px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+.footer-left .fn { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.footer-left .fr { font-size: 12px; color: var(--ink3); }
+.footer-right { font-family: var(--mono); font-size: 10px; color: var(--ink3); text-align: right; line-height: 2; letter-spacing: 0.06em; }
+
+/* LIGHTBOX */
+.lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+.lb.open { display: flex; }
+.lb img { max-width: 92vw; max-height: 92vh; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); object-fit: contain; }
+
+/* FADE */
+.fade { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade.in { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .page { padding: 48px 20px 80px; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .ps { grid-template-columns: 1fr; }
+  .ss-grid-2, .ss-grid-3 { grid-template-columns: 1fr; }
+  .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hero h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="lb" id="lb" onclick="closeLb()">
+  <img id="lb-img" src="" alt="">
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero fade">
+    <h1>Microsoft 365<br><em>Roadmap Copilot Agent</em></h1>
+    <p class="hero-lead">
+      M365 Roadmap 업데이트를 자동으로 수집·분류해 Copilot 에이전트로 바로 조회할 수 있는 시스템.
+      Azure Functions·Blob Storage·Power Automate를 조합해 운영 비용을 최소화하며, 수동 작업 없이 매일 자동 운영됩니다.<br><br>
+      Teams 혹은 Copilot에서 원하는 제품과 상태를 선택해 즉시 조회하거나, 매일 아침 메일로 최신 업데이트를 받아볼 수 있습니다.
+    </p>
+    <div class="tag-row">
+      <span class="tag hi">Azure Functions</span>
+      <span class="tag hi">Copilot Studio</span>
+      <span class="tag hi">Power Automate</span>
+      <span class="tag">Python 3.11</span>
+      <span class="tag">Blob Storage</span>
+      <span class="tag">Exchange Online</span>
+      <span class="tag">Microsoft Teams</span>
+      <span class="tag">Serverless</span>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics fade">
+    <div class="metric">
+      <div class="metric-val">36<span>개</span></div>
+      <div class="metric-desc">M365 Roadmap 제품<br>전체 커버</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">100<span>%</span></div>
+      <div class="metric-desc">30일 무중단<br>성공률</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">108<span>개</span></div>
+      <div class="metric-desc">Azure Blob Storage 캐시 파일<br>36제품×3상태</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">0<span>서버</span></div>
+      <div class="metric-desc">운영 비용 최소화<br>별도 서버 없음</div>
+    </div>
+  </div>
+
+  <!-- PROBLEM / SOLUTION -->
+  <div class="sec fade">
+    <div class="sec-label">문제 정의 &amp; 해결</div>
+    <div class="ps">
+      <div class="ps-box">
+        <div class="ps-head">Before</div>
+        <ul class="ps-list">
+          <li>M365 제품 업데이트는 시기와 범위를 예측하기 어려워 지속적인 추적 필요</li>
+          <li>담당자가 직접 M365 Roadmap 페이지를 주기적으로 방문해 수동 확인</li>
+          <li>제품별 업데이트 추적에 반복 공수 발생</li>
+          <li>로드맵 변경 인지 후 팀 공유까지 별도 작업 필요</li>
+        </ul>
+      </div>
+      <div class="ps-box sol">
+        <div class="ps-head">After</div>
+        <ul class="ps-list">
+          <li>Power Automate 스케줄로 매일 자동 데이터 수집 및 갱신</li>
+          <li>Azure Blob Storage 캐싱으로 빠른 응답, 중복 API 호출 제거</li>
+          <li>Copilot 에이전트에 자연어로 질의해 즉시 확인 가능</li>
+          <li>신규/변경 아이템 감지 후 Exchange Online으로 자동 메일 발송</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ARCHITECTURE -->
+  <div class="sec fade">
+    <div class="sec-label">시스템 아키텍처</div>
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="arch-icon">🌐</div>
+        <div class="arch-name">M365 Roadmap</div>
+        <div class="arch-sub">공개 API</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-icon hi">⚡</div>
+        <div class="arch-name">Azure Functions</div>
+        <div class="arch-sub">Python</div>
+      </div>
+      <div class="arch-arrow">⇄</div>
+      <div class="arch-node">
+        <div class="arch-icon hi">🗄</div>
+        <div class="arch-name">Blob Storage</div>
+        <div class="arch-sub">108개 JSON · 24h 갱신</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-icon hi">🤖</div>
+        <div class="arch-name">Copilot Studio</div>
+        <div class="arch-sub">에이전트</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-icon">💬</div>
+        <div class="arch-name">Teams / Copilot</div>
+        <div class="arch-sub">사용자</div>
+      </div>
+    </div>
+    <div class="arch-note">
+      <strong>Power Automate</strong> 플로우가 매일 오전 3시 자동 실행 → 로드맵 데이터 수집·갱신 →
+      <strong>Exchange Online</strong>으로 결과 메일 자동 발송.
+      Copilot Studio 에이전트는 사용자가 제품과 상태를 선택하면 Azure Function을 호출해 결과를 반환.
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- WHAT I BUILT -->
+  <div class="sec fade">
+    <div class="sec-label">직접 설계 &amp; 구현한 것</div>
+    <ul class="built">
+      <li class="built-item">
+        <span class="built-n">01</span>
+        <div>
+          <div class="built-title">M365 Roadmap API 수집 모듈 <span class="built-badge">Azure Functions · Python</span></div>
+          <div class="built-desc">데이터 수집·배치 실행·상태 확인 기능을 담당하는 각각의 함수를 Python으로 작성. 요청이 들어오면 해당 제품의 최신 로드맵 데이터를 가져와 저장 가능한 형태로 변환. Azure에 배포 및 운영 환경 구성까지 직접 진행.</div>
+        </div>
+      </li>
+      <li class="built-item">
+        <span class="built-n">02</span>
+        <div>
+          <div class="built-title">로드맵 데이터 캐싱 — Azure Blob Storage <span class="built-badge">Azure Blob Storage</span></div>
+          <div class="built-desc">수집한 로드맵 데이터를 Azure Blob Storage에 저장해 재사용. 24시간 이내 같은 데이터 요청이 오면 외부 API를 다시 호출하지 않고 저장된 데이터를 바로 반환. 최대 108개(36제품×3상태) 파일을 관리하며 응답 속도 개선 및 비용 절감 효과.</div>
+        </div>
+      </li>
+      <li class="built-item">
+        <span class="built-n">03</span>
+        <div>
+          <div class="built-title">Copilot Studio 에이전트 설계 &amp; 배포 <span class="built-badge">Copilot Studio · Microsoft Teams</span></div>
+          <div class="built-desc">사용자가 제품과 상태를 선택하면 Azure Function을 호출해 결과를 반환하는 대화 흐름을 설계. REST API 연결 및 Power Automate 흐름 연동. Microsoft Teams에 에이전트 게시 완료.</div>
+        </div>
+      </li>
+      <li class="built-item">
+        <span class="built-n">04</span>
+        <div>
+          <div class="built-title">Power Automate 일일 배치 오케스트레이션 <span class="built-badge">Power Automate · Exchange Online</span></div>
+          <div class="built-desc">매일 오전 3시 자동으로 로드맵 데이터를 수집·갱신하는 배치 플로우와, 결과를 이메일로 발송하는 플로우 구성. Function 실행 성공 시에만 메일이 발송되도록 조건 처리. 30일간 성공률 100%, 오류 0건.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- SCREENSHOTS -->
+  <div class="sec fade">
+    <div class="sec-label">실제 동작 화면</div>
+
+    <!-- 1. Copilot 에이전트 대화 -->
+    <div class="ss-block">
+      <div class="ss-block-label">① Copilot Studio 에이전트 — M365 Copilot 대화</div>
+      <div class="ss-grid-2">
+        <div class="ss-card">
+          <img src="img/img1.png" alt="Copilot 에이전트 대화 1" class="tall" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">자연어 질의 → 단계 선택 → 결과 목록</div>
+            <div class="ss-cap-sub">Outlook · In Development 49개 항목 반환</div>
+          </div>
+        </div>
+        <div class="ss-card">
+          <img src="img/img2.png" alt="Copilot 에이전트 메일 발송" class="tall" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">"메일로 보내줘" → 자동 발송 완료</div>
+            <div class="ss-cap-sub">에이전트 대화 내에서 메일 발송 트리거</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 메일 발송 -->
+    <div class="ss-block">
+      <div class="ss-block-label">② Exchange Online — 메일 발송 (자동 배치 · 사용자 트리거)</div>
+      <div class="ss-grid-2">
+        <div class="ss-card">
+          <img src="img/img3.png" alt="일일 업데이트 메일" class="tall" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">Power Automate 자동 배치 메일</div>
+            <div class="ss-cap-sub">매일 오전 자동 발송 · 제품별 개발중/배포중/출시완료 집계</div>
+          </div>
+        </div>
+        <div class="ss-card">
+          <img src="img/img4.png" alt="Outlook 상세 메일" class="tall" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">Copilot 에이전트 요청으로 발송된 메일</div>
+            <div class="ss-cap-sub">사용자 트리거 · Outlook In Development 49개 상세 내용</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ss-block">
+      <div class="ss-block-label">③ Copilot Studio &amp; Power Automate — 구성</div>
+      <div class="ss-grid-2">
+        <div class="ss-card">
+          <img src="img/img5.png" alt="Copilot Studio 도구 탭" class="short" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">Copilot Studio — 도구 탭</div>
+            <div class="ss-cap-sub">REST API 연결 · Power Automate 흐름 연동</div>
+          </div>
+        </div>
+        <div class="ss-card">
+          <img src="img/img6.png" alt="Power Automate 흐름 목록" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">Power Automate — 흐름 목록</div>
+            <div class="ss-cap-sub">Roadmap 메일 발송 · DailyBatch · 일일 메일 (총 3개)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Azure 인프라 -->
+    <div class="ss-block">
+      <div class="ss-block-label">④ Azure 인프라 — Function App &amp; Blob Storage</div>
+      <div class="ss-grid-2">
+        <div class="ss-card">
+          <img src="img/img7.png" alt="GetRoadmap 호출 로그" class="tall" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">Azure Functions — 실행 로그</div>
+            <div class="ss-cap-sub">성공 411회 · 오류 0건 · 지난 30일</div>
+          </div>
+        </div>
+        <div class="ss-card">
+          <img src="img/img8.png" alt="Blob Storage roadmap-cache" class="tall" onclick="openLb(this)">
+          <div class="ss-cap">
+            <div class="ss-cap-title">Blob Storage — 제품×상태 JSON 캐시</div>
+            <div class="ss-cap-sub">108개 JSON · 제품×상태 조합 캐시</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="ss-grid-1">
+          <div class="ss-card">
+            <img src="img/img9.png" alt="Application Insights 성능" class="short" onclick="openLb(this)">
+            <div class="ss-cap">
+              <div class="ss-cap-title">Application Insights — 함수별 성능</div>
+              <div class="ss-cap-sub">전체 454회 실행 · DailyBatch 56회 · GetRoadmap 387회 · GetBatchStatus 11회</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- STACK -->
+  <div class="sec fade">
+    <div class="sec-label">기술 스택</div>
+    <table class="stack-tbl">
+      <tr>
+        <td>Compute</td>
+        <td><div class="s-chips"><span class="s-chip">Azure Functions (Consumption Plan)</span><span class="s-chip">Python 3.11</span><span class="s-chip">DailyBatch / GetRoadmap / GetBatchStatus</span></div></td>
+      </tr>
+      <tr>
+        <td>Storage</td>
+        <td><div class="s-chips"><span class="s-chip">Azure Blob Storage</span><span class="s-chip">roadmap-cache 컨테이너</span><span class="s-chip">108개 JSON Blob</span><span class="s-chip">TTL 24h</span></div></td>
+      </tr>
+      <tr>
+        <td>Agent</td>
+        <td><div class="s-chips"><span class="s-chip">Microsoft Copilot Studio</span><span class="s-chip">REST API Connector v2</span><span class="s-chip">Teams 게시</span></div></td>
+      </tr>
+      <tr>
+        <td>Automation</td>
+        <td><div class="s-chips"><span class="s-chip">Power Automate</span><span class="s-chip">Recurrence Trigger</span><span class="s-chip">Exchange Online SendEmailV2</span></div></td>
+      </tr>
+      <tr>
+        <td>Monitoring</td>
+        <td><div class="s-chips"><span class="s-chip">Application Insights</span><span class="s-chip">호출 로그</span><span class="s-chip">성공률 100% (30일)</span></div></td>
+      </tr>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- PRODUCTS -->
+  <div class="sec fade">
+    <div class="sec-label">커버 제품 — M365 Roadmap 전체 기준 (36개)</div>
+    <div class="prod-grid">
+      <div class="prod-item"><span class="prod-dot"></span>Access</div>
+      <div class="prod-item"><span class="prod-dot"></span>Bookings</div>
+      <div class="prod-item"><span class="prod-dot"></span>Excel</div>
+      <div class="prod-item"><span class="prod-dot"></span>Exchange</div>
+      <div class="prod-item"><span class="prod-dot"></span>Forms</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft 365</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft 365 admin center</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft 365 app</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Clipchamp</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Copilot (Microsoft 365)</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Defender for Office 365</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Edge</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Entra</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Information Protection</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Intune</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Project</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Purview</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Search</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Stream</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Teams</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft To Do</div>
+      <div class="prod-item"><span class="prod-dot"></span>Microsoft Viva</div>
+      <div class="prod-item"><span class="prod-dot"></span>Minecraft Education</div>
+      <div class="prod-item"><span class="prod-dot"></span>Office 365</div>
+      <div class="prod-item"><span class="prod-dot"></span>OneDrive</div>
+      <div class="prod-item"><span class="prod-dot"></span>OneNote</div>
+      <div class="prod-item"><span class="prod-dot"></span>Outlook</div>
+      <div class="prod-item"><span class="prod-dot"></span>Planner</div>
+      <div class="prod-item"><span class="prod-dot"></span>PowerPoint</div>
+      <div class="prod-item"><span class="prod-dot"></span>SharePoint</div>
+      <div class="prod-item"><span class="prod-dot"></span>SharePoint Syntex</div>
+      <div class="prod-item"><span class="prod-dot"></span>Universal Print</div>
+      <div class="prod-item"><span class="prod-dot"></span>Whiteboard</div>
+      <div class="prod-item"><span class="prod-dot"></span>Windows</div>
+      <div class="prod-item"><span class="prod-dot"></span>Windows 365</div>
+      <div class="prod-item"><span class="prod-dot"></span>Word</div>
+    </div>
+    <div style="margin-top: 16px;">
+      <a href="https://www.microsoft.com/en-us/microsoft-365/roadmap" target="_blank" style="font-family: var(--mono); font-size: 11px; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; opacity: 0.8;">
+        ↗ microsoft.com/en-us/microsoft-365/roadmap
+      </a>
+    </div>
+  </div>
+  <div class="footer fade">
+    <div class="footer-left">
+      <div class="fn">Jangwon Son</div>
+    </div>
+    <div class="footer-right">
+      <div style="color: var(--accent);">2026</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  function openLb(img) {
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb').classList.add('open');
+  }
+  function closeLb() { document.getElementById('lb').classList.remove('open'); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+</script>
+</body>
+</html>
