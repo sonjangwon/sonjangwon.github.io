@@ -593,15 +593,10 @@ code {
       </div>
     </div>
     <div class="arch-note">
-      <strong>WebSocket(<code>/ws/voice</code>)</strong> 기반 실시간 스트리밍 —
-      통화 중 STT·분석·화면 표시가 동시에 처리됩니다.
-      음성 → 텍스트 → AI 분석 → 접수 대원 화면 반영까지 평균 <strong>2.1초</strong>.
-      <br><br>
-      <strong>이중화 구조:</strong> STT는 Clova Speech 장애 시 Azure Speech SDK로,
-      LLM은 GPT-4o-mini 장애 시 claude-haiku-4-5로 자동 전환하는 Exception 기반 폴백을 구현했습니다.
-      폴백 트리거는 외부 원인(5xx 서버 장애·429 Rate limit·401/403 인증 실패·네트워크 타임아웃)으로 한정하고,
-      400 Bad Request(코드 버그)는 폴백 대상에서 제외했습니다 — 폴백해도 동일한 오류가 반복되기 때문입니다.
-      벤치마크 기준 claude-haiku는 정확도 0.86(5개 모델 중 1위)·응답속도 1,859ms로 폴백 모델로 선정했습니다.
+      ① 신고 전화가 연결되면 Clova STT가 통화를 실시간으로 텍스트 전사합니다.<br>
+      ② GPT-4o-mini가 전사 내용을 분석해 사건 유형·위험도·위치를 자동 분류합니다.<br>
+      ③ 분류 결과를 바탕으로 대응 매뉴얼과 출동 부대가 즉시 추천되고, 기록은 Supabase에 저장됩니다.<br><br>
+      평균 응답 2.1초 / STT·LLM 이중화 폴백 구조로 무중단 운영을 보장합니다.
     </div>
   </div>
 
