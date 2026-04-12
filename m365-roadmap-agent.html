@@ -141,6 +141,9 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
 .lb.open { display: flex; }
 .lb img { max-width: 92vw; max-height: 92vh; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); object-fit: contain; }
 
+/* BOTTOM BAR */
+.bottom-bar { border-top: 2px solid var(--ink); margin-top: 72px; padding-top: 20px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.06em; }
+
 /* FADE */
 .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .fade.in { opacity: 1; transform: none; }
@@ -217,7 +220,7 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         <div class="ps-head">Before</div>
         <ul class="ps-list">
           <li>M365 제품 업데이트는 시기와 범위를 예측하기 어려워 지속적인 추적 필요</li>
-          <li>담당자가 직접 M365 Roadmap 페이지를 주기적으로 방문해 수동 확인</li>
+          <li>담당자가 M365 Roadmap 페이지를 주기적으로 방문해 수동 확인</li>
           <li>제품별 업데이트 추적에 반복 공수 발생</li>
           <li>로드맵 변경 인지 후 팀 공유까지 별도 작업 필요</li>
         </ul>
@@ -548,6 +551,13 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         ↗ microsoft.com/en-us/microsoft-365/roadmap
       </a>
     </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <span>손장원</span>
+    <span>·</span>
+    <span>sonjangwon.github.io</span>
   </div>
 
 </div>
