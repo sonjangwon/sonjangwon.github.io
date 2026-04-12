@@ -405,23 +405,6 @@ code {
 /* BOTTOM BAR */
 .bottom-bar { border-top: 1px solid var(--rule); margin-top: 72px; padding-top: 20px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.06em; }
 
-/* ── SCREENSHOTS ── */
-.shot-group { margin-bottom: 2.4rem; }
-.shot-group-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
-.shot-single figure { margin: 0; }
-.shot-single img { width: 100%; border-radius: 10px; border: 1px solid var(--rule); box-shadow: 0 4px 18px rgba(0,0,0,0.07); display: block; }
-.shot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.shot-pair figure { margin: 0; }
-.shot-pair img { width: 100%; border-radius: 10px; border: 1px solid var(--rule); box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
-.shot-flow { display: flex; align-items: flex-start; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
-.shot-step { flex: 0 0 190px; }
-.step-num { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-.shot-step figure { margin: 0; }
-.shot-step img { width: 100%; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-.shot-flow-arrow { flex: 0 0 auto; align-self: center; color: #ccc; font-size: 16px; font-family: var(--mono); padding-bottom: 20px; }
-.shot-step figcaption, .shot-single figcaption, .shot-pair figcaption { font-size: 11.5px; color: var(--ink3); margin-top: 8px; line-height: 1.55; }
-.shot-step figcaption strong, .shot-single figcaption strong, .shot-pair figcaption strong { display: block; color: var(--ink2); font-weight: 600; font-size: 12px; margin-bottom: 1px; }
-
 @media (max-width: 600px) {
   .stack-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -468,10 +451,92 @@ code {
 .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .fade.in { opacity: 1; transform: none; }
 
+/* ── SCREENSHOTS ── */
+.shot-group { margin-bottom: 2.4rem; }
+.shot-group-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.shot-single figure { margin: 0; }
+.shot-single img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+  display: block;
+}
+.shot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.shot-pair figure { margin: 0; }
+.shot-pair img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+}
+.shot-flow {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.shot-step { flex: 0 0 190px; }
+.step-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.shot-step figure { margin: 0; }
+.shot-step img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.shot-flow-arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  color: #ccc;
+  font-size: 16px;
+  font-family: var(--mono);
+  padding-bottom: 20px;
+}
+.shot-step figcaption,
+.shot-single figcaption,
+.shot-pair figcaption {
+  font-size: 11.5px;
+  color: var(--ink3);
+  margin-top: 8px;
+  line-height: 1.55;
+}
+.shot-step figcaption strong,
+.shot-single figcaption strong,
+.shot-pair figcaption strong {
+  display: block;
+  color: var(--ink2);
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 1px;
+}
+
 @media (max-width: 600px) {
   .page { padding: 44px 20px 80px; }
   .metrics { grid-template-columns: 1fr 1fr; }
   .ps { grid-template-columns: 1fr; }
+  .shot-pair { grid-template-columns: 1fr; }
+  .shot-flow { flex-direction: column; overflow-x: visible; }
+  .shot-step { flex: 0 0 auto; width: 100%; }
+  .shot-flow-arrow { transform: rotate(90deg); padding: 0; align-self: center; }
 }
 </style>
 </head>
@@ -701,117 +766,6 @@ code {
 
   <hr>
 
-  <!-- SCREENSHOTS -->
-  <div class="sec fade">
-    <div class="sec-label">실제 동작 화면</div>
-
-    <!-- ① 메인 허브 + ② 시스템 관리 -->
-    <div class="shot-group">
-      <div class="shot-group-label">① 메인 허브 & ② 시스템 관리</div>
-      <div class="shot-pair">
-        <figure>
-          <img src="img/ecall/ECall_Main.png" alt="e-Call AI.ssistant 메인 허브" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-          <figcaption>
-            <strong>메인 허브</strong>
-            Comprehensive Dashboard · Report Reception · Dispatch Console · Response History · Administrator Panel 등 8개 모듈 카드 레이아웃
-          </figcaption>
-        </figure>
-        <figure>
-          <img src="img/ecall/ECall_AdministratorPanel.png" alt="관리자 패널" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-          <figcaption>
-            <strong>Administrator Panel</strong>
-            출동부대(Police / Rescue / Fire) · 신고접수 조직 CRUD 관리
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <!-- ③ 신고 접수 흐름 -->
-    <div class="shot-group">
-      <div class="shot-group-label">③ 신고 접수 흐름 — 대기 → STT 분석 → 체크리스트 → 출동 배차 → 매뉴얼 참조</div>
-      <div class="shot-flow">
-        <div class="shot-step">
-          <div class="step-num">Step 1</div>
-          <figure>
-            <img src="img/ecall/ECall_ReportReception01.png" alt="신고 대기 및 수신 팝업" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-            <figcaption>
-              <strong>대기 & 신고 수신</strong>
-              Standby 상태에서 긴급신고 수신 팝업 — Accept / Decline
-            </figcaption>
-          </figure>
-        </div>
-        <div class="shot-flow-arrow">→</div>
-        <div class="shot-step">
-          <div class="step-num">Step 2</div>
-          <figure>
-            <img src="img/ecall/ECall_ReportReception02.png" alt="실시간 STT 전사 및 AI 자동 분류" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-            <figcaption>
-              <strong>실시간 STT + AI 분석</strong>
-              화자 분리 전사 · AI Confidence 99% · 위치·유형·위험도 자동 분류
-            </figcaption>
-          </figure>
-        </div>
-        <div class="shot-flow-arrow">→</div>
-        <div class="shot-step">
-          <div class="step-num">Step 3</div>
-          <figure>
-            <img src="img/ecall/ECall_ReportReception03.png" alt="사건 유형별 체크리스트 모달" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-            <figcaption>
-              <strong>Incident Type Checklist</strong>
-              사건 유형별 구조화 정보 수집 — Yes / No 응답 8개 항목
-            </figcaption>
-          </figure>
-        </div>
-        <div class="shot-flow-arrow">→</div>
-        <div class="shot-step">
-          <div class="step-num">Step 4</div>
-          <figure>
-            <img src="img/ecall/ECall_ReportReception04.png" alt="출동팀 선택 및 배차 요청" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-            <figcaption>
-              <strong>출동 배차 요청</strong>
-              AI 추천 팀 선택 · 구성원·차량 확인 후 배차 확정
-            </figcaption>
-          </figure>
-        </div>
-        <div class="shot-flow-arrow">→</div>
-        <div class="shot-step">
-          <div class="step-num">Step 5</div>
-          <figure>
-            <img src="img/ecall/ECall_ReportReception05.png" alt="CPR 매뉴얼 상세 팝업" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-            <figcaption>
-              <strong>Response Manual 즉시 참조</strong>
-              통화 중 CPR·출혈 처치 등 세부 절차 팝업
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-
-    <!-- ④ 종합 대시보드 + 현장 지휘 -->
-    <div class="shot-group">
-      <div class="shot-group-label">④ 종합 모니터링 & 현장 지휘</div>
-      <div class="shot-pair">
-        <figure>
-          <img src="img/ecall/ECall_ComprehensiveDashboard.png" alt="종합 대시보드" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-          <figcaption>
-            <strong>Comprehensive Dashboard</strong>
-            실시간 KPI · Active Calls · Live Incidents Map · Fire / EMS / Police 자원 현황
-          </figcaption>
-        </figure>
-        <figure>
-          <img src="img/ecall/ECall_DispatchConsole.png" alt="Dispatch Console 현장 지휘" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
-          <figcaption>
-            <strong>Dispatch Console</strong>
-            유닛 실시간 위치 추적 · 현장-지휘 간 통신 · 사건 타임라인
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-
-  </div>
-
-  <hr>
-
   <!-- WHAT I BUILT -->
   <div class="sec fade">
     <div class="sec-label">담당 역할 — 기술 판단과 가치 증명</div>
@@ -976,6 +930,134 @@ code {
 
   <hr>
 
+  <!-- SCREENSHOTS -->
+  <div class="sec fade">
+    <div class="sec-label">실제 동작 화면</div>
+
+    <!-- ① 메인 허브 -->
+    <div class="shot-group">
+      <div class="shot-group-label">① 메인 허브 — 시스템 전체 모듈 진입점</div>
+      <div class="shot-single">
+        <figure>
+          <img src="/img/ecall/ECall_Main.png" alt="e-Call AI.ssistant 메인 허브" loading="lazy">
+          <figcaption>
+            <strong>메인 허브</strong>
+            Comprehensive Dashboard · Report Reception · Dispatch Console · Response History · Administrator Panel 등 8개 모듈 카드 레이아웃
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ② 신고 접수 흐름 -->
+    <div class="shot-group">
+      <div class="shot-group-label">② 신고 접수 흐름 — 대기 → STT 분석 → 체크리스트 → 출동 배차 → 매뉴얼 참조</div>
+      <div class="shot-flow">
+
+        <div class="shot-step">
+          <div class="step-num">Step 1</div>
+          <figure>
+            <img src="/img/ecall/ECall_ReportReception01.png" alt="신고 대기 및 수신 팝업" loading="lazy">
+            <figcaption>
+              <strong>대기 & 신고 수신</strong>
+              Standby 상태에서 긴급신고 수신 팝업 — Accept / Decline
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-flow-arrow">→</div>
+
+        <div class="shot-step">
+          <div class="step-num">Step 2</div>
+          <figure>
+            <img src="/img/ecall/ECall_ReportReception02.png" alt="실시간 STT 전사 및 AI 자동 분류" loading="lazy">
+            <figcaption>
+              <strong>실시간 STT + AI 분석</strong>
+              화자 분리 전사 · AI Confidence 99% · 위치·유형·위험도 자동 분류
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-flow-arrow">→</div>
+
+        <div class="shot-step">
+          <div class="step-num">Step 3</div>
+          <figure>
+            <img src="/img/ecall/ECall_ReportReception03.png" alt="사건 유형별 체크리스트 모달" loading="lazy">
+            <figcaption>
+              <strong>Incident Type Checklist</strong>
+              사건 유형별 구조화 정보 수집 — Yes / No 응답 8개 항목
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-flow-arrow">→</div>
+
+        <div class="shot-step">
+          <div class="step-num">Step 4</div>
+          <figure>
+            <img src="/img/ecall/ECall_ReportReception04.png" alt="출동팀 선택 및 배차 요청" loading="lazy">
+            <figcaption>
+              <strong>출동 배차 요청</strong>
+              AI 추천 팀 선택 · 구성원·차량 확인 후 배차 확정
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-flow-arrow">→</div>
+
+        <div class="shot-step">
+          <div class="step-num">Step 5</div>
+          <figure>
+            <img src="/img/ecall/ECall_ReportReception05.png" alt="CPR 매뉴얼 상세 팝업" loading="lazy">
+            <figcaption>
+              <strong>Response Manual 즉시 참조</strong>
+              통화 중 CPR·출혈 처치 등 세부 절차 팝업
+            </figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ③ 종합 대시보드 + 현장 지휘 -->
+    <div class="shot-group">
+      <div class="shot-group-label">③ 종합 모니터링 & 현장 지휘</div>
+      <div class="shot-pair">
+        <figure>
+          <img src="/img/ecall/ECall_ComprehensiveDashboard.png" alt="종합 대시보드" loading="lazy">
+          <figcaption>
+            <strong>Comprehensive Dashboard</strong>
+            실시간 KPI · Active Calls · Live Incidents Map · Fire / EMS / Police 자원 현황
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="/img/ecall/ECall_DispatchConsole.png" alt="Dispatch Console 현장 지휘" loading="lazy">
+          <figcaption>
+            <strong>Dispatch Console</strong>
+            유닛 실시간 위치 추적 · 현장-지휘 간 통신 · 사건 타임라인
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ④ 관리자 패널 -->
+    <div class="shot-group">
+      <div class="shot-group-label">④ 시스템 관리</div>
+      <div class="shot-single">
+        <figure>
+          <img src="/img/ecall/ECall_AdministratorPanel.png" alt="관리자 패널" loading="lazy">
+          <figcaption>
+            <strong>Administrator Panel</strong>
+            출동부대(Police / Rescue / Fire) · 신고접수 조직 CRUD 관리
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
   <!-- BENCHMARK -->
   <div class="sec fade">
     <div class="sec-label">AI 모델 벤치마크 — 5개 LLM 비교 (연간 비용: 월 1만 콜 기준)</div>
@@ -1109,20 +1191,6 @@ code {
 </div>
 
 <script>
-  /* Lightbox */
-  function openLb(img) {
-    var lb = document.createElement('div');
-    lb.id = 'lb-overlay';
-    lb.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;';
-    var im = document.createElement('img');
-    im.src = img.src;
-    im.style.cssText = 'max-width:92vw;max-height:90vh;border-radius:8px;box-shadow:0 8px 48px rgba(0,0,0,0.5);';
-    lb.appendChild(im);
-    lb.addEventListener('click', function() { document.body.removeChild(lb); });
-    document.addEventListener('keydown', function esc(e) { if(e.key==='Escape'){ document.body.removeChild(lb); document.removeEventListener('keydown',esc); } });
-    document.body.appendChild(lb);
-  }
-
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.05 });
