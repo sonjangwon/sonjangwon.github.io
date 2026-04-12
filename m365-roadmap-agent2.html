@@ -242,7 +242,7 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
 
     <!-- 배치 플로우 -->
     <div style="margin-bottom: 8px;">
-      <div style="font-family: var(--mono); font-size: 12px; color: var(--ink); font-weight: 500; letter-spacing: 0.06em; margin-bottom: 12px;">① 자동 배치 플로우 — 매일 오전 3시</div>
+      <div style="font-family: var(--mono); font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">① 자동 배치 플로우 — 매일 오전 3시</div>
       <svg width="100%" viewBox="0 0 740 200" style="display:block;">
         <defs>
           <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
@@ -252,13 +252,13 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         <!-- Power Automate -->
         <rect x="10" y="74" width="110" height="52" rx="6" fill="#f0f0ec" stroke="#e2e2de" stroke-width="0.8"/>
         <text x="65" y="97" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#444" font-weight="500">Power Automate</text>
-        <text x="65" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#555">스케줄 트리거</text>
+        <text x="65" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#888">스케줄 트리거</text>
         <!-- → -->
         <line x1="120" y1="100" x2="148" y2="100" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr1)"/>
         <!-- Azure Functions -->
         <rect x="148" y="74" width="120" height="52" rx="6" fill="#eef3ff" stroke="#bfdbfe" stroke-width="0.8"/>
         <text x="208" y="97" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#1558d6" font-weight="500">Azure Functions</text>
-        <text x="208" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#1558d6">DailyBatch</text>
+        <text x="208" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#4b7fd4">DailyBatch</text>
         <!-- 분기선 수직 -->
         <line x1="268" y1="100" x2="310" y2="100" stroke="#aaa" stroke-width="1.2"/>
         <line x1="310" y1="44" x2="310" y2="156" stroke="#aaa" stroke-width="1.2"/>
@@ -266,30 +266,30 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         <line x1="310" y1="44" x2="348" y2="44" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr1)"/>
         <rect x="348" y="20" width="120" height="48" rx="6" fill="#f0f0ec" stroke="#e2e2de" stroke-width="0.8"/>
         <text x="408" y="41" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#444" font-weight="500">M365 Roadmap</text>
-        <text x="408" y="57" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#555">공개 API · 108조합</text>
+        <text x="408" y="57" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#888">공개 API · 108조합</text>
         <!-- → OpenAI -->
         <line x1="310" y1="100" x2="348" y2="100" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr1)"/>
         <rect x="348" y="76" width="120" height="48" rx="6" fill="#eef3ff" stroke="#bfdbfe" stroke-width="0.8"/>
         <text x="408" y="97" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#1558d6" font-weight="500">Azure OpenAI</text>
-        <text x="408" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#1558d6">GPT-4.1 · 한국어 분석</text>
+        <text x="408" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#4b7fd4">GPT-4.1 · 한국어 분석</text>
         <!-- → Blob -->
         <line x1="310" y1="156" x2="348" y2="156" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr1)"/>
         <rect x="348" y="132" width="120" height="48" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="0.8"/>
         <text x="408" y="153" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#92400e" font-weight="500">Blob Storage</text>
-        <text x="408" y="169" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#92400e">캐시 저장 · 24h TTL</text>
+        <text x="408" y="169" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#b45309">캐시 저장 · 24h TTL</text>
         <!-- Blob → Exchange -->
         <line x1="468" y1="156" x2="510" y2="156" stroke="#aaa" stroke-width="1.2"/>
         <line x1="510" y1="156" x2="510" y2="100" stroke="#aaa" stroke-width="1.2"/>
         <line x1="510" y1="100" x2="548" y2="100" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr1)"/>
         <rect x="548" y="74" width="120" height="52" rx="6" fill="#f0f0ec" stroke="#e2e2de" stroke-width="0.8"/>
         <text x="608" y="97" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#444" font-weight="500">Exchange Online</text>
-        <text x="608" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#555">메일 자동 발송</text>
+        <text x="608" y="113" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#888">메일 자동 발송</text>
       </svg>
     </div>
 
     <!-- 온디맨드 플로우 -->
     <div style="margin-bottom: 16px;">
-      <div style="font-family: var(--mono); font-size: 12px; color: var(--ink); font-weight: 500; letter-spacing: 0.06em; margin-bottom: 12px;">② 온디맨드 플로우 — 사용자 질의</div>
+      <div style="font-family: var(--mono); font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">② 온디맨드 플로우 — 사용자 질의</div>
       <svg width="100%" viewBox="0 0 740 130" style="display:block;">
         <defs>
           <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
@@ -299,26 +299,26 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         <!-- 사용자 -->
         <rect x="10" y="39" width="90" height="52" rx="6" fill="#f0f0ec" stroke="#e2e2de" stroke-width="0.8"/>
         <text x="55" y="62" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#444" font-weight="500">사용자</text>
-        <text x="55" y="78" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#555">제품·상태 선택</text>
+        <text x="55" y="78" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#888">제품·상태 선택</text>
         <!-- → Copilot -->
         <line x1="100" y1="65" x2="128" y2="65" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr2)"/>
         <!-- Copilot Studio -->
         <rect x="128" y="39" width="110" height="52" rx="6" fill="#eef3ff" stroke="#bfdbfe" stroke-width="0.8"/>
         <text x="183" y="62" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#1558d6" font-weight="500">Copilot Studio</text>
-        <text x="183" y="78" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#1558d6">에이전트</text>
+        <text x="183" y="78" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#4b7fd4">에이전트</text>
         <!-- → Functions -->
         <line x1="238" y1="65" x2="266" y2="65" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr2)"/>
         <!-- GetRoadmap -->
         <rect x="266" y="39" width="120" height="52" rx="6" fill="#eef3ff" stroke="#bfdbfe" stroke-width="0.8"/>
         <text x="326" y="62" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#1558d6" font-weight="500">Azure Functions</text>
-        <text x="326" y="78" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#1558d6">GetRoadmap</text>
+        <text x="326" y="78" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#4b7fd4">GetRoadmap</text>
         <!-- → Blob -->
         <line x1="386" y1="65" x2="414" y2="65" stroke="#aaa" stroke-width="1.2" marker-end="url(#arr2)"/>
         <!-- Blob Storage -->
         <rect x="414" y="39" width="120" height="52" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="0.8"/>
         <text x="474" y="57" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#92400e" font-weight="500">Blob Storage</text>
-        <text x="474" y="73" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#92400e">HIT → 즉시 반환</text>
-        <text x="474" y="85" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#92400e">MISS → API 재수집</text>
+        <text x="474" y="73" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#b45309">HIT → 즉시 반환</text>
+        <text x="474" y="85" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#b45309">MISS → API 재수집</text>
         <!-- → 결과 반환 점선 -->
         <line x1="414" y1="55" x2="386" y2="55" stroke="#aaa" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr2)"/>
         <!-- Blob → M365+OpenAI (MISS 경로) -->
@@ -326,10 +326,10 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
         <!-- M365 + OpenAI -->
         <rect x="562" y="20" width="160" height="40" rx="6" fill="#f0f0ec" stroke="#e2e2de" stroke-width="0.8"/>
         <text x="642" y="36" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#444" font-weight="500">M365 API</text>
-        <text x="642" y="52" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#555">데이터 수집</text>
+        <text x="642" y="52" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#888">데이터 수집</text>
         <rect x="562" y="70" width="160" height="40" rx="6" fill="#eef3ff" stroke="#bfdbfe" stroke-width="0.8"/>
         <text x="642" y="86" text-anchor="middle" font-family="var(--mono, monospace)" font-size="10" fill="#1558d6" font-weight="500">Azure OpenAI</text>
-        <text x="642" y="102" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#1558d6">GPT-4.1 분석</text>
+        <text x="642" y="102" text-anchor="middle" font-family="var(--mono, monospace)" font-size="9" fill="#4b7fd4">GPT-4.1 분석</text>
       </svg>
     </div>
   </div>
