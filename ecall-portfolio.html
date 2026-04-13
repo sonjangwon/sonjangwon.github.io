@@ -500,15 +500,15 @@ code {
   <!-- METRICS -->
   <div class="metrics fade">
     <div class="metric">
-      <div class="metric-val">89.7<sup>%</sup></div>
-      <div class="metric-desc">위험도 4–5 집중<br>종합 정확도 (초기)</div>
+      <div class="metric-val">96.5<sup>%</sup></div>
+      <div class="metric-desc">gpt-4o-mini 종합점수<br>5개 LLM 중 1위</div>
     </div>
     <div class="metric">
-      <div class="metric-val">390<sup>ms</sup></div>
-      <div class="metric-desc">평균 AI 응답<br>gpt-4o 대비 2.4×</div>
+      <div class="metric-val">1.4<sup>s</sup></div>
+      <div class="metric-desc">평균 응답 (gpt-4o-mini)<br>gpt-4o 대비 1.9× 빠름</div>
     </div>
     <div class="metric">
-      <div class="metric-val">$12.36</div>
+      <div class="metric-val">$40.8</div>
       <div class="metric-desc">연간 비용 (월 1만 콜)<br>gpt-4o 대비 17× 저렴</div>
     </div>
     <div class="metric">
@@ -729,7 +729,7 @@ code {
             <img src="img/ecall/ECall_ReportReception01.png" alt="신고 대기 및 수신 팝업" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
             <figcaption>
               <strong>대기 & 신고 수신</strong>
-              Standby 상태에서 긴급신고 수신 팝업 — Accept / Decline
+              Standby 상태에서 긴급신고 수신 팝업
             </figcaption>
           </figure>
         </div>
@@ -740,7 +740,7 @@ code {
             <img src="img/ecall/ECall_ReportReception02.png" alt="실시간 STT 전사 및 AI 자동 분류" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
             <figcaption>
               <strong>실시간 STT + AI 분석</strong>
-              화자 분리 전사 · AI Confidence 99% · 위치·유형·위험도 자동 분류
+              화자 분리 전사 · 위치·유형·위험도 자동 분류
             </figcaption>
           </figure>
         </div>
@@ -751,7 +751,7 @@ code {
             <img src="img/ecall/ECall_ReportReception03.png" alt="사건 유형별 체크리스트 모달" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
             <figcaption>
               <strong>Incident Type Checklist</strong>
-              사건 유형별 구조화 정보 수집 — Yes / No 응답 8개 항목
+              사건 유형별 구조화 정보 수집 — Yes / No 응답
             </figcaption>
           </figure>
         </div>
@@ -773,7 +773,7 @@ code {
             <img src="img/ecall/ECall_ReportReception05.png" alt="CPR 매뉴얼 상세 팝업" loading="lazy" onclick="openLb(this)" style="cursor:zoom-in;">
             <figcaption>
               <strong>Response Manual 즉시 참조</strong>
-              통화 중 CPR·출혈 처치 등 세부 절차 팝업
+              통화 중 CPR·출혈 처치 등 매뉴얼 참고하여 세부 절차 안내 가능
             </figcaption>
           </figure>
         </div>
@@ -809,15 +809,15 @@ code {
 
   <!-- BENCHMARK -->
   <div class="sec fade">
-    <div class="sec-label">AI 모델 벤치마크 — 5개 LLM 비교 (연간 비용: 월 1만 콜 기준)</div>
+    <div class="sec-label">AI 모델 벤치마크 — 5개 LLM 비교</div>
     <div class="bench-wrap">
       <table class="bench-tbl">
         <thead>
           <tr>
             <th>Model</th>
-            <th>정확도</th>
-            <th>응답속도</th>
-            <th>연간 비용 <span style="font-size:8.5px;letter-spacing:0">(월 1만 콜)</span></th>
+            <th>카테고리<br>정확도</th>
+            <th>응답시간<br>점수</th>
+            <th>비용<br>점수</th>
             <th>일관성</th>
             <th>종합 ↑</th>
           </tr>
@@ -825,54 +825,52 @@ code {
         <tbody>
           <tr class="winner">
             <td>gpt-4o-mini<span class="winner-tag">선정</span></td>
-            <td><div class="bar-wrap">0.84<div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div></div></td>
-            <td>2,130 ms</td>
-            <td>$12.36</td>
-            <td>0.993</td>
-            <td>0.668</td>
-          </tr>
-          <tr>
-            <td>claude-haiku-4-5</td>
-            <td><div class="bar-wrap">0.86<div class="bar-bg"><div class="bar-fill" style="width:86%; background:#bbb"></div></div></div></td>
-            <td>1,859 ms</td>
-            <td>$160.08</td>
-            <td>1.000</td>
-            <td>0.660</td>
-          </tr>
-          <tr>
-            <td>gpt-4o</td>
-            <td><div class="bar-wrap">0.85<div class="bar-bg"><div class="bar-fill" style="width:85%; background:#bbb"></div></div></div></td>
-            <td>1,145 ms</td>
-            <td>$210.24</td>
-            <td>1.000</td>
-            <td>0.637</td>
+            <td>92.1%</td>
+            <td>100.0%</td>
+            <td>99.1%</td>
+            <td>99.0%</td>
+            <td><div class="bar-wrap">96.5%<div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div></div></td>
           </tr>
           <tr>
             <td>gemini-2.5-flash-lite</td>
-            <td><div class="bar-wrap">0.85<div class="bar-bg"><div class="bar-fill" style="width:85%; background:#bbb"></div></div></div></td>
-            <td>2,534 ms</td>
-            <td>$8.88</td>
-            <td>1.000</td>
-            <td>0.620</td>
+            <td>92.4%</td>
+            <td>89.9%</td>
+            <td>100.0%</td>
+            <td>100.0%</td>
+            <td><div class="bar-wrap">94.4%<div class="bar-bg"><div class="bar-fill" style="width:98%; background:#bbb"></div></div></div></td>
+          </tr>
+          <tr>
+            <td>claude-haiku</td>
+            <td>92.8%</td>
+            <td>92.9%</td>
+            <td>77.2%</td>
+            <td>100.0%</td>
+            <td><div class="bar-wrap">89.6%<div class="bar-bg"><div class="bar-fill" style="width:93%; background:#bbb"></div></div></div></td>
           </tr>
           <tr>
             <td>gemini-2.5-flash</td>
-            <td><div class="bar-wrap">0.70<div class="bar-bg"><div class="bar-fill" style="width:70%; background:#bbb"></div></div></div></td>
-            <td>6,733 ms</td>
-            <td>$34.20</td>
-            <td>0.813</td>
-            <td>0.606</td>
+            <td>87.1%</td>
+            <td>50.0%</td>
+            <td>95.0%</td>
+            <td>91.7%</td>
+            <td><div class="bar-wrap">80.3%<div class="bar-bg"><div class="bar-fill" style="width:83%; background:#bbb"></div></div></div></td>
+          </tr>
+          <tr>
+            <td>gpt-4o</td>
+            <td>89.7%</td>
+            <td>86.3%</td>
+            <td>50.0%</td>
+            <td>99.7%</td>
+            <td><div class="bar-wrap">79.9%<div class="bar-bg"><div class="bar-fill" style="width:83%; background:#bbb"></div></div></div></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="bench-note">
-      평가 기준 — <strong>정확도 40% · 응답속도 25% · 비용 25% · 일관성 10%</strong>.
-      테스트 샘플: 100개 한국어 구어체 시나리오 (당황한 신고자 어조, 불완전한 위치, 복합 케이스).
-      위험도 4–5 고위험 신고를 전체의 66%로 집중 배분. 2025.10 기준 API 가격 반영.
+      테스트 샘플: 100개 구어체 시나리오 (당황한 신고자 어조, 불완전한 위치, 복합 케이스). 위험도 4–5 고위험 신고를 전체의 66%로 집중 배분. 평균 input ~2,100 / output ~42 tokens 기준 실측 비용 반영.
       <br><br>
-      정확도는 카테고리 exact match 기준으로, 초기 벤치마크(영어 시나리오, 부분 점수 포함)보다
-      엄격한 조건에서 측정되었습니다. <strong>gpt-4o-mini</strong>는 비용(월 $1.03)과 종합 점수(0.668) 모두에서 1위를 기록했습니다.
+      평가 기준 — <strong>카테고리 정확도 40% · 응답시간 25% · 비용 25% · 일관성 10%</strong>. 카테고리 정확도는 exact match 기준.
+      <strong>gpt-4o-mini</strong>는 응답속도·비용 모두 최고점으로 종합 1위(96.5%, 평균 1.4초, $40.8/yr). <strong>gemini-2.5-flash-lite</strong>는 가장 저렴($28.8/yr)하고 정확도도 동급이나 응답속도(2.3초)에서 소폭 밀려 2위(94.4%). gpt-4o는 비용 페널티로 최하위(79.9%, $680.2/yr), gemini-2.5-flash는 평균 응답 5.9초로 실서비스 적용 시 체감 느림(80.3%).
     </div>
   </div>
 
@@ -894,15 +892,7 @@ code {
             전체 시스템 구조를 설계했습니다. 신고 인입 → STT → NLU → 접수 화면으로 이어지는
             데이터 플로우를 정의하고, 모듈 간 결합도를 낮춰 각 컴포넌트를 독립적으로
             교체·확장할 수 있도록 레이어를 분리했습니다.
-            PoC 단계임을 고려해 GitHub Pages 정적 배포와 로컬 백엔드 구조를 채택했으며,
-            프로덕션 전환 시 ECS/K8s + ALB 기반 확장 경로를 문서화했습니다.
           </p>
-          <div class="built-chips">
-            <span class="chip">System Architecture</span>
-            <span class="chip">Data Flow Design</span>
-            <span class="chip">Modular Layer Structure</span>
-            <span class="chip">GitHub Actions CI/CD</span>
-          </div>
         </div>
       </li>
 
@@ -921,12 +911,6 @@ code {
             이 구조는 도메인 특화 AI 솔루션이 범용 LLM만으로 충분하지 않다는 것을
             데이터로 입증한 설계 결정입니다.
           </p>
-          <div class="built-chips">
-            <span class="chip">GPT-4o-mini</span>
-            <span class="chip">Hybrid Scoring</span>
-            <span class="chip">Keyword Override</span>
-            <span class="chip">위험도 1–5단계</span>
-          </div>
         </div>
       </li>
 
@@ -963,12 +947,6 @@ code {
             도메인 지식(신고 유형 분류 기준, 위험도 판단 규칙)은
             각 서비스의 System Prompt에 구조화해 주입했습니다.
           </p>
-          <div class="built-chips">
-            <span class="chip">Rule-based Post-processing</span>
-            <span class="chip">Phonetic Correction</span>
-            <span class="chip">Speaker Diarization</span>
-            <span class="chip">Structured System Prompt</span>
-          </div>
         </div>
       </li>
 
@@ -986,11 +964,6 @@ code {
             AI가 도메인 워크플로우에 통합되었을 때 어떤 비즈니스 가치를 만드는지를
             엔드투엔드로 증명한 기능입니다.
           </p>
-          <div class="built-chips">
-            <span class="chip">6-class Classification</span>
-            <span class="chip">Rule-based Dispatch</span>
-            <span class="chip">Workflow Automation</span>
-          </div>
         </div>
       </li>
 
@@ -1006,15 +979,9 @@ code {
             초기 영어 시나리오 기반 평가를 실제 신고 환경에 가까운
             100개 한국어 구어체 시나리오로 재설계하고,
             5개 모델에 정확도·응답속도·비용·일관성 가중치를 적용해 종합 비교했습니다.
-            gpt-4o-mini가 정확도(0.84)와 비용($12.36/yr) 모두에서 균형 잡힌 1위를 기록,
+            gpt-4o-mini가 종합점수(96.5%)와 비용($40.8/yr) 모두에서 균형 잡힌 1위를 기록,
             gpt-4o 대비 17배 저렴하면서도 실용적 수준의 성능을 유지함을 수치로 증명했습니다.
           </p>
-          <div class="built-chips">
-            <span class="chip">5 LLM Evaluation</span>
-            <span class="chip">100 Korean Scenarios</span>
-            <span class="chip">Weighted Scoring</span>
-            <span class="chip">Cost-Performance Analysis</span>
-          </div>
         </div>
       </li>
 
@@ -1029,11 +996,6 @@ code {
             신고 현황·위험도 분포·건수 통계를 실시간으로 표시하는 대시보드 개발에 참여했습니다.
             Dispatch Console에서 출동 부대의 이동 동선을 실시간으로 모니터링할 수 있습니다.
           </p>
-          <div class="built-chips">
-            <span class="chip">Real-time Dashboard</span>
-            <span class="chip">Dispatch Console</span>
-            <span class="chip">Supabase Realtime</span>
-          </div>
         </div>
       </li>
 
