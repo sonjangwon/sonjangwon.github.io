@@ -354,12 +354,13 @@ code {
   border: 1px solid var(--rule);
   border-left: 3px solid var(--accent);
   border-radius: 0 8px 8px 0;
-  padding: 13px 18px;
-  font-size: 12.5px;
-  color: var(--ink3);
-  line-height: 1.7;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.8;
 }
 .bench-note strong { color: var(--ink); font-weight: 500; }
+.bench-note p + p { margin-top: 10px; }
 
 /* ── STACK GRID ── */
 .stack-grid {
@@ -867,10 +868,11 @@ code {
       </table>
     </div>
     <div class="bench-note">
-      테스트 샘플: 100개 구어체 시나리오 (당황한 신고자 어조, 불완전한 위치, 복합 케이스). 위험도 4–5 고위험 신고를 전체의 66%로 집중 배분. 평균 input ~2,100 / output ~42 tokens 기준 실측 비용 반영.
-      <br><br>
-      평가 기준 — <strong>카테고리 정확도 40% · 응답시간 25% · 비용 25% · 일관성 10%</strong>. 카테고리 정확도는 exact match 기준.
-      <strong>gpt-4o-mini</strong>는 응답속도·비용 모두 최고점으로 종합 1위(96.5%, 평균 1.4초, $40.8/yr). <strong>gemini-2.5-flash-lite</strong>는 가장 저렴($28.8/yr)하고 정확도도 동급이나 응답속도(2.3초)에서 소폭 밀려 2위(94.4%). gpt-4o는 비용 페널티로 최하위(79.9%, $680.2/yr), gemini-2.5-flash는 평균 응답 5.9초로 실서비스 적용 시 체감 느림(80.3%).
+      <p>테스트 샘플: 100개 구어체 시나리오 (당황한 신고자 어조, 불완전한 위치, 복합 케이스). 위험도 4–5 고위험 신고를 전체의 66%로 집중 배분. 평균 input ~2,100 / output ~42 tokens 기준 실측 비용 반영.</p>
+      <p>평가 기준 — <strong>카테고리 정확도 40% · 응답시간 25% · 비용 25% · 일관성 10%</strong>. 카테고리 정확도는 exact match 기준.<br>
+      <strong>gpt-4o-mini</strong>는 응답속도·비용 모두 최고점으로 종합 1위(96.5%, 평균 1.4초, $40.8/yr).<br>
+      <strong>gemini-2.5-flash-lite</strong>는 가장 저렴($28.8/yr)하고 정확도도 동급이나 응답속도(2.3초)에서 소폭 밀려 2위(94.4%).<br>
+      gpt-4o는 비용 페널티로 최하위(79.9%, $680.2/yr), gemini-2.5-flash는 평균 응답 5.9초로 실서비스 적용 시 체감 느림(80.3%).</p>
     </div>
   </div>
 
