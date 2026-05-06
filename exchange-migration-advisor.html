@@ -1,121 +1,1462 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exchange Migration Advisor — 손장원</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;550;600;700&family=JetBrains+Mono:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --bg: #f8f8f6;
-  --white: #ffffff;
-  --ink: #111111;
-  --ink2: #3a3a3a;
-  --ink3: #888888;
-  --rule: #e2e2de;
-  --accent: #1558d6;
-  --accent-lt: #eef3ff;
-  --green: #15803d;
-  --green-lt: #f0fdf4;
-  --tag: #efefeb;
-  --mono: 'DM Mono', monospace;
-  --sans: 'Noto Sans KR', sans-serif;
-  --serif: 'Fraunces', Georgia, serif;
+  /* Slate scale - GitHub/Linear inspired */
+  --bg:           #ffffff;
+  --bg-subtle:    #fafbfc;
+  --bg-muted:     #f6f8fa;
+  --bg-emphasis:  #eaeef2;
+
+  /* Ink scale */
+  --fg:           #0f172a;
+  --fg-2:         #1f2937;
+  --fg-3:         #475569;
+  --fg-4:         #64748b;
+  --fg-5:         #94a3b8;
+  --fg-6:         #cbd5e1;
+
+  /* Borders */
+  --border:       #e5e7eb;
+  --border-soft:  #f1f5f9;
+  --border-strong:#d0d7de;
+
+  /* Accent (small, used sparingly) */
+  --accent:       #0f172a;
+  --accent-fg:    #ffffff;
+  --link:         #2563eb;
+
+  /* Severity (small badges only) */
+  --red:          #dc2626;
+  --red-bg:       #fef2f2;
+  --red-border:   #fecaca;
+  --amber:        #d97706;
+  --amber-bg:     #fffbeb;
+  --amber-border: #fde68a;
+  --green:        #16a34a;
+  --green-bg:     #f0fdf4;
+  --green-border: #bbf7d0;
+  --blue:         #2563eb;
+  --blue-bg:      #eff6ff;
+  --blue-border:  #bfdbfe;
+  --gray:         #64748b;
+  --gray-bg:      #f1f5f9;
+
+  /* Typography */
+  --sans:         'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --kr:           'Pretendard', 'Inter', -apple-system, sans-serif;
+  --mono:         'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+  /* Shadows - Linear/Stripe scale */
+  --shadow-xs:    0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm:    0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:    0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-lg:    0 10px 24px rgba(15, 23, 42, 0.10), 0 4px 8px rgba(15, 23, 42, 0.05);
+
+  --radius:       6px;
+  --radius-sm:    4px;
+  --radius-lg:    10px;
 }
-html { font-size: 15px; }
-body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.7; -webkit-font-smoothing: antialiased; }
-.page { max-width: 960px; margin: 0 auto; padding: 72px 36px 120px; }
 
-/* TOPBAR */
-.topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 28px; border-bottom: 2px solid var(--ink); margin-bottom: 60px; }
-.topbar-id { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; }
-.back-link { font-family: var(--mono); font-size: 11px; color: var(--ink3); text-decoration: none; letter-spacing: 0.05em; transition: color 0.18s; display: flex; align-items: center; gap: 6px; }
-.back-link:hover { color: var(--accent); }
+html { font-size: 16px; scroll-behavior: smooth; }
 
-/* HERO */
-.hero { margin-bottom: 64px; }
-.eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-.hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 22px; }
-.hero h1 em { font-style: italic; color: var(--accent); }
-.hero-lead { font-size: 15px; color: var(--ink2); line-height: 1.8; margin-bottom: 26px; }
-.tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
-.tag { background: var(--tag); color: #444; font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 4px; }
-.tag.hi { background: var(--accent-lt); color: var(--accent); }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--kr);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "ss01" 1, "cv11" 1;
+  letter-spacing: -0.005em;
+}
 
-/* METRICS */
-.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 64px; }
-.metric { background: var(--white); padding: 22px 16px; }
-.metric-val { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--ink); letter-spacing: -0.03em; line-height: 1; margin-bottom: 5px; }
-.metric-val span { font-size: 13px; color: var(--accent); }
-.metric-desc { font-size: 11px; color: var(--ink3); line-height: 1.5; }
+/* ─────────────────────────────────────────
+   STICKY NAV
+   ───────────────────────────────────────── */
 
-/* SECTION */
-.sec { margin-bottom: 60px; }
-.sec-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
-hr { border: none; border-top: 1px solid var(--rule); margin: 0 0 56px; }
-code { font-family: var(--mono); font-size: 12px; background: var(--tag); padding: 1px 5px; border-radius: 3px; color: #333; }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  letter-spacing: -0.01em;
+}
+.nav-brand-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  background: var(--fg);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-link {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: all 0.15s;
+  letter-spacing: -0.01em;
+}
+.nav-link:hover {
+  color: var(--fg);
+  background: var(--bg-muted);
+}
+.nav-cta {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-fg);
+  background: var(--accent);
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+  transition: all 0.15s;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-cta:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+}
 
-/* PROBLEM / SOLUTION */
-.ps { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.ps-box { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 22px; }
-.ps-box.sol { border-color: #bfdbfe; background: #f8faff; }
-.ps-head { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; }
-.ps-box.sol .ps-head { color: var(--accent); }
-.ps-list { list-style: none; display: grid; gap: 9px; }
-.ps-list li { font-size: 13px; color: var(--ink2); line-height: 1.6; padding-left: 18px; position: relative; }
-.ps-list li::before { content: '—'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
-.ps-box.sol .ps-list li::before { content: '✓'; color: var(--accent); font-size: 12px; }
+/* ─────────────────────────────────────────
+   TOPBAR
+   ───────────────────────────────────────── */
 
-/* BUILT LIST */
-.built { list-style: none; }
-.built-item { display: grid; grid-template-columns: 48px 1fr; padding: 22px 0; border-bottom: 1px solid var(--rule); }
-.built-item:last-child { border-bottom: none; }
-.built-n { font-family: var(--mono); font-size: 11px; color: var(--ink3); padding-top: 2px; }
-.built-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.built-badge { font-family: var(--mono); font-size: 10px; background: var(--accent-lt); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-weight: 400; }
-.built-desc { font-size: 13px; color: var(--ink2); line-height: 1.75; margin-bottom: 10px; }
-.built-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { background: var(--tag); color: #555; font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; }
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0 20px;
+  border-bottom: 1px solid var(--border);
+}
+.topbar-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.08em;
+}
+.topbar-back {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.15s;
+}
+.topbar-back:hover { color: var(--fg); }
 
-/* ARCH */
-.arch-flow { display: flex; align-items: flex-start; overflow-x: auto; padding: 24px 0 8px; }
-.arch-node { text-align: center; flex-shrink: 0; min-width: 96px; }
-.arch-icon { width: 48px; height: 48px; background: var(--white); border: 1.5px solid var(--rule); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 6px; }
-.arch-icon.hi { border-color: #bfdbfe; background: var(--accent-lt); }
-.arch-name { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--ink); white-space: nowrap; }
-.arch-sub { font-size: 10px; color: var(--ink3); white-space: nowrap; margin-top: 2px; }
-.arch-arrow { flex: 1; min-width: 24px; display: flex; align-items: center; justify-content: center; padding-bottom: 26px; color: #ccc; font-size: 16px; }
-.arch-note { margin-top: 12px; background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 6px; padding: 12px 16px; font-size: 12px; color: var(--ink3); line-height: 1.65; }
-.arch-note strong { color: var(--ink); }
+/* ─────────────────────────────────────────
+   PAGE LAYOUT
+   ───────────────────────────────────────── */
 
-/* STACK TABLE */
-.stack-tbl { width: 100%; border-collapse: collapse; }
-.stack-tbl tr { border-bottom: 1px solid var(--rule); }
-.stack-tbl tr:last-child { border-bottom: none; }
-.stack-tbl td { padding: 13px 0; font-size: 13px; vertical-align: middle; }
-.stack-tbl td:first-child { font-family: var(--mono); font-size: 10px; color: var(--ink3); width: 110px; padding-right: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
-.s-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.s-chip { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 3px 10px; font-family: var(--mono); font-size: 11px; color: var(--ink2); }
+.page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
 
-/* FOOTER */
-.footer { border-top: 2px solid var(--ink); padding-top: 28px; margin-top: 72px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
-.footer-left .fn { font-family: var(--serif); font-weight: 600; font-size: 15px; margin-bottom: 4px; }
-.footer-left .fr { font-size: 12px; color: var(--ink3); }
-.footer-right { font-family: var(--mono); font-size: 10px; color: var(--ink3); text-align: right; line-height: 2; letter-spacing: 0.06em; }
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.section:last-of-type { border-bottom: none; }
 
-/* FADE */
-.fade { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.fade.in { opacity: 1; transform: none; }
-.bottom-bar { border-top: 2px solid var(--ink); margin-top: 72px; padding-top: 20px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.06em; }
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg-4);
+}
 
-@media (max-width: 640px) {
-  .page { padding: 48px 20px 80px; }
-  .metrics { grid-template-columns: 1fr 1fr; }
-  .ps { grid-template-columns: 1fr; }
-  .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .hero h1 { font-size: 26px; }
+.section-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--fg);
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-3);
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+}
+
+/* ─────────────────────────────────────────
+   HERO
+   ───────────────────────────────────────── */
+
+.hero {
+  padding: 88px 0 80px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--fg-3);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.hero-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 2px var(--green-bg);
+}
+
+.hero-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--fg);
+  margin-bottom: 24px;
+  max-width: 920px;
+}
+.hero-subtitle {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-3);
+  margin-bottom: 56px;
+  letter-spacing: -0.01em;
+}
+.hero-subtitle strong {
+  color: var(--fg);
+  font-weight: 550;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.15s;
+  letter-spacing: -0.01em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.btn-primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+  box-shadow: var(--shadow-md);
+}
+.btn-secondary {
+  background: var(--bg);
+  color: var(--fg-2);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-xs);
+}
+.btn-secondary:hover {
+  background: var(--bg-muted);
+  border-color: var(--fg-5);
+}
+.btn .arrow {
+  transition: transform 0.15s;
+  font-size: 12px;
+}
+.btn:hover .arrow { transform: translateX(2px); }
+
+/* Hero stats - small inline badges */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.hero-stat {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border-soft);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hero-stat-value {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--fg);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.hero-stat-meta {
+  font-size: 12px;
+  color: var(--fg-4);
+  letter-spacing: -0.005em;
+}
+
+/* ─────────────────────────────────────────
+   PROBLEM SECTION
+   ───────────────────────────────────────── */
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.problem-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all 0.15s;
+  box-shadow: var(--shadow-xs);
+}
+.problem-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.problem-card-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+.problem-card-figure {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--fg);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.problem-card-figure .unit {
+  font-size: 14px;
+  color: var(--fg-4);
+  font-weight: 400;
+  margin-left: 4px;
+  letter-spacing: -0.01em;
+}
+.problem-card-title {
+  font-weight: 550;
+  font-size: 14.5px;
+  color: var(--fg-2);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.problem-card-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+
+.problem-narrative {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-2);
+  letter-spacing: -0.005em;
+}
+.problem-narrative strong {
+  color: var(--fg);
+  font-weight: 550;
+}
+.problem-narrative p + p { margin-top: 16px; }
+
+/* ─────────────────────────────────────────
+   APPROACH SECTION
+   ───────────────────────────────────────── */
+
+.approach-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.approach-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.approach-panel-header {
+  padding: 16px 20px;
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.approach-panel-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.approach-panel-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--fg-4);
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  letter-spacing: 0.02em;
+}
+.approach-panel-body {
+  padding: 20px;
+}
+.approach-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.approach-list li {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: -0.005em;
+}
+.approach-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 14px;
+  height: 1px;
+  background: var(--fg-5);
+}
+.approach-list li code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--bg-muted);
+  padding: 1px 5px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  color: var(--fg-2);
+}
+
+/* ─────────────────────────────────────────
+   DATA COLLECTION
+   ───────────────────────────────────────── */
+
+.module-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg);
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-xs);
+}
+.module-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: start;
+  transition: background 0.15s;
+}
+.module-row:last-child { border-bottom: none; }
+.module-row:hover { background: var(--bg-subtle); }
+.module-idx {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  padding-top: 3px;
+  letter-spacing: 0.02em;
+}
+.module-name {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.module-name-ext {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--fg-4);
+  background: var(--bg-muted);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+}
+.module-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fg-3);
+  margin-bottom: 10px;
+  letter-spacing: -0.005em;
+}
+.module-cmds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cmd-tag {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 450;
+  color: var(--fg-3);
+  background: var(--bg-muted);
+  padding: 3px 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  letter-spacing: -0.01em;
+}
+
+/* Code block - terminal-like */
+.code-window {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 24px 0;
+  box-shadow: var(--shadow-xs);
+}
+.code-window-header {
+  padding: 10px 16px;
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.code-dots {
+  display: flex;
+  gap: 5px;
+}
+.code-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fg-6);
+}
+.code-filename {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--fg-4);
+  margin-left: 6px;
+  letter-spacing: -0.01em;
+}
+.code-window-body {
+  padding: 18px 22px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--fg-2);
+  overflow-x: auto;
+  white-space: pre;
+  letter-spacing: -0.01em;
+}
+.code-window-body .cm  { color: var(--fg-4); }
+.code-window-body .kw  { color: #7c3aed; }
+.code-window-body .st  { color: #059669; }
+.code-window-body .num { color: #d97706; }
+.code-window-body .fn  { color: #2563eb; }
+
+/* ─────────────────────────────────────────
+   SELF ASSESSMENT
+   ───────────────────────────────────────── */
+
+.assessment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.assessment-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.assessment-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.assessment-header-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.assessment-header-count {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+}
+.assessment-list {
+  list-style: none;
+  padding: 0;
+}
+.assessment-list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  letter-spacing: -0.005em;
+}
+.assessment-list li:last-child { border-bottom: none; }
+.assessment-list li:hover { background: var(--bg-subtle); }
+.assessment-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+}
+.assessment-list li code {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--bg-muted);
+  padding: 1px 5px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  color: var(--fg-2);
+}
+
+/* ─────────────────────────────────────────
+   RULE ENGINE TABLE
+   ───────────────────────────────────────── */
+
+.rule-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg);
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-xs);
+}
+.rule-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rule-table thead {
+  background: var(--bg-muted);
+}
+.rule-table th {
+  padding: 12px 20px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.rule-table th:last-child { text-align: right; }
+.rule-table td {
+  padding: 16px 20px;
+  font-size: 13.5px;
+  color: var(--fg-2);
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: middle;
+  letter-spacing: -0.005em;
+}
+.rule-table td:last-child { text-align: right; }
+.rule-table tr:last-child td { border-bottom: none; }
+.rule-table tr:hover td { background: var(--bg-subtle); }
+.rule-area {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.rule-area-name {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.rule-area-count {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+}
+
+/* Severity badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  letter-spacing: -0.005em;
+}
+.badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.badge.blocker {
+  background: var(--red-bg);
+  color: var(--red);
+  border-color: var(--red-border);
+}
+.badge.blocker::before { background: var(--red); }
+.badge.must {
+  background: var(--amber-bg);
+  color: var(--amber);
+  border-color: var(--amber-border);
+}
+.badge.must::before { background: var(--amber); }
+.badge.rec {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border-color: var(--blue-border);
+}
+.badge.rec::before { background: var(--blue); }
+.badge.unv {
+  background: var(--gray-bg);
+  color: var(--gray);
+  border-color: var(--border);
+}
+.badge.unv::before { background: var(--gray); }
+.badge.ready {
+  background: var(--green-bg);
+  color: var(--green);
+  border-color: var(--green-border);
+}
+.badge.ready::before { background: var(--green); }
+
+/* Classification cards */
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.class-card {
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
+}
+.class-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.class-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.class-name {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.class-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--fg-4);
+  letter-spacing: -0.005em;
+}
+
+/* ─────────────────────────────────────────
+   AI LAYER FEATURES
+   ───────────────────────────────────────── */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.feature-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-xs);
+}
+.feature-card-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.feature-card-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.feature-card-list li {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  padding-left: 20px;
+  position: relative;
+  letter-spacing: -0.005em;
+}
+.feature-card-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 12px;
+  height: 1px;
+  background: var(--fg-5);
+}
+.feature-card-list li code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--bg-muted);
+  padding: 1px 5px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+}
+
+.callout {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--fg-2);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-top: 20px;
+}
+.callout-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fg-2);
+  letter-spacing: -0.005em;
+}
+.callout-text strong { color: var(--fg); font-weight: 550; }
+
+/* ─────────────────────────────────────────
+   STRATEGY CARDS
+   ───────────────────────────────────────── */
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.strategy-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
+}
+.strategy-panel:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.strategy-panel-head {
+  padding: 20px 24px;
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+}
+.strategy-panel-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--fg);
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+.strategy-panel-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+}
+.strategy-panel-body {
+  padding: 20px 24px;
+}
+.strategy-rules {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.strategy-rules li {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  letter-spacing: -0.005em;
+}
+.strategy-rules li::before {
+  content: '→';
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.strategy-rules li code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--bg-muted);
+  padding: 1px 5px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  color: var(--fg);
+}
+
+/* ─────────────────────────────────────────
+   ARCHITECTURE FLOW
+   ───────────────────────────────────────── */
+
+.arch-flow {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  box-shadow: var(--shadow-xs);
+}
+.arch-flow-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: 880px;
+  justify-content: space-between;
+}
+.arch-node {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  text-align: center;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
+  min-width: 100px;
+}
+.arch-node:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.arch-node.primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+.arch-node.primary .arch-node-sub { color: var(--fg-6); }
+.arch-node.accent {
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+}
+.arch-node-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+  display: block;
+}
+.arch-node-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.arch-node-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-4);
+  letter-spacing: 0;
+}
+.arch-arrow {
+  flex: 0 0 24px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--fg-5);
+}
+
+/* Architecture component grid */
+.arch-layers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.arch-layer {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.arch-layer-head {
+  padding: 12px 20px;
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.arch-layer-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.arch-layer-stack {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+}
+.arch-layer-body {
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.arch-comp {
+  padding: 12px 14px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+}
+.arch-comp-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.arch-comp-detail {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--fg-4);
+  letter-spacing: -0.005em;
+}
+
+/* ─────────────────────────────────────────
+   SCREENSHOTS
+   ───────────────────────────────────────── */
+
+.shot-section { margin-bottom: 32px; }
+.shot-section:last-child { margin-bottom: 0; }
+.shot-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.shot-frame {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: var(--shadow-md);
+}
+.shot-frame img {
+  width: 100%;
+  display: block;
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+.shot-frame img:hover { opacity: 0.94; }
+.shot-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.shot-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.shot-step {
+  display: flex;
+  flex-direction: column;
+}
+.shot-step-num {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.shot-flow .shot-frame img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top;
+}
+.shot-caption {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+.shot-caption strong {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--fg);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+
+/* ─────────────────────────────────────────
+   DECISIONS
+   ───────────────────────────────────────── */
+
+.decisions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.decision-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
+}
+.decision-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.decision-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.decision-q {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--fg);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+.decision-q .vs {
+  color: var(--fg-4);
+  font-weight: 400;
+}
+.decision-a {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+.decision-a code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--bg-muted);
+  padding: 1px 5px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  color: var(--fg-2);
+}
+
+/* ─────────────────────────────────────────
+   STACK
+   ───────────────────────────────────────── */
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.stack-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-xs);
+}
+.stack-card-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.stack-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.stack-pill {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 450;
+  color: var(--fg-2);
+  background: var(--bg-muted);
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  letter-spacing: -0.01em;
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────── */
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0 48px;
+  margin-top: 0;
+  background: var(--bg-subtle);
+}
+.footer-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.footer-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--fg);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--fg-4);
+  letter-spacing: -0.005em;
+}
+.footer-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.footer-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-3);
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: var(--fg); }
+
+/* ─────────────────────────────────────────
+   FADE-IN
+   ───────────────────────────────────────── */
+
+.fade {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .page { padding: 0 24px; }
+  .nav-inner { padding: 0 24px; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stat:nth-child(2) { border-right: none; }
+  .hero-stat:nth-child(1), .hero-stat:nth-child(2) { border-bottom: 1px solid var(--border-soft); }
+
+  .problem-grid { grid-template-columns: 1fr; }
+  .approach-split { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .strategy-grid { grid-template-columns: 1fr; }
+  .assessment-grid { grid-template-columns: 1fr; }
+  .decisions { grid-template-columns: 1fr; }
+  .arch-layer-body { grid-template-columns: 1fr; }
+  .stack-grid { grid-template-columns: 1fr 1fr; }
+  .class-grid { grid-template-columns: repeat(2, 1fr); }
+  .shot-flow { grid-template-columns: 1fr; }
+  .shot-pair { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 560px) {
+  .page { padding: 0 18px; }
+  .nav-inner { padding: 0 18px; height: 52px; }
+  .nav-link { display: none; }
+  .hero { padding: 56px 0 56px; }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 16px; }
+  .section { padding: 56px 0; }
+  .section-title { font-size: 24px; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .class-grid { grid-template-columns: 1fr; }
+  .module-row { grid-template-columns: 1fr; gap: 6px; }
 }
 </style>
 </head>
@@ -126,199 +1467,757 @@ code { font-family: var(--mono); font-size: 12px; background: var(--tag); paddin
   <!-- TOPBAR -->
   <div class="topbar">
     <span class="topbar-id">손장원 — Project 03</span>
-    <a class="back-link" href="index.html">← 포트폴리오로 돌아가기</a>
+    <a class="topbar-back" href="index.html">← 포트폴리오로 돌아가기</a>
   </div>
 
-  <!-- HERO -->
-  <div class="hero fade">
-    <div class="eyebrow">Project 03</div>
-    <h1>Exchange<br><em>Migration Advisor</em></h1>
-    <p class="hero-lead">
-      온프레미스 Exchange 환경을 자동으로 분석해 Microsoft 365 마이그레이션 전략을 진단·추천하는 시스템.
-      환경 정보를 입력하면 마이그레이션 방식(Cutover / Staged / Hybrid)을 자동 판단하고,
-      단계별 전략과 주요 체크리스트를 즉시 제공합니다.
+  <!-- ════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════ -->
+  <section class="hero fade">
+    <h1 class="hero-title">Exchange Migration Advisor</h1>
+
+    <p class="hero-subtitle">온프레미스 Exchange 환경 데이터를 입력받아 Microsoft 365 마이그레이션 가능 여부를 자동으로 평가합니다.<br><strong>20개 결정적 룰 + 9개 자가진단 + 2개 전략 평가</strong>로 블로커를 사전 식별하고, Azure OpenAI가 환경 컨텍스트 기반 조치 가이드를 자동 생성합니다.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Diagnostic Rules</div>
+        <div class="hero-stat-value">29</div>
+        <div class="hero-stat-meta">자동 20 + 자가진단 9</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Coverage</div>
+        <div class="hero-stat-value">6 areas</div>
+        <div class="hero-stat-meta">Org · MBX · Hybrid · DS · Net · Flow</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">AI Stack</div>
+        <div class="hero-stat-value">Azure OpenAI</div>
+        <div class="hero-stat-meta">gpt-4o-mini + AI Search RAG</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Deployment</div>
+        <div class="hero-stat-value">Container Apps</div>
+        <div class="hero-stat-meta">Korea Central</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PROBLEM
+       ════════════════════════════════════════ -->
+  <section id="problem" class="section fade">
+    <div class="section-eyebrow">Problem</div>
+    <h2 class="section-title">만들게 된 배경</h2>
+    <p class="section-desc">엔터프라이즈 Exchange 마이그레이션의 비용은 문제 발견 시점에 비례합니다. cutover 직전에 발견된 블로커는 일정 지연뿐 아니라 이미 진행된 사용자 마이그레이션의 롤백 검토를 강제할 수 있습니다.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-num">01 — Schedule Risk</div>
+        <div class="problem-card-figure">2–3<span class="unit">weeks</span></div>
+        <div class="problem-card-title">평균 일정 지연</div>
+        <div class="problem-card-desc">
+          용량 임계값 초과 사서함, 보존 정책 미정의 등 사전 작업이 필요한 항목들이 프로젝트 일정 지연을 초래합니다.
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">02 — Operational Risk</div>
+        <div class="problem-card-figure">Service<span class="unit">disruption</span></div>
+        <div class="problem-card-title">전사 서비스 중단 가능성</div>
+        <div class="problem-card-desc">
+          Public Folder 의존성 미식별, 인증서 만료, Hybrid 인증 실패 시
+          전사 메일 접근이 단절될 수 있습니다.
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">03 — Cost Risk</div>
+        <div class="problem-card-figure">Manual<span class="unit">consulting</span></div>
+        <div class="problem-card-title">컨설턴트 의존</div>
+        <div class="problem-card-desc">
+          PowerShell cmdlet 수십 개 실행 후 결과 해석 — 컨설턴트 수준의
+          경험에 의존하는 사전 진단 단계입니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-narrative">
+      <p>
+        마이그레이션 프로젝트에서 가장 흔히 마주치는 패턴은 명확합니다.<br>
+        <strong>첫째</strong>, 환경 파악에 며칠에서 몇 주가 소요됩니다 — PowerShell 명령어를
+        수십 개 실행하고, 그 결과를 종합 해석할 수 있는 사람이 별도로 필요합니다.
+      </p>
+      <p>
+        <strong>둘째</strong>, 진짜 블로커는 cutover 직전에 발견됩니다 — 1.5TB 초과 사서함,
+        Public Folder 의존성, 만료된 인증서, OAuth 미구성 등. 어느 것도 마이그레이션 당일에
+        알아서는 안 되는 항목들입니다.
+      </p>
+      <p>
+        <strong>셋째</strong>, Microsoft 공식 문서는 양이 방대하고 고객사마다 환경 구성 · 운영 정책 · 보안 요건이 달라서 엔지니어가 명시적으로 마이그레이션 영향도에 대한 판단을 내리기 어렵습니다.
+        Exchange Migration Advisor는 그 과정에 도움을 줍니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       APPROACH
+       ════════════════════════════════════════ -->
+  <section class="section fade">
+    <div class="section-eyebrow">Approach</div>
+    <h2 class="section-title">결정적 룰 + 생성형 AI 분업</h2>
+    <p class="section-desc">
+      마이그레이션 진단은 두 개의 서로 다른 작업으로 나뉩니다 — 결정적 사실 판단과
+      자연어 가이드 생성.<br>Exchange Migration Advisor는 이 둘을 분리해 다른 엔진이 처리하도록 설계했습니다.
     </p>
-    <div class="tag-row">
-      <span class="tag hi">Exchange Online</span>
-      <span class="tag hi">Microsoft 365</span>
-      <span class="tag hi">Copilot Studio</span>
-      <span class="tag">Exchange Server</span>
-      <span class="tag">Power Automate</span>
-      <span class="tag">Azure</span>
-      <span class="tag">Migration</span>
-    </div>
-  </div>
 
-  <!-- METRICS -->
-  <div class="metrics fade">
-    <div class="metric">
-      <div class="metric-val">3<span>가지</span></div>
-      <div class="metric-desc">마이그레이션 방식<br>자동 판단</div>
-    </div>
-    <div class="metric">
-      <div class="metric-val">Auto<span></span></div>
-      <div class="metric-desc">환경 분석<br>자동 진단</div>
-    </div>
-    <div class="metric">
-      <div class="metric-val">0<span>서버</span></div>
-      <div class="metric-desc">별도 인프라 없이<br>서버리스 운영</div>
-    </div>
-    <div class="metric">
-      <div class="metric-val">즉시<span></span></div>
-      <div class="metric-desc">전략 리포트<br>즉시 생성</div>
-    </div>
-  </div>
-
-  <!-- PROBLEM / SOLUTION -->
-  <div class="sec fade">
-    <div class="sec-label">문제 정의 &amp; 해결</div>
-    <div class="ps">
-      <div class="ps-box">
-        <div class="ps-head">Before</div>
-        <ul class="ps-list">
-          <li>Exchange → M365 마이그레이션 방식은 환경에 따라 크게 달라지지만 직접 판단하기 어려움</li>
-          <li>담당자가 Exchange 버전, 사서함 수, 하이브리드 구성 여부 등을 수동으로 파악하고 전략 수립</li>
-          <li>Microsoft 공식 문서와 체크리스트를 일일이 확인해야 해 시간 소요가 큼</li>
-          <li>조직마다 환경이 달라 일반적인 가이드가 그대로 적용되지 않는 경우 多</li>
-        </ul>
+    <div class="approach-split">
+      <div class="approach-panel">
+        <div class="approach-panel-header">
+          <span class="approach-panel-name">Rule Engine</span>
+          <span class="approach-panel-tag">Deterministic</span>
+        </div>
+        <div class="approach-panel-body">
+          <ul class="approach-list">
+            <li>마이그레이션 블로커 식별</li>
+            <li>Severity 산출 — <code>Blocker</code> / <code>Must Fix</code> / <code>Recommended</code></li>
+            <li>6개 영역 분류 (organization, mailboxes, mailflow 등)</li>
+            <li>전략 평가 (Cutover ≤150 / Hybrid &gt;150)</li>
+          </ul>
+        </div>
       </div>
-      <div class="ps-box sol">
-        <div class="ps-head">After</div>
-        <ul class="ps-list">
-          <li>환경 정보를 입력하면 Cutover / Staged / Hybrid 방식을 자동으로 판단</li>
-          <li>Exchange 버전·사서함 수·디렉터리 동기화 여부 등 핵심 변수 기반으로 진단</li>
-          <li>단계별 마이그레이션 전략과 주의사항을 즉시 리포트로 제공</li>
-          <li>Copilot 에이전트를 통해 자연어로 질의하고 맞춤형 전략 추천 수령 가능</li>
-        </ul>
+
+      <div class="approach-panel">
+        <div class="approach-panel-header">
+          <span class="approach-panel-name">Azure OpenAI</span>
+          <span class="approach-panel-tag">Generative</span>
+        </div>
+        <div class="approach-panel-body">
+          <ul class="approach-list">
+            <li>이슈별 자연어 조치 가이드 생성</li>
+            <li>환경 컨텍스트 기반 PowerShell 명령 제안</li>
+            <li>Microsoft Learn 문서 검색 후 인용 (RAG)</li>
+            <li>한국어 시스템 프롬프트로 톤·구조 일관성 유지</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <hr>
+    <div class="callout">
+      <div class="callout-label">Why split the workload</div>
+      <div class="callout-text">
+        <strong>LLM 단독으로는 결정적 사실을 신뢰할 수 없습니다</strong> — 그럴듯하지만 잘못된 설명을 생성할 수 있어 마이그레이션 가능 여부 같은 정답이 정해진 판단에는 부적합합니다. Exchange Migration Advisor는 이런 결정적 영역을 명시적 룰로 처리해 정확한 기술적 근거에 기반한 일관된 답변을 보장하고, LLM은 그 결과를 사용자에게 자연스럽게 전달하는 역할에만 집중하도록 분리했습니다.
+      </div>
+    </div>
+  </section>
 
-  <!-- ARCHITECTURE -->
-  <div class="sec fade">
-    <div class="sec-label">시스템 아키텍처</div>
+  <!-- ════════════════════════════════════════
+       DATA COLLECTION
+       ════════════════════════════════════════ -->
+  <section class="section fade">
+    <div class="section-eyebrow">Data Collection</div>
+    <h2 class="section-title">온프레미스에서 무엇을 가져오나</h2>
+    <p class="section-desc">Exchange Migration Advisor의 입력은 PowerShell 수집기가 생성하는 표준 JSON입니다.<br>4개 모듈이 Exchange 환경의 핵심 정보를 영역별로 추출하고, <code style="font-family:var(--mono);font-size:13px;background:var(--bg-muted);padding:1px 5px;border-radius:3px;border:1px solid var(--border-soft);">schema_version: "1.0.0"</code>으로 버전 관리되는 계약 형식으로 출력합니다.</p>
+
+    <div class="module-table">
+      <div class="module-row">
+        <div class="module-idx">01</div>
+        <div>
+          <div class="module-name">
+            조직 단위 정보
+          </div>
+          <div class="module-desc">
+            Exchange 버전과 CU 레벨, 조직 구성, Modern Auth 활성 여부,
+            Public Folder 활성 여부. 마이그레이션 전략 결정의 1차 입력.
+          </div>
+          <div class="module-cmds">
+            <span class="cmd-tag">Get-OrganizationConfig</span>
+            <span class="cmd-tag">Get-ExchangeServer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-row">
+        <div class="module-idx">02</div>
+        <div>
+          <div class="module-name">
+            사서함 인벤토리
+          </div>
+          <div class="module-desc">
+            전체 사서함 수, 크기 분포(100GB / 240GB / 1.5TB 임계값별),
+            Archive 상태, Litigation Hold, 보존 정책. MBX 룰 6개의 평가 기반.
+          </div>
+          <div class="module-cmds">
+            <span class="cmd-tag">Get-Mailbox</span>
+            <span class="cmd-tag">Get-MailboxStatistics</span>
+            <span class="cmd-tag">Get-MailboxFolderStatistics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-row">
+        <div class="module-idx">03</div>
+        <div>
+          <div class="module-name">
+            메일 흐름 구성
+          </div>
+          <div class="module-desc">
+            Send / Receive Connector, Accepted Domain, Transport Rule.
+            마이그레이션 후 메일 라우팅 단절 사전 식별.
+          </div>
+          <div class="module-cmds">
+            <span class="cmd-tag">Get-SendConnector</span>
+            <span class="cmd-tag">Get-ReceiveConnector</span>
+            <span class="cmd-tag">Get-AcceptedDomain</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-row">
+        <div class="module-idx">04</div>
+        <div>
+          <div class="module-name">
+            하이브리드 구성도
+          </div>
+          <div class="module-desc">
+            인증서(만료일·SAN), HCW 상태, OAuth 클라이언트 프로필,
+            Federation Trust, Autodiscover 상태 정보 확인
+          </div>
+          <div class="module-cmds">
+            <span class="cmd-tag">Get-ExchangeCertificate</span>
+            <span class="cmd-tag">Get-AuthServer</span>
+            <span class="cmd-tag">Get-FederationTrust</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SELF ASSESSMENT
+       ════════════════════════════════════════ -->
+  <section class="section fade">
+    <div class="section-eyebrow">Self Assessment</div>
+    <h2 class="section-title">PowerShell이 답할 수 없는 영역</h2>
+    <p class="section-desc">모든 정보를 PowerShell로 수집할 수 있는 것은 아닙니다. Entra Connect는 Exchange가 아닌 별도 서버에서 동작하고, 네트워크 도달성은 클라이언트 위치와 방화벽에 따라 달라집니다. Exchange Migration Advisor는 이런 영역을 추측하지 않고 사용자에게 직접 물어봅니다.</p>
+
+    <div class="assessment-grid">
+      <div class="assessment-card">
+        <div class="assessment-header">
+          <span class="assessment-header-name">Directory Sync</span>
+          <span class="assessment-header-count">5 questions</span>
+        </div>
+        <ul class="assessment-list">
+          <li><span class="assessment-id">DS-001</span><span>Entra Connect 설치 및 동작 상태</span></li>
+          <li><span class="assessment-id">DS-002</span><span>마지막 동기화 시간과 주기</span></li>
+          <li><span class="assessment-id">DS-003</span><span>Staging Mode 여부</span></li>
+          <li><span class="assessment-id">DS-004</span><span>온프렘 ↔ Entra ID 사용자 수 일치</span></li>
+          <li><span class="assessment-id">DS-005</span><span>최근 동기화 오류 발생 여부</span></li>
+        </ul>
+      </div>
+
+      <div class="assessment-card">
+        <div class="assessment-header">
+          <span class="assessment-header-name">Network</span>
+          <span class="assessment-header-count">4 questions</span>
+        </div>
+        <ul class="assessment-list">
+          <li><span class="assessment-id">NET-001</span><span><code>outlook.office365.com:443</code> 도달성</span></li>
+          <li><span class="assessment-id">NET-002</span><span>EWS External URL 외부 도달 가능</span></li>
+          <li><span class="assessment-id">NET-003</span><span>Microsoft 365 IP/URL 허용 목록 최신화</span></li>
+          <li><span class="assessment-id">NET-004</span><span>SMTP Outbound (<code>*.mail.protection.outlook.com:25</code>)</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Design Principle — Honest about Uncertainty</div>
+      <div class="callout-text">
+        사용자가 답하지 않은 항목은 추측하지 않고 <strong>Unverified(미검증)</strong>로 분류되어
+        결과 화면에 명시적으로 표시됩니다. "확실하지 않은 것을 확실한 것처럼 답하지 않는다"는
+        진단 도구의 출력 신뢰성에서 가장 중요한 원칙이라고 판단했습니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       RULE ENGINE
+       ════════════════════════════════════════ -->
+  <section class="section fade">
+    <div class="section-eyebrow">Rule Engine</div>
+    <h2 class="section-title">6개 영역 × 3단계 Severity</h2>
+    <p class="section-desc">Rule Engine은 결정적 평가를 담당합니다. 20개의 자동 룰이 6개 영역으로 분류되어 있고, 자가진단 9개와 합쳐져 총 29개의 진단 항목으로 구성됩니다.</p>
+
+    <div class="rule-table-wrap">
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>주요 점검 항목</th>
+            <th>Max Severity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="rule-area">
+                <span class="rule-area-name">organization</span>
+                <span class="rule-area-count">5 rules</span>
+              </div>
+            </td>
+            <td>Exchange 버전 / CU 레벨, EOL 상태, Modern Auth, Public Folder 활성</td>
+            <td><span class="badge blocker">Blocker</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="rule-area">
+                <span class="rule-area-name">mailboxes</span>
+                <span class="rule-area-count">6 rules</span>
+              </div>
+            </td>
+            <td>사서함 타입별 용량 임계값(Primary / Archive), Litigation Hold 적용 여부, 보존 정책 인벤토리</td>
+            <td><span class="badge blocker">Blocker</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="rule-area">
+                <span class="rule-area-name">mailflow</span>
+                <span class="rule-area-count">3 rules</span>
+              </div>
+            </td>
+            <td>Send / Receive Connector, Accepted Domain, Transport Rule</td>
+            <td><span class="badge must">Must Fix</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="rule-area">
+                <span class="rule-area-name">hybrid_readiness</span>
+                <span class="rule-area-count">6 rules</span>
+              </div>
+            </td>
+            <td>인증서 만료, HCW 상태, OAuth, Federation Trust, Autodiscover</td>
+            <td><span class="badge blocker">Blocker</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="rule-area">
+                <span class="rule-area-name">directory_sync</span>
+                <span class="rule-area-count">5 self-checks</span>
+              </div>
+            </td>
+            <td>Entra Connect 동작, 동기화 주기, 사용자 수 일치, 동기화 오류</td>
+            <td><span class="badge blocker">Blocker</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="rule-area">
+                <span class="rule-area-name">network</span>
+                <span class="rule-area-count">4 self-checks</span>
+              </div>
+            </td>
+            <td>Endpoint 도달성, IP/URL 허용 목록, SMTP Outbound</td>
+            <td><span class="badge must">Must Fix</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:var(--sans);font-weight:600;font-size:18px;color:var(--fg);letter-spacing:-0.02em;margin:8px 0 16px;">결과는 5가지로 분류됩니다</h3>
+
+    <div class="class-grid">
+      <div class="class-card">
+        <span class="badge blocker class-badge">Blocker</span>
+        <div class="class-name">마이그레이션 불가</div>
+        <div class="class-desc">사전 해결 필수 항목</div>
+      </div>
+      <div class="class-card">
+        <span class="badge must class-badge">Must Fix</span>
+        <div class="class-name">운영 리스크</div>
+        <div class="class-desc">기술적 가능, 운영 위험 큼</div>
+      </div>
+      <div class="class-card">
+        <span class="badge rec class-badge">Recommended</span>
+        <div class="class-name">권장 개선</div>
+        <div class="class-desc">마이그레이션 후 품질 향상</div>
+      </div>
+      <div class="class-card">
+        <span class="badge unv class-badge">Unverified</span>
+        <div class="class-name">미검증</div>
+        <div class="class-desc">자가진단 미응답 항목</div>
+      </div>
+      <div class="class-card">
+        <span class="badge ready class-badge">Ready</span>
+        <div class="class-name">정상</div>
+        <div class="class-desc">마이그레이션 준비 완료</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       AI LAYER
+       ════════════════════════════════════════ -->
+  <section class="section fade">
+    <div class="section-eyebrow">AI Layer</div>
+    <h2 class="section-title">Azure OpenAI + RAG 통합</h2>
+    <p class="section-desc">Rule Engine이 식별한 이슈는 운영자에게 그대로 보여주기엔 너무 기술적입니다. Azure OpenAI의 <code style="font-family:var(--mono);font-size:13px;background:var(--bg-muted);padding:1px 5px;border-radius:3px;border:1px solid var(--border-soft);">"On Your Data"</code> 기능을 통해 RAG 파이프라인을 통합했습니다.<br>query 재구성 · 문서 검색 · 컨텍스트 주입 · 답변 생성을 Azure 내부에서 처리하므로, 클라이언트 코드에서는 단일 API 호출로 RAG 워크플로우가 완성됩니다.</p>
+
+    <div class="code-window">
+      <div class="code-window-header">
+        <div class="code-dots">
+          <span class="code-dot"></span>
+          <span class="code-dot"></span>
+          <span class="code-dot"></span>
+        </div>
+      </div>
+      <pre class="code-window-body"><span class="cm"># Azure OpenAI On Your Data — 단일 호출에 검색 + 생성 통합</span>
+<span class="kw">extra_body</span> = {
+    <span class="st">"data_sources"</span>: [{
+        <span class="st">"type"</span>: <span class="st">"azure_search"</span>,
+        <span class="st">"parameters"</span>: {
+            <span class="st">"endpoint"</span>:        AZURE_SEARCH_ENDPOINT,
+            <span class="st">"index_name"</span>:      <span class="st">"ema-docs"</span>,
+            <span class="st">"query_type"</span>:      <span class="st">"simple"</span>,    <span class="cm"># 키워드 검색</span>
+            <span class="st">"top_n_documents"</span>: <span class="num">5</span>,
+            <span class="st">"in_scope"</span>:        <span class="kw">True</span>,
+        }
+    }]
+}
+
+<span class="cm"># 비동기 병렬 호출 + 비용 가드</span>
+sem = asyncio.<span class="fn">Semaphore</span>(concurrency=<span class="num">4</span>)
+<span class="kw">async def</span> <span class="fn">generate</span>(issue):
+    <span class="kw">async with</span> sem:
+        <span class="kw">return await</span> client.chat.completions.<span class="fn">create</span>(...)
+
+results = <span class="kw">await</span> asyncio.<span class="fn">gather</span>(*[
+    <span class="fn">generate</span>(i) <span class="kw">for</span> i <span class="kw">in</span> issues[:MAX_LLM_CALLS]   <span class="cm"># cap = 10</span>
+])</pre>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-label">Concurrency Control</div>
+        <ul class="feature-card-list">
+          <li><code>asyncio.Semaphore(4)</code> — 동시 호출 4개 제한</li>
+          <li><code>MAX_LLM_CALLS = 10</code> — 분석당 호출 상한</li>
+          <li>응답 시간과 토큰 비용을 동시에 제어</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-label">Output Quality</div>
+        <ul class="feature-card-list">
+          <li>한국어 시스템 프롬프트로 톤 · 구조 일관성</li>
+          <li>citation 자동 포함 — 답변 추적 가능</li>
+          <li><code>RAG_ENABLED</code> 환경변수로 RAG 토글</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ════════════════════════════════════════
+       ARCHITECTURE
+       ════════════════════════════════════════ -->
+  <section id="architecture" class="section fade">
+    <div class="section-eyebrow">Architecture</div>
+    <h2 class="section-title">시스템 처리 흐름</h2>
+    <p class="section-desc">온프레미스에서 데이터 수집부터 결과 대시보드까지의 전체 흐름입니다.</p>
+
     <div class="arch-flow">
-      <div class="arch-node">
-        <div class="arch-icon">🖥️</div>
-        <div class="arch-name">Exchange 환경</div>
-        <div class="arch-sub">온프레미스 정보</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon hi">🤖</div>
-        <div class="arch-name">Copilot Studio</div>
-        <div class="arch-sub">입력 수집</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon hi">⚡</div>
-        <div class="arch-name">진단 엔진</div>
-        <div class="arch-sub">자동 분석</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon hi">📋</div>
-        <div class="arch-name">전략 추천</div>
-        <div class="arch-sub">리포트 생성</div>
-      </div>
-      <div class="arch-arrow">→</div>
-      <div class="arch-node">
-        <div class="arch-icon">👤</div>
-        <div class="arch-name">담당자</div>
-        <div class="arch-sub">Teams / 메일</div>
+      <div class="arch-flow-row">
+        <div class="arch-node">
+          <span class="arch-node-icon">🖥</span>
+          <div class="arch-node-name">On-Prem</div>
+          <div class="arch-node-sub">PowerShell</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <span class="arch-node-icon">📄</span>
+          <div class="arch-node-name">JSON</div>
+          <div class="arch-node-sub">schema 1.0.0</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node primary">
+          <span class="arch-node-icon">⚡</span>
+          <div class="arch-node-name">Rule Engine</div>
+          <div class="arch-node-sub">29 checks</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node accent">
+          <span class="arch-node-icon">🔍</span>
+          <div class="arch-node-name">AI Search</div>
+          <div class="arch-node-sub">ema-docs</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node accent">
+          <span class="arch-node-icon">🤖</span>
+          <div class="arch-node-name">Azure OpenAI</div>
+          <div class="arch-node-sub">gpt-4o-mini</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <span class="arch-node-icon">📊</span>
+          <div class="arch-node-name">Streamlit</div>
+          <div class="arch-node-sub">Dashboard</div>
+        </div>
       </div>
     </div>
-    <div class="arch-note">
-      <strong>Copilot Studio 에이전트</strong>가 Exchange 버전, 사서함 수, AD 연동 여부 등 핵심 환경 정보를 수집 →
-      <strong>진단 로직</strong>이 마이그레이션 방식을 자동 판단 →
-      단계별 전략, 예상 소요 기간, 주의사항을 담은 <strong>맞춤형 리포트</strong>를 즉시 반환.
+
+    <div class="arch-layers">
+      <div class="arch-layer">
+        <div class="arch-layer-head">
+          <span class="arch-layer-name">Client Layer</span>
+          <span class="arch-layer-stack">streamlit · python 3.11</span>
+        </div>
+        <div class="arch-layer-body">
+          <div class="arch-comp">
+            <div class="arch-comp-name">JSON Upload</div>
+            <div class="arch-comp-detail">Collect-ExchangeData.ps1 산출물 입력</div>
+          </div>
+          <div class="arch-comp">
+            <div class="arch-comp-name">Self-Assessment</div>
+            <div class="arch-comp-detail">9 questions · DS + NET</div>
+          </div>
+          <div class="arch-comp">
+            <div class="arch-comp-name">Result Dashboard</div>
+            <div class="arch-comp-detail">5 classifications · per-issue guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-layer-head">
+          <span class="arch-layer-name">Backend Layer</span>
+          <span class="arch-layer-stack">python · pydantic · asyncio</span>
+        </div>
+        <div class="arch-layer-body">
+          <div class="arch-comp">
+            <div class="arch-comp-name">Rule Engine</div>
+            <div class="arch-comp-detail">YAML 룰셋 · 결정적 진단</div>
+          </div>
+          <div class="arch-comp">
+            <div class="arch-comp-name">Strategy Engine</div>
+            <div class="arch-comp-detail">Cutover · Hybrid 평가</div>
+          </div>
+          <div class="arch-comp">
+            <div class="arch-comp-name">Async LLM Orchestrator</div>
+            <div class="arch-comp-detail">Semaphore · cost guard</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-layer-head">
+          <span class="arch-layer-name">External Services · Azure</span>
+          <span class="arch-layer-stack">korea central</span>
+        </div>
+        <div class="arch-layer-body">
+          <div class="arch-comp">
+            <div class="arch-comp-name">Azure OpenAI</div>
+            <div class="arch-comp-detail">gpt-4o-mini · concurrency 4</div>
+          </div>
+          <div class="arch-comp">
+            <div class="arch-comp-name">Azure AI Search</div>
+            <div class="arch-comp-detail">ema-docs · simple query</div>
+          </div>
+          <div class="arch-comp">
+            <div class="arch-comp-name">Container Apps</div>
+            <div class="arch-comp-detail">ACR emajangson · auto HTTPS</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <hr>
+  <!-- ════════════════════════════════════════
+       SCREENSHOTS
+       ════════════════════════════════════════ -->
+  <section class="section fade">
+    <div class="section-eyebrow">Product</div>
+    <h2 class="section-title">실제 동작 화면</h2>
+    <p class="section-desc">Azure Container Apps에 배포되어 동작 중인 도구의 실제 화면입니다.4단계 워크플로우(업로드 → 자가진단 → 분석 → 대시보드)가 단일 페이지에 통합되어 있습니다.</p>
 
-  <!-- WHAT I BUILT -->
-  <div class="sec fade">
-    <div class="sec-label">직접 설계 &amp; 구현한 것</div>
-    <ul class="built">
-      <li class="built-item">
-        <span class="built-n">01</span>
-        <div>
-          <div class="built-title">환경 진단 로직 설계 <span class="built-badge">진단 엔진</span></div>
-          <div class="built-desc">Exchange 버전, 사서함 수, 디렉터리 동기화 여부, 하이브리드 구성 유무 등 핵심 변수를 기반으로 Cutover / Staged / Hybrid 마이그레이션 방식을 자동 판단하는 로직 설계. 각 방식별 적합 조건과 제약 사항을 반영해 오진을 최소화.</div>
-          <div class="built-chips">
-            <span class="chip">Cutover</span>
-            <span class="chip">Staged</span>
-            <span class="chip">Hybrid</span>
-            <span class="chip">조건 분기 로직</span>
+    <div class="shot-section">
+      <div class="shot-label">Main Entry — Assessment Input Upload</div>
+      <div class="shot-frame">
+        <img src="img/exchange-advisor/EMA_Main.png" alt="Exchange Migration Advisor 메인 진입 화면" loading="lazy" onclick="openLb(this)">
+      </div>
+      <div class="shot-caption">
+        <strong>JSON 업로드 또는 데모 모드 선택 진입점</strong>
+        진행 상태가 사이드바에 단계별로 표시됩니다.
+      </div>
+    </div>
+
+    <div class="shot-section">
+      <div class="shot-label">Workflow — Upload → Self-Assessment → AI Analysis</div>
+      <div class="shot-flow">
+        <div class="shot-step">
+          <div class="shot-step-num">Step 01 · Upload</div>
+          <div class="shot-frame">
+            <img src="img/exchange-advisor/EMA_Step1_Upload.png" alt="JSON 업로드 단계" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>JSON Input</strong>
+            Collect-ExchangeData.ps1 산출물 또는 데모 데이터.
           </div>
         </div>
-      </li>
-      <li class="built-item">
-        <span class="built-n">02</span>
-        <div>
-          <div class="built-title">Copilot Studio 에이전트 구현 <span class="built-badge">Copilot Studio · Power Automate</span></div>
-          <div class="built-desc">사용자가 자연어로 환경 정보를 제공하면 단계적으로 필요한 정보를 수집하는 대화 흐름 설계. 수집된 정보를 진단 엔진에 전달해 마이그레이션 전략과 체크리스트를 자동 생성. Power Automate 연동으로 결과를 메일로 발송하는 기능 포함.</div>
-          <div class="built-chips">
-            <span class="chip">대화 흐름</span>
-            <span class="chip">Power Automate</span>
-            <span class="chip">메일 발송</span>
+        <div class="shot-step">
+          <div class="shot-step-num">Step 02 · Self-Assessment</div>
+          <div class="shot-frame">
+            <img src="img/exchange-advisor/EMA_Step2_SelfDiagnosis.png" alt="자가진단 단계" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>9 Questions</strong>
+            DS · NET 영역 입력. 미응답은 Unverified.
           </div>
         </div>
-      </li>
-      <li class="built-item">
-        <span class="built-n">03</span>
-        <div>
-          <div class="built-title">마이그레이션 전략 리포트 생성 <span class="built-badge">리포트 자동화</span></div>
-          <div class="built-desc">진단 결과에 따라 단계별 마이그레이션 절차, 예상 기간, 사전 준비 사항, 주의사항을 포함한 맞춤형 리포트를 자동 생성. Exchange 버전별 지원 종료 일정 및 전제 조건도 함께 제공해 의사결정에 필요한 정보를 한 번에 전달.</div>
-          <div class="built-chips">
-            <span class="chip">단계별 절차</span>
-            <span class="chip">체크리스트</span>
-            <span class="chip">EOS 일정</span>
+        <div class="shot-step">
+          <div class="shot-step-num">Step 03 · AI Analysis</div>
+          <div class="shot-frame">
+            <img src="img/exchange-advisor/EMA_Step3_AIAnalysis.png" alt="AI 분석 단계" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>Generated Guide</strong>
+            On Your Data + GPT-4o-mini, citation 포함.
           </div>
         </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </div>
 
-  <hr>
+    <div class="shot-section">
+      <div class="shot-label">Result — Risk Dashboard & Migration Strategy</div>
+      <div class="shot-pair">
+        <div>
+          <div class="shot-frame">
+            <img src="img/exchange-advisor/EMA_RiskScorecard.png" alt="Risk Dashboard" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>Risk Dashboard</strong>
+            5분류 카운트와 6개 영역별 이슈 우선순위.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/exchange-advisor/EMA_MigrationStrategy.png" alt="마이그레이션 전략 추천" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>Migration Strategy</strong>
+            Cutover · Hybrid 적합도 평가, reasoning 표시.
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!-- STACK -->
-  <div class="sec fade">
-    <div class="sec-label">기술 스택</div>
-    <table class="stack-tbl">
-      <tr>
-        <td>Agent</td>
-        <td><div class="s-chips"><span class="s-chip">Microsoft Copilot Studio</span><span class="s-chip">대화 흐름 설계</span><span class="s-chip">Teams 게시</span></div></td>
-      </tr>
-      <tr>
-        <td>Automation</td>
-        <td><div class="s-chips"><span class="s-chip">Power Automate</span><span class="s-chip">Exchange Online SendEmailV2</span></div></td>
-      </tr>
-      <tr>
-        <td>Target</td>
-        <td><div class="s-chips"><span class="s-chip">Exchange Server 2010 / 2013 / 2016 / 2019</span><span class="s-chip">Exchange Online</span><span class="s-chip">Microsoft 365</span></div></td>
-      </tr>
-      <tr>
-        <td>Migration</td>
-        <td><div class="s-chips"><span class="s-chip">Cutover Migration</span><span class="s-chip">Staged Migration</span><span class="s-chip">Hybrid Migration</span></div></td>
-      </tr>
-    </table>
-  </div>
+    <div class="shot-section">
+      <div class="shot-label">Per-Issue Action Guide</div>
+      <div class="shot-frame">
+        <img src="img/exchange-advisor/EMA_ActionGuide.png" alt="조치 가이드 상세" loading="lazy" onclick="openLb(this)">
+      </div>
+      <div class="shot-caption">
+        <strong>각 이슈별 단계별 조치 가이드</strong>
+        환경 컨텍스트와 검색된 Microsoft Learn 문서 결합, 출처(citation) 자동 포함.
+      </div>
+    </div>
+  </section>
 
-  <!-- BOTTOM BAR -->
-  <div class="bottom-bar">sonjangwon.github.io</div>
+  <!-- ════════════════════════════════════════
+       KEY DECISIONS
+       ════════════════════════════════════════ -->
+  <section id="decisions" class="section fade">
+    <div class="section-eyebrow">Decisions</div>
+    <h2 class="section-title">핵심 의사결정과 트레이드오프</h2>
+    <p class="section-desc">도구를 만드는 과정에서 마주친 주요 분기점들입니다.각 결정은 더 좋은 다른 선택을 배제한 것이 아니라, Exchange Migration Advisor의 운영 환경과 도메인 특성에 맞게 의도적으로 선택한 결과입니다.</p>
+
+    <div class="decisions">
+      <div class="decision-card">
+        <div class="decision-num">D-01</div>
+        <div class="decision-q">RAG <span class="vs">vs Fine-tuning</span></div>
+        <div class="decision-a">
+          엔터프라이즈 Exchange 환경은 고객사마다 구성과 운영 패턴이 다양해서, 단일 모델에 모든 사례를 학습시키기보다 도메인 문서를 인덱스로 분리하고 환경 컨텍스트에 맞춰 검색·인용하는 방식이 더 적합합니다. RAG는 검색된 문서를 답변과 함께 인용해 운영자가 출처를 직접 확인할 수 있고, 도메인 데이터를 모델과 분리해 인덱스만 갱신하면 즉시 반영됩니다. 답변 정확성과 운영 투명성이 중요한 엔터프라이즈 환경에서 더 안전한 접근입니다.
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">D-02</div>
+        <div class="decision-q">Rule + LLM Hybrid <span class="vs">vs LLM-only</span></div>
+        <div class="decision-a">
+          마이그레이션 블로커는 결정적 사실이 많습니다. LLM은 이런 영역에서도 확률적으로 답하기 때문에
+          환각이 발생할 수 있습니다. 결정적 규칙으로 사실 판단을 처리하고, LLM은 자연어 설명·환경 맥락
+          해석에만 집중하도록 책임을 분리한 결과 답변 신뢰도가 높아졌습니다.
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">D-03</div>
+        <div class="decision-q">Azure OpenAI <span class="vs">vs OpenAI direct</span></div>
+        <div class="decision-a">
+          엔터프라이즈 Exchange 환경 데이터는 사서함 정보·라우팅 구성 등 민감 데이터를 포함합니다. Azure OpenAI는 데이터 거주성(region 단위 배포), 프라이빗 엔드포인트(Private Link), Azure RBAC, 감사 로그 등 엔터프라이즈 거버넌스 요건을 충족하고, Entra ID 기반 인증으로 기존 M365 환경과 동일한 ID 체계를 사용할 수 있습니다.
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">D-04</div>
+        <div class="decision-q">Keyword Search <span class="vs">vs Vector / Hybrid</span></div>
+        <div class="decision-a">
+          Exchange 도메인은 정확한 cmdlet 이름(<code>Set-CalendarProcessing</code>),
+          오류 코드(<code>500011</code>), 제품 버전(<code>CU23</code>) 매칭이 검색 정확도에 결정적입니다.
+          Vector 검색은 의미적 유사도에 강하지만 정확한 명칭 매칭이 필요한 도메인에서는 노이즈를
+          만들 수 있어, 키워드 검색을 채택했습니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FOOTER (closing div + footer)
+       ════════════════════════════════════════ -->
 
 </div>
 
+<!-- ════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">손장원 — Jangwon Son</div>
+      <div class="footer-meta">Project No. 03 · Exchange Migration Advisor · v0.5.0</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/sonjangwon/exchange-migration-advisor" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      <a href="https://exchange-migration-advisor.purpleisland-d039bb42.eastus2.azurecontainerapps.io/" target="_blank" rel="noopener" class="footer-link">Live Demo</a>
+      <a href="index.html" class="footer-link">← Portfolio</a>
+    </div>
+  </div>
+</footer>
+
 <script>
-const fades = document.querySelectorAll('.fade');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.08 });
-fades.forEach(el => io.observe(el));
+  /* Lightbox */
+  function openLb(img) {
+    var lb = document.createElement('div');
+    lb.id = 'lb-overlay';
+    lb.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.92);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:32px;';
+    var im = document.createElement('img');
+    im.src = img.src;
+    im.style.cssText = 'max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 12px 64px rgba(0,0,0,0.5);';
+    lb.appendChild(im);
+    lb.addEventListener('click', function() { document.body.removeChild(lb); });
+    document.addEventListener('keydown', function esc(e) {
+      if(e.key==='Escape') {
+        if (document.getElementById('lb-overlay')) document.body.removeChild(lb);
+        document.removeEventListener('keydown', esc);
+      }
+    });
+    document.body.appendChild(lb);
+  }
+
+  /* Fade-in observer */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
