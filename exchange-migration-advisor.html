@@ -2187,9 +2187,10 @@ results = <span class="kw">await</span> asyncio.<span class="fn">gather</span>(*
         <div class="decision-num">D-02</div>
         <div class="decision-q">Rule + LLM Hybrid <span class="vs">vs LLM-only</span></div>
         <div class="decision-a">
-          마이그레이션 블로커는 결정적 사실이 많습니다. LLM은 이런 영역에서도 확률적으로 답하기 때문에
-          환각이 발생할 수 있습니다. 결정적 규칙으로 사실 판단을 처리하고, LLM은 자연어 설명·환경 맥락
-          해석에만 집중하도록 책임을 분리한 결과 답변 신뢰도가 높아졌습니다.
+          마이그레이션 블로커는 기준이 명확한 항목이 많습니다. 인증서 만료일이 30일 이하인지, 사서함이 150개를
+          초과하는지 같은 판단은 데이터를 보면 바로 결론이 나옵니다. LLM은 이런 항목에서도 확률적으로 답하기
+          때문에 hallucination이 발생할 수 있습니다. 판별은 Rule Engine이 담당하고, LLM은 그 결과를 자연어로
+          설명하는 역할만 맡도록 책임을 분리한 결과 답변 신뢰도가 높아졌습니다.
         </div>
       </div>
 
