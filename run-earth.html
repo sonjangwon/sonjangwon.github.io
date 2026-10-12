@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run Earth — 손장원</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;550;600;700&family=JetBrains+Mono:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Slate scale - GitHub/Linear inspired */
+  --bg:           #ffffff;
+  --bg-subtle:    #fafbfc;
+  --bg-muted:     #f6f8fa;
+  --bg-emphasis:  #eaeef2;
+
+  /* Ink scale */
+  --fg:           #0f172a;
+  --fg-2:         #1f2937;
+  --fg-3:         #475569;
+  --fg-4:         #64748b;
+  --fg-5:         #94a3b8;
+  --fg-6:         #cbd5e1;
+
+  /* Borders */
+  --border:       #e5e7eb;
+  --border-soft:  #f1f5f9;
+  --border-strong:#d0d7de;
+
+  --amber:        #d97706;
+  --amber-bg:     #fffbeb;
+  --green:        #16a34a;
+  --green-bg:     #f0fdf4;
+
+  /* Typography */
+  --sans:         'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --kr:           'Pretendard', 'Inter', -apple-system, sans-serif;
+  --mono:         'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+  /* Shadows - Linear/Stripe scale */
+  --shadow-xs:    0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm:    0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:    0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+
+  --radius:       6px;
+  --radius-sm:    4px;
+  --radius-lg:    10px;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--kr);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "ss01" 1, "cv11" 1;
+  letter-spacing: -0.005em;
+}
+
+/* ─────────────────────────────────────────
+   TOPBAR
+   ───────────────────────────────────────── */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0 20px;
+  border-bottom: 1px solid var(--border);
+}
+.topbar-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.08em;
+}
+.topbar-back {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.15s;
+}
+.topbar-back:hover { color: var(--fg); }
+
+/* ─────────────────────────────────────────
+   PAGE LAYOUT
+   ───────────────────────────────────────── */
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 32px 120px;
+}
+
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.section:last-of-type { border-bottom: none; }
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg-4);
+}
+
+.section-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--fg);
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-3);
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+}
+
+/* ─────────────────────────────────────────
+   HERO
+   ───────────────────────────────────────── */
+
+.hero {
+  padding: 88px 0 80px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--fg-3);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.hero-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 2px var(--amber-bg);
+}
+
+.hero-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--fg);
+  margin-bottom: 24px;
+  max-width: 920px;
+}
+.hero-subtitle {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-3);
+  margin-bottom: 56px;
+  letter-spacing: -0.01em;
+}
+.hero-subtitle strong {
+  color: var(--fg);
+  font-weight: 550;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.hero-stat {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border-soft);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hero-stat-value {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--fg);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.hero-stat-meta {
+  font-size: 12px;
+  color: var(--fg-4);
+  letter-spacing: -0.005em;
+}
+
+/* ─────────────────────────────────────────
+   CARDS
+   ───────────────────────────────────────── */
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.problem-grid:last-child { margin-bottom: 0; }
+.problem-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all 0.15s;
+  box-shadow: var(--shadow-xs);
+}
+.problem-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.problem-card-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+.problem-card-figure {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--fg);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.problem-card-figure .unit {
+  font-size: 14px;
+  color: var(--fg-4);
+  font-weight: 400;
+  margin-left: 4px;
+  letter-spacing: -0.01em;
+}
+.problem-card-title {
+  font-weight: 550;
+  font-size: 14.5px;
+  color: var(--fg-2);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.problem-card-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+
+.problem-narrative {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-2);
+  letter-spacing: -0.005em;
+}
+.problem-narrative strong {
+  color: var(--fg);
+  font-weight: 550;
+}
+.problem-narrative p + p { margin-top: 16px; }
+
+.callout {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--fg-2);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-top: 20px;
+}
+.callout-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fg-2);
+  letter-spacing: -0.005em;
+}
+.callout-text strong { color: var(--fg); font-weight: 550; }
+
+/* ─────────────────────────────────────────
+   STACK
+   ───────────────────────────────────────── */
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+.stack-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-xs);
+}
+.stack-card-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.stack-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.stack-pill {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 450;
+  color: var(--fg-2);
+  background: var(--bg-muted);
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  letter-spacing: -0.01em;
+}
+
+/* ─────────────────────────────────────────
+   ARCHITECTURE FLOW
+   ───────────────────────────────────────── */
+
+.arch-flow {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  box-shadow: var(--shadow-xs);
+}
+.arch-flow-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: 680px;
+  justify-content: space-between;
+}
+.arch-node {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  text-align: center;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
+  min-width: 100px;
+}
+.arch-node:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.arch-node.primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+.arch-node.primary .arch-node-sub { color: var(--fg-6); }
+.arch-node-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+  display: block;
+}
+.arch-node-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.arch-node-sub {
+  font-family: var(--kr);
+  font-size: 11px;
+  color: var(--fg-4);
+  letter-spacing: 0;
+}
+.arch-arrow {
+  flex: 0 0 32px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--fg-5);
+}
+
+/* ─────────────────────────────────────────
+   SCREENSHOTS (phone portrait)
+   ───────────────────────────────────────── */
+
+.shot-section { margin-bottom: 48px; }
+.shot-section:last-child { margin-bottom: 0; }
+.shot-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.shot-meta-text {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+  margin-bottom: 18px;
+  max-width: 920px;
+}
+.shot-phones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.shot-phones > div {
+  display: flex;
+  flex-direction: column;
+}
+.shot-frame {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b0f14;
+  box-shadow: var(--shadow-md);
+}
+.shot-frame img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1080 / 2220;
+  object-fit: cover;
+  object-position: top;
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+.shot-frame img:hover { opacity: 0.94; }
+.shot-caption {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+.shot-caption strong {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--fg);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.shot-footnote {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--fg-4);
+}
+.shot-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: var(--fg-4);
+}
+
+/* ─────────────────────────────────────────
+   DECISIONS
+   ───────────────────────────────────────── */
+
+.decisions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.decision-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
+}
+.decision-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.decision-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.decision-q {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--fg);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+.decision-q .vs {
+  color: var(--fg-4);
+  font-weight: 400;
+}
+.decision-a {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+.decision-a strong { color: var(--fg-2); font-weight: 550; }
+.decision-a p + p { margin-top: 8px; }
+
+/* ─────────────────────────────────────────
+   BOTTOM BAR
+   ───────────────────────────────────────── */
+
+.bottom-bar { border-top: 2px solid var(--fg); margin-top: 72px; padding-top: 20px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--fg-4); letter-spacing: 0.06em; }
+
+/* ─────────────────────────────────────────
+   FADE-IN
+   ───────────────────────────────────────── */
+
+.fade {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .page { padding: 0 24px 120px; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stat:nth-child(2) { border-right: none; }
+  .hero-stat:nth-child(1), .hero-stat:nth-child(2) { border-bottom: 1px solid var(--border-soft); }
+
+  .problem-grid { grid-template-columns: 1fr; }
+  .stack-grid { grid-template-columns: 1fr 1fr; }
+  .shot-phones { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .page { padding: 0 16px 80px; }
+  .hero { padding: 56px 0 56px; }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 16px; }
+  .hero-stat { padding: 16px; }
+  .hero-stat-value { font-size: 18px; }
+  .section { padding: 56px 0; }
+  .section-title { font-size: 24px; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .shot-phones { gap: 12px; }
+  .problem-narrative { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="topbar-id">손장원 — Project 04</span>
+    <a class="topbar-back" href="index.html">← 포트폴리오로 돌아가기</a>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════ -->
+  <section class="hero fade">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>MVP 개발 중 (2026.08~) · 스토어 미출시</div>
+    <h1 class="hero-title">Run Earth</h1>
+
+    <p class="hero-subtitle">달린 거리를 누적해 서울에서 출발, 부산 → 베이징 → … → 부에노스아이레스까지 <strong>"지구 한 바퀴 여정"</strong>을 진행하는 러닝 습관화 앱입니다.<br>1인 개발 · Flutter + Supabase. 기기 DB를 1차 저장소로 두는 <strong>local-first</strong> 설계로, <strong>"기록은 절대 잃지 않는다"</strong>를 여러 결정의 공통 근거로 삼았습니다.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Journey</div>
+        <div class="hero-stat-value">22 cities</div>
+        <div class="hero-stat-meta">서울 → 부에노스아이레스 19,432km</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Stack</div>
+        <div class="hero-stat-value">Flutter + Supabase</div>
+        <div class="hero-stat-meta">별도 서버 없음</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Commits</div>
+        <div class="hero-stat-value">155</div>
+        <div class="hero-stat-meta">기능 커밋 64 · Dart 약 1.1만 줄</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Verified on</div>
+        <div class="hero-stat-value">Android 실기기 2대</div>
+        <div class="hero-stat-meta">갤럭시 S24 · 노트8 · iOS 미검증</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       CONCEPT
+       ════════════════════════════════════════ -->
+  <section id="concept" class="section fade">
+    <div class="section-eyebrow">Concept</div>
+    <h2 class="section-title">달린 거리가 곧 여정</h2>
+    <p class="section-desc">한 번 달릴 때의 기록이 아니라, 지금까지 쌓인 거리가 지구 위 어디쯤에 와 있는지를 보여줍니다. 서울에서 출발해 국내 도시를 지나 해외 G20 수도 18곳을 거쳐 부에노스아이레스에 도착하면 한 바퀴가 끝납니다.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-num">01 — Journey</div>
+        <div class="problem-card-figure">22<span class="unit">cities</span></div>
+        <div class="problem-card-title">도시 단위로 쪼갠 긴 목표</div>
+        <div class="problem-card-desc">서울 0 → 인천 27 → 전주 194 → 부산 325km, 이어서 베이징 952km부터 부에노스아이레스 19,432km까지. 홈 화면에 현재 구간과 다음 도시까지 남은 거리가 보입니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">02 — Habit</div>
+        <div class="problem-card-figure">7<span class="unit">칸 주간 스트릭</span></div>
+        <div class="problem-card-title">주간 스트릭과 도시 배지</div>
+        <div class="problem-card-desc">달린 날은 주간 7칸에 체크가 들어가고 연속 주수가 쌓입니다. 도시에 도착할 때마다 그 도시의 배지가 하나씩 열립니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">03 — Voice</div>
+        <div class="problem-card-figure">1<span class="unit">km 마다</span></div>
+        <div class="problem-card-title">여정을 읽어주는 음성 안내</div>
+        <div class="problem-card-desc">1km마다 구간·평균 페이스를 읽고, 종료 때는 화면에 이미 있는 거리·시간 대신 <strong>"전주까지 142.6km 남았습니다"</strong>처럼 여정 잔여 거리를 읽습니다. 기기 내장 음성 합성이라 오프라인에서도 동작합니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       CORE DESIGN
+       ════════════════════════════════════════ -->
+  <section id="design" class="section fade">
+    <div class="section-eyebrow">Core Design</div>
+    <h2 class="section-title">local-first — 기기가 먼저, 서버는 뒤따라</h2>
+    <p class="section-desc">러닝은 산속이나 지하처럼 통신이 끊기는 곳에서도 합니다. 서버 저장이 먼저면 그때 뛴 기록은 사라집니다.</p>
+
+    <div class="problem-narrative">
+      <p>Run Earth는 <strong>기기 안의 로컬 DB를 1차 저장소</strong>로 둡니다. 달리기가 끝나면 기록은 먼저 기기에 저장되고, 서버(Supabase)에는 연결될 때 뒤따라 올라갑니다. 그래서 비행기 모드로 뛰어도 기록이 남고, 지난 기록도 서버 없이 열립니다.</p>
+      <p>서버는 기록을 <strong>잃지 않게 하는 두 번째 사본</strong>이자 기기를 바꿨을 때 기록을 되돌려 주는 곳입니다. 로그인·DB·권한 규칙·사진 저장·예약 작업을 모두 Supabase로 처리해 <strong>별도 서버 없이</strong> 운영합니다.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Principle</div>
+      <div class="callout-text"><strong>"기록은 절대 잃지 않는다."</strong> 동기화 정책, 백그라운드 추적, 0km 기록 처리까지 — 아래 의사결정들은 모두 이 한 문장에서 출발했습니다.</div>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-card-label">App</div>
+        <div class="stack-items">
+          <span class="stack-pill">Flutter</span>
+          <span class="stack-pill">Riverpod</span>
+          <span class="stack-pill">go_router</span>
+          <span class="stack-pill">drift (SQLite)</span>
+          <span class="stack-pill">Google Maps</span>
+          <span class="stack-pill">기기 내장 TTS</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-label">Backend · Supabase</div>
+        <div class="stack-items">
+          <span class="stack-pill">Auth</span>
+          <span class="stack-pill">Postgres + RLS</span>
+          <span class="stack-pill">Storage</span>
+          <span class="stack-pill">Edge Functions</span>
+          <span class="stack-pill">pg_cron</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-label">External API</div>
+        <div class="stack-items">
+          <span class="stack-pill">기상청 단기예보</span>
+          <span class="stack-pill">에어코리아 실시간 측정</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FLOW
+       ════════════════════════════════════════ -->
+  <section id="flow" class="section fade">
+    <div class="section-eyebrow">Data Flow</div>
+    <h2 class="section-title">기록이 흘러가는 길</h2>
+    <p class="section-desc">달리는 순간부터 계정을 지울 때까지, 기록 한 건이 기기와 서버 사이를 어떻게 오가는지입니다.</p>
+
+    <div class="arch-flow">
+      <div class="arch-flow-row">
+        <div class="arch-node">
+          <span class="arch-node-icon">🏃</span>
+          <div class="arch-node-name">Run</div>
+          <div class="arch-node-sub">GPS 추적 · 화면 꺼도 계속</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node primary">
+          <span class="arch-node-icon">📱</span>
+          <div class="arch-node-name">Local DB</div>
+          <div class="arch-node-sub">1차 저장소 · 오프라인 조회</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <span class="arch-node-icon">🔁</span>
+          <div class="arch-node-name">Sync</div>
+          <div class="arch-node-sub">연결되면 업로드 · 실패해도 재시도</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <span class="arch-node-icon">☁️</span>
+          <div class="arch-node-name">Supabase</div>
+          <div class="arch-node-sub">Postgres + RLS · Storage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-num">새 기기 · 재설치</div>
+        <div class="problem-card-title">서버 기록 내려받기</div>
+        <div class="problem-card-desc">기기를 바꾸거나 앱을 다시 설치해도 서버에 있는 기록을 내려받아 그대로 돌아옵니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">로그아웃</div>
+        <div class="problem-card-title">기기 기록 비우기</div>
+        <div class="problem-card-desc">한 폰에서 계정을 바꿔도 기록이 섞이지 않도록 기기 사본을 비웁니다. 아직 못 올린 기록이 있으면 업로드를 한 번 시도하고, 남은 건수를 경고합니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">회원탈퇴</div>
+        <div class="problem-card-title">30일 후 영구 삭제</div>
+        <div class="problem-card-desc">매일 새벽 예약 작업(pg_cron → Edge Function)이 탈퇴 30일이 지난 계정의 사진·계정·기록을 지웁니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PRODUCT
+       ════════════════════════════════════════ -->
+  <section id="product" class="section fade">
+    <div class="section-eyebrow">Product</div>
+    <h2 class="section-title">실제 화면</h2>
+    <p class="section-desc">2026-09-27 갤럭시 S24 · 노트8 실기기에서 캡처한 화면입니다. 시안이 아니라 설치하면 보이는 화면이며, 캡처 이후 바뀐 부분은 캡션에 함께 적었습니다.</p>
+
+    <div class="shot-section">
+      <div class="shot-label">01 — Login · Home · Journey</div>
+      <p class="shot-meta-text">구글 계정 하나로 로그인하고, 홈에서 여정 진행도를 확인합니다. 홈 배경은 현재 구간의 도시에 따라 바뀝니다.</p>
+      <div class="shot-phones">
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/01-login.jpg" alt="로그인 화면 — 구글로 계속하기" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>로그인</strong>
+            구글 로그인 하나. 계정 선택 창은 안드로이드 기본 시트라 앱이 비밀번호를 받지 않습니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/04-home-journey-incheon-jeonju.jpg" alt="홈 화면 — 인천에서 전주 구간 여정 카드, 통계, 주간 스트릭" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>달린 거리가 곧 여정</strong>
+            현재 구간(인천 → 전주)과 다음 도시까지 남은 거리, 누적 통계, 주간 스트릭.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/05-home-preview-tokyo.jpg" alt="도시 이미지 미리보기 — 도쿄 6/22" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>도시 미리보기 · 도쿄 6/22</strong>
+            22개 도시를 다 달려보지 않아도 도시별 화면을 검수할 수 있게 넣은 개발·검수용 테스트 UI입니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/07-home-preview-buenos-aires.jpg" alt="도시 이미지 미리보기 — 부에노스아이레스 22/22" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>도시 미리보기 · 부에노스아이레스 22/22</strong>
+            "미리보기 (테스트)" 라벨과 "실제로 돌아가기" 버튼으로 실제 진행 상태와 구분합니다.
+          </div>
+        </div>
+      </div>
+      <p class="shot-footnote">홈 배경의 도시 사진은 모두 Unsplash 임시 이미지입니다.</p>
+    </div>
+
+    <div class="shot-section">
+      <div class="shot-label">02 — Run · Finish</div>
+      <p class="shot-meta-text">출발 전 GPS · 날씨 · 미세먼지를 확인하고 달립니다. START → 3초 카운트다운 → 추적 → 일시정지/재개 → 종료까지 한 흐름입니다.</p>
+      <div class="shot-phones">
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/08-run-ready.jpg" alt="출발 전 화면 — GPS 연결 상태, 러닝 타입, 날씨, 미세먼지" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>출발 전 확인</strong>
+            GPS 연결 상태를 먼저 보여주고, 러닝 타입 · 날씨 · 미세먼지를 확인한 뒤 시작.
+            <span class="shot-note">캡처 당시 날씨·미세먼지는 샘플 값이었고, 이후 기상청 · 에어코리아 실제 값으로 연동했습니다.</span>
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/09-run-tracking-map.jpg" alt="달리는 중 — 다크 지도 위 실시간 경로와 시간·거리·페이스" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>실시간 경로 추적</strong>
+            Google Maps 다크 스타일 위에 경로를 실시간으로 그립니다. 화면을 끄거나 앱을 내려도 추적이 계속됩니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/10-run-finish-photo.jpg" alt="종료 요약 — 직접 찍은 사진 위에 기록과 경로" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>사진 위에 기록과 경로</strong>
+            달리며 찍은 사진 위에 거리 · 페이스 · 시간과 경로 선을 얹습니다. 사진이 없으면 경로 그림만 보여줍니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/11-run-finish-splits.jpg" alt="종료 요약 하단 — 상세 기록 6칸, 경로, 1km 구간별 페이스" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>1km 구간별 페이스</strong>
+            상세 기록과 경로, 1km 단위로 자동 분할한 구간 페이스.
+            <span class="shot-note">캡처 당시 비어 있던 칼로리는 지금 추정치로 표시합니다(체중 입력 전이라 80kg 가정).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-section">
+      <div class="shot-label">03 — Record Detail · Day / Night</div>
+      <p class="shot-meta-text">지난 기록은 종료 요약과 같은 구성에 러닝 타입 뱃지와 대표 사진 교체 버튼이 더해집니다. 낮과 밤 기록을 나란히 둔 이유는, 사진이 밝든 어둡든 흰 글씨와 네온그린 경로가 읽히는지가 이 화면의 가장 큰 위험이기 때문입니다. 기기 DB에서 읽으므로 오프라인에서도 열립니다.</p>
+      <div class="shot-phones">
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/16-records-detail-day-photo.jpg" alt="기록 상세 — 낮 러닝 0.72km, 사진 위 기록과 경로" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>낮 러닝 0.72km</strong>
+            밝은 사진 위에서도 기록과 경로가 읽힙니다. 우상단 카메라 버튼으로 대표 사진을 나중에 바꿀 수 있습니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/17-records-detail-day-splits.jpg" alt="기록 상세 — 낮 러닝 아래쪽, 상세 기록과 경로" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>같은 기록 아래쪽</strong>
+            상세 기록, 달린 구간, 구간별 페이스.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/18-records-detail-night-photo.jpg" alt="기록 상세 — 밤 러닝 2.41km, 어두운 사진 위 기록과 경로" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>밤 러닝 2.41km</strong>
+            어두운 사진에서도 흰 글씨와 네온그린 경로가 구분됩니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/19-records-detail-night-splits.jpg" alt="기록 상세 — 밤 러닝 아래쪽, 상세 기록과 구간별 페이스" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>같은 기록 아래쪽</strong>
+            20분 2.41km를 1km 단위 네 구간으로 나눈 페이스.
+          </div>
+        </div>
+      </div>
+      <p class="shot-footnote">캡처 당시 비어 있던 칼로리 칸은 지금 추정치로 표시합니다.</p>
+    </div>
+
+    <div class="shot-section">
+      <div class="shot-label">04 — Content · Profile</div>
+      <p class="shot-meta-text">테마 러닝 코스와 온라인 마라톤, 도시 배지 컬렉션입니다. 화면 구성은 갖춰졌고, 일부는 콘텐츠·데이터가 들어오기를 기다리는 상태라 캡션에 함께 밝혔습니다.</p>
+      <div class="shot-phones">
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/20-content-theme-list.jpg" alt="테마 러닝 코스 목록" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>테마 러닝 코스</strong>
+            코스 목록에서 상세로, 상세에서 "달리러 가기"로 바로 이어집니다.
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/22-content-theme-detail-bungeoppang.jpg" alt="테마 코스 상세 — 붕어빵런" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>코스 상세 · 붕어빵런</strong>
+            코스 소개와 "달리러 가기".
+            <span class="shot-note">가운데 칸은 코스 실측 좌표가 들어오면 경로가 그려지는 자리로, 지금은 비어 있습니다.</span>
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/23-content-marathon-list.jpg" alt="온라인 마라톤 목록 — 샘플 값" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>온라인 마라톤</strong>
+            대회 목록과 참여 화면.
+            <span class="shot-note">화면만 구현한 상태로, 참가자 수 · 순위 · D-day는 모두 샘플 값입니다. 랭킹은 MVP 이후로 잡혀 있습니다.</span>
+          </div>
+        </div>
+        <div>
+          <div class="shot-frame">
+            <img src="img/runearth/24-profile-top-badges.jpg" alt="프로필 — 누적 통계와 도시 배지 22칸" loading="lazy" onclick="openLb(this)">
+          </div>
+          <div class="shot-caption">
+            <strong>도시 배지 22종</strong>
+            도시마다 하나씩, 도착하면 열립니다. 캡처한 계정은 서울 출발 배지 하나만 얻은 상태(1 / 22)입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       KEY DECISIONS
+       ════════════════════════════════════════ -->
+  <section id="decisions" class="section fade">
+    <div class="section-eyebrow">Decisions</div>
+    <h2 class="section-title">의사결정과 트레이드오프</h2>
+    <p class="section-desc">"기록은 절대 잃지 않는다"를 실제 동작으로 옮기면서 마주친 분기점들입니다.</p>
+
+    <div class="decisions">
+      <div class="decision-card">
+        <div class="decision-num">D-01</div>
+        <div class="decision-q">기기 DB 먼저 <span class="vs">vs 서버 저장 먼저</span></div>
+        <div class="decision-a">
+          <p>통신이 끊긴 곳에서 뛴 기록을 지키기 위해 기기 DB를 1차 저장소로 두고 서버는 뒤따라 올리도록 했습니다. 동기화 정책에서는 두 가지를 정했습니다. <strong>업로드가 실패해도 재시도를 포기하지 않고</strong>, <strong>한 건이 실패해도 다음 건은 막지 않는다</strong>.</p>
+          <p>재시도를 포기하면 오래 오프라인이던 기록이 영영 올라가지 못하고, 깨진 한 건이 뒤의 모든 기록을 붙잡게 되기 때문입니다. 올릴 대상이 러닝 기록 하나뿐이라 별도의 동기화 큐는 만들지 않았습니다 — 같은 데이터를 두 곳에 두는 비용만 생기기 때문입니다.</p>
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">D-02</div>
+        <div class="decision-q">백그라운드 추적 먼저 <span class="vs">vs 강제 종료 대비 복원 먼저</span></div>
+        <div class="decision-a">
+          <p>야외 테스트는 성공했지만, 화면을 켜고 뛰었기 때문이었습니다. 폰을 주머니에 넣으면 거리가 쌓이지 않았습니다. 원래는 앱이 강제 종료됐을 때를 대비한 복원(스냅샷)을 먼저 만들 계획이었지만, 순서를 뒤집어 <strong>화면이 꺼져도 추적을 이어가는 포그라운드 서비스를 먼저</strong> 붙였습니다.</p>
+          <p>복원은 손실을 <em>줄이고</em>, 포그라운드 서비스는 손실을 <em>막습니다</em>. 앱이 죽어 있는 동안에는 GPS도 꺼져 있어서, 복원해도 경로에 구멍이 남습니다. 복원은 그 뒤에 안전망으로 추가했고, 실측 데이터로 두 가지 저장 방식을 비교한 끝에 더 단순한 쪽을 택했습니다. 유실을 막으려는 기능이 복잡해서 버그가 나면 본말전도이기 때문입니다.</p>
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">D-03</div>
+        <div class="decision-q">0km 기록은 저장하고 세는 것만 바꾸기 <span class="vs">vs 저장 막기</span></div>
+        <div class="decision-a">
+          <p>거리 0km 기록에는 성격이 다른 두 가지가 섞여 있었습니다. <strong>잘못 눌렀다 바로 끈 것</strong>과 <strong>뛰었는데 GPS를 못 잡은 것</strong>. 데이터만으로는 구분되지 않습니다. 다른 러닝 앱처럼 저장을 막으면 GPS 실패 기록까지 사라지고, "뛰었는데 앱이 안 세줬다"는 최악의 경험이 됩니다.</p>
+          <p>그래서 전부 저장하고, 거리가 사실상 0이면서 1분도 안 된 기록만 '미완료'로 보아 통계와 스트릭에서 뺐습니다. 시간 조건이 두 유형을 가릅니다. 이 과정에서 코드를 열어보니 <strong>스트릭에 거리 조건이 아예 없었습니다.</strong> "매일 뛰었다"가 "매일 START를 눌렀다"가 되어 앱의 핵심 동기 장치가 무력화되어 있던 것을 함께 고쳤습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PROCESS
+       ════════════════════════════════════════ -->
+  <section id="process" class="section fade">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">AI와 문서 중심으로 일하기</h2>
+    <p class="section-desc">Claude Code를 주 개발 도구로 썼습니다. 핵심은 AI가 추측으로 진행하지 못하게 하는 장치를 문서로 만든 것입니다.</p>
+
+    <div class="decisions">
+      <div class="decision-card">
+        <div class="decision-num">P-01</div>
+        <div class="decision-q">문서가 단일 출처, 미확정이면 AI가 멈추고 묻는다</div>
+        <div class="decision-a">
+          <p>기능마다 스펙 문서를 두고 <strong>코드보다 문서를 먼저</strong> 고쳤습니다. 로직은 문서에서, 화면은 Figma에서 가져옵니다. 문서에 미확정으로 표시된 항목, 문서끼리 충돌하는 내용, 새 패키지가 필요한 경우에는 <strong>AI가 멈추고 묻습니다.</strong> D-01의 동기화 정책도 이렇게 질문 → 결정 → 문서 반영 순서로 정했습니다.</p>
+          <p>작업은 계획 제시 → 승인 → 한 단위 구현 → 정적 분석 통과 → 커밋 → 문서 갱신 순서로 진행하고, 세션마다 개발 노트를 남겨 다음 세션이 이어받게 했습니다.</p>
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">P-02</div>
+        <div class="decision-q">실패를 규칙으로 바꾼다</div>
+        <div class="decision-a">
+          <p>코드만 고치고 문서를 그대로 두면, 다음 세션의 AI가 그 기능을 '미착수'로 읽고 이미 있는 것을 또 만들려 했습니다. 하루에 다섯 번 겪은 뒤 <strong>"끝냈으면 문서를 되돌려 고치고, 근거를 한 줄 남긴다"</strong>를 프로젝트 규칙 파일에 넣었습니다.</p>
+          <p>빌드할 때 설정 파일을 빠뜨리면 앱은 정상으로 보이지만 로그아웃·동기화가 전부 실패하던 문제도, 두 번 겪고 나서 <strong>설치 전에 빌드 결과물 안에 설정이 들어갔는지 확인하는 절차</strong>로 만들었습니다.</p>
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-num">P-03</div>
+        <div class="decision-q">"됐다"를 확인하는 방식</div>
+        <div class="decision-a">
+          <p><strong>테스트가 실기기에서는 드러나지 않았을 버그를 잡았습니다.</strong> 스플래시 화면이 DB 응답을 기다리다 응답이 오지 않으면 영원히 멈추는 문제로, 정적 분석은 통과했지만 위젯 테스트가 멈추면서 드러났습니다.</p>
+          <p><strong>비밀값은 값을 보지 않고 검증합니다.</strong> 탈퇴 삭제 예약 작업이 거부됐을 때 비밀값의 길이만 재서, 안내문의 자리표시 문자열이 그대로 들어가 있던 것을 찾았습니다. 단독 호출은 통과했지만 예약 작업이 실제로 쓰는 경로가 막혀 있었습니다. GPS 수집 간격 같은 설정도 야외 실측으로 확인했습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">sonjangwon.github.io</div>
+
+</div>
+
+<script>
+  /* Lightbox */
+  function openLb(img) {
+    var lb = document.createElement('div');
+    lb.id = 'lb-overlay';
+    lb.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.92);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:32px;';
+    var im = document.createElement('img');
+    im.src = img.src;
+    im.style.cssText = 'max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 12px 64px rgba(0,0,0,0.5);';
+    lb.appendChild(im);
+    lb.addEventListener('click', function() { document.body.removeChild(lb); });
+    document.addEventListener('keydown', function esc(e) {
+      if(e.key==='Escape') {
+        if (document.getElementById('lb-overlay')) document.body.removeChild(lb);
+        document.removeEventListener('keydown', esc);
+      }
+    });
+    document.body.appendChild(lb);
+  }
+
+  /* Fade-in observer */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
