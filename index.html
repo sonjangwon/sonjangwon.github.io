@@ -97,6 +97,25 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
   margin-bottom: 22px;
 }
 
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 48px;
+}
+.exp-wide { grid-column: span 2; }
+
+.exp-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.exp-desc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.7;
+}
+
 .tl-item {
   display: grid;
   grid-template-columns: 110px 1fr;
@@ -168,6 +187,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
   color: var(--sub);
 }
 
+.proj-note {
+  font-size: 0.88rem;
+  color: var(--sub);
+}
+
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -191,6 +215,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 .award-item:last-child,
 .activity-item:last-child { margin-bottom: 0; }
 
+.proj-head,
 .award-head,
 .activity-head {
   display: flex;
@@ -206,6 +231,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
   font-size: 1rem;
 }
 
+.proj-meta,
 .award-meta,
 .activity-meta {
   font-family: var(--mono);
@@ -252,10 +278,14 @@ footer {
   .wrap { padding: 56px 20px 84px; }
   .hero { gap: 18px; }
   .hero-photo { width: 88px; height: 88px; }
+  .exp-grid { grid-template-columns: 1fr; gap: 16px; }
+  .exp-wide { grid-column: auto; }
   .tl-item { grid-template-columns: 1fr; gap: 3px; }
   .tl-period { font-size: 0.67rem; }
+  .proj-head,
   .award-head,
   .activity-head { flex-direction: column; gap: 2px; }
+  .proj-meta,
   .award-meta,
   .activity-meta { white-space: normal; }
 }
@@ -268,7 +298,7 @@ footer {
 <img class="hero-photo" src="img/손장원_2023.jpg" alt="Jangwon Son">
 <div>
 <div class="hero-name">Jangwon Son</div>
-<div class="hero-tagline">Technical advisor with 7+ years partnering with large-scale enterprise environments across hybrid infrastructure, identity, and AI-driven operational systems. Experienced in enterprise messaging architecture, operational complexity, and AI/LLM workflow integration.</div>
+<div class="hero-tagline">Enterprise support engineer with about 8 years working with large enterprises across hybrid infrastructure, identity, and security. Experienced in email and messaging architecture, cross-product troubleshooting, and building AI/LLM tools for operational workflows.</div>
 <div class="hero-links">
 <a href="https://linkedin.com/in/jangwon-son/" rel="noopener noreferrer" target="_blank">linkedin.com/in/jangwon-son</a>
 <a href="mailto:jangwonson31@gmail.com">jangwonson31@gmail.com</a>
@@ -277,26 +307,26 @@ footer {
 </div>
 
 <div class="label">Expertise</div>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px 48px;">
+<div class="exp-grid">
   <div>
-    <div style="font-weight:700; font-size:0.9rem; margin-bottom:5px;">Cloud &amp; Hybrid Architecture</div>
-    <div style="font-size:0.85rem; color:#555; line-height:1.7;">On-premises ↔ cloud hybrid environments · OAuth · Mail flow<br>Directory synchronization · Authentication architecture · Migration strategy</div>
+    <div class="exp-title">Email &amp; Messaging (Exchange)</div>
+    <div class="exp-desc">Exchange Server 2010–2019 · Subscription Edition<br>Exchange Online · Outlook · DAG · Mail flow<br>Coexistence · Migration</div>
   </div>
   <div>
-    <div style="font-weight:700; font-size:0.9rem; margin-bottom:5px;">Exchange Server (On-Premises &amp; Hybrid)</div>
-    <div style="font-size:0.85rem; color:#555; line-height:1.7;">2010 · 2013 · 2016 · 2019 · Subscription Edition (SE)<br>Database Availability Group (DAG) · Mail Flow · Migration · Coexistence</div>
+    <div class="exp-title">Hybrid Identity &amp; Cloud</div>
+    <div class="exp-desc">Entra ID (Conditional Access · MFA) · Entra Connect<br>ADFS · OAuth · Directory synchronization<br>On-premises ↔ cloud hybrid architecture · Migration strategy</div>
   </div>
   <div>
-    <div style="font-weight:700; font-size:0.9rem; margin-bottom:5px;">Security &amp; Identity</div>
-    <div style="font-size:0.85rem; color:#555; line-height:1.7;">Microsoft Defender for Office 365 · Microsoft Purview<br>Entra ID (Conditional Access · MFA · Hybrid Identity)<br>Data Loss Prevention · Azure AD Connect · ADFS</div>
+    <div class="exp-title">Security &amp; Compliance</div>
+    <div class="exp-desc">Microsoft Defender for Office 365 · Microsoft Purview (DLP)<br>Data protection across Microsoft 365 workloads</div>
   </div>
   <div>
-    <div style="font-weight:700; font-size:0.9rem; margin-bottom:5px;">Microsoft 365</div>
-    <div style="font-size:0.85rem; color:#555; line-height:1.7;">Exchange Online · Outlook · M365 Copilot · Microsoft 365 Admin Center</div>
+    <div class="exp-title">AI &amp; LLM</div>
+    <div class="exp-desc">Azure OpenAI · RAG (Azure AI Search) · Speech AI<br>Copilot Studio · M365 Copilot</div>
   </div>
-  <div style="grid-column:span 2;">
-    <div style="font-weight:700; font-size:0.9rem; margin-bottom:5px;">Tools &amp; Automation</div>
-    <div style="font-size:0.85rem; color:#555; line-height:1.7;">PowerShell · Python · EWS · Docker · Azure (Functions, OpenAI, AI Search, Container Apps, Blob Storage) · Power Automate · Copilot Studio · Flutter · Supabase · Claude Code · GitHub Copilot</div>
+  <div class="exp-wide">
+    <div class="exp-title">Development &amp; Automation</div>
+    <div class="exp-desc">PowerShell · Python · Azure (Functions, Container Apps, Blob Storage) · Power Automate · Docker · Supabase · Flutter</div>
   </div>
 </div>
 <hr/>
@@ -304,26 +334,42 @@ footer {
 <div class="label">Projects</div>
 <div class="proj-item">
 <div>
+<div class="proj-head">
 <div class="proj-name"><a href="exchange-migration-advisor.html">Exchange Migration Advisor →</a></div>
+<div class="proj-meta">Apr 2026 – May 2026</div>
+</div>
 <div class="proj-sub">Automated diagnosis and migration strategy advisor for on-premises Exchange environments</div>
+<div class="proj-note">29 diagnostic rules across 6 areas · Azure OpenAI + RAG guidance · deployed on Azure Container Apps</div>
 </div>
 </div>
 <div class="proj-item">
 <div>
+<div class="proj-head">
 <div class="proj-name"><a href="ecall-portfolio.html">E-Call AI.ssistant →</a></div>
+<div class="proj-meta">Aug 2025 – Nov 2025</div>
+</div>
 <div class="proj-sub">Real-time AI analysis for 112/119 emergency calls</div>
+<div class="proj-note">Best Project Award — Graduate School of Engineering, Yonsei University</div>
 </div>
 </div>
 <div class="proj-item">
 <div>
+<div class="proj-head">
 <div class="proj-name"><a href="m365-roadmap-agent.html">M365 Roadmap Copilot Agent →</a></div>
+<div class="proj-meta">Jan 2026 – Feb 2026</div>
+</div>
 <div class="proj-sub">Automated Microsoft 365 Roadmap analysis agent</div>
+<div class="proj-note">Adopted by my team for daily roadmap tracking</div>
 </div>
 </div>
 <div class="proj-item">
 <div>
+<div class="proj-head">
 <div class="proj-name"><a href="run-earth.html">Run Earth →</a></div>
-<div class="proj-sub">Local-first running app that turns accumulated distance into a journey around the globe (in development)</div>
+<div class="proj-meta">Aug 2026 – Present</div>
+</div>
+<div class="proj-sub">Local-first running app that turns accumulated distance into a journey around the globe</div>
+<div class="proj-note">MVP complete · solo build with Flutter + Supabase</div>
 </div>
 </div>
 <hr/>
@@ -335,13 +381,16 @@ footer {
 <div>
 <div class="tl-title">Support Escalation Engineer</div>
 <div class="tl-org">Microsoft Korea · Modern Workplace</div>
-<p style="font-size:0.88rem; color:var(--text); font-style:italic; border-left:3px solid var(--accent); padding-left:10px; margin-bottom:10px; line-height:1.7;">Technical advisor with 7+ years working with Korea's largest enterprises across hybrid infrastructure, identity, messaging, and AI-integrated operational systems. Experienced in enterprise operational complexity, cross-product architecture analysis, and AI/LLM-based workflow design.</p>
+<p style="font-size:0.88rem; color:var(--text); font-style:italic; border-left:3px solid var(--accent); padding-left:10px; margin-bottom:10px; line-height:1.7;">Escalation point for the most complex enterprise cases across Exchange Hybrid, identity, and security workloads — advising decision-makers at Korea's largest enterprises and building AI/LLM tools to improve support operations.</p>
 <ul class="tl-desc">
-<li style="margin-bottom:10px;">▸ FY26 CSS Award (Individual, Global) — Recognized for analyzing recurring enterprise Exchange availability failures and contributing to long-term operational stability improvements through cross-product architectural analysis.</li>
-<li style="margin-bottom:10px;">▸ Served as the trusted technical advisor to Strategic and Premier enterprise customers' decision-makers across Exchange Hybrid, Entra ID, and Security workloads — providing architectural trade-off analysis, migration sequencing guidance, and risk assessment that shaped their final technical direction. CSAT 4.98–5.00 / 5.00.</li>
+<li style="margin-bottom:10px;">▸ FY26 CSS Award (Individual, Global) — Recognized for cross-product root cause analysis of a recurring enterprise Exchange availability failure, contributing to long-term operational stability.</li>
+<li style="margin-bottom:10px;">▸ Served as the trusted technical advisor to Strategic and Premier enterprise customers' decision-makers across Exchange Hybrid, Entra ID, and Security workloads — providing architectural trade-off analysis, migration sequencing guidance, and risk assessment that shaped their final technical direction.</li>
+<li style="margin-bottom:10px;">▸ Conducted root cause analysis and resolution for the most complex escalated cases across Exchange, identity, and security workloads — collaborating with Microsoft product engineering teams on issues spanning product boundaries.</li>
+<li style="margin-bottom:10px;">▸ Led Severity A and cross-region incidents, including English-language support for global customers — making real-time technical decisions during active outages and aligning engineering teams and customer stakeholders around a single path forward.</li>
 <li style="margin-bottom:10px;">▸ Advocated for enterprise customers by submitting product feature requests to Microsoft engineering — translating unmet operational needs into structured requirements that influenced product roadmap decisions.</li>
-<li style="margin-bottom:10px;">▸ Drove technical decision-making during incidents with active business impact — rapidly scoping failures across product boundaries, evaluating recovery options under pressure, and aligning engineering teams and customer stakeholders around a single path forward.</li>
-<li style="margin-bottom:0;">▸ Designed and implemented an Azure OpenAI-based custom RAG pipeline during a global hackathon, building an AI-driven operational workflow that collected, analyzed, and delivered external security intelligence through Microsoft Teams.</li>
+<li style="margin-bottom:10px;">▸ Sustained CSAT 4.98–5.00 / 5.00 across strategic enterprise customers.</li>
+<li style="margin-bottom:10px;">▸ Built a natural-language log analysis tool for support engineers as project owner (Microsoft Global Hackathon 2026) — logs are aggregated and time-aligned locally in DuckDB, and GitHub Copilot reasons over the summaries via MCP to identify root causes across multiple log sources.</li>
+<li style="margin-bottom:0;">▸ Built an AI-powered security intelligence service for Microsoft Teams (Microsoft Global Hackathon 2024) — designed an end-to-end Azure OpenAI + RAG pipeline, delivering curated insights as a custom Copilot/Teams app.</li>
 </ul>
 </div>
 </div>
@@ -355,7 +404,8 @@ footer {
 <ul class="tl-desc">
 <li style="margin-bottom:10px;">▸ Independently conducted technical review and operational impact analysis across OneDrive, SharePoint, and Exchange Online for a major Korean retail conglomerate's group-wide DLP adoption, supporting the customer's technical decision-making and resulting in full group-wide rollout.</li>
 <li style="margin-bottom:10px;">▸ Analyzed customer operational structures in Critical Case environments involving Exchange, Identity, and Security workloads, collaborating with Microsoft product engineering teams to provide realistic workarounds and operational guidance.</li>
-<li style="margin-bottom:0;">▸ Maintained CSAT approximately 4.9/5.00 across all enterprise customer segments, receiving multiple Customer Hero Awards and CSS Korea Site Awards.</li>
+<li style="margin-bottom:10px;">▸ Maintained CSAT approximately 4.9/5.00 across all enterprise customer segments, receiving multiple Customer Hero Awards and CSS Korea Site Awards.</li>
+<li style="margin-bottom:0;">▸ Owned product knowledge transfer across internal and partner teams; delivered technical training sessions covering the full Modern Workplace product range.</li>
 </ul>
 </div>
 </div>
@@ -368,7 +418,7 @@ footer {
 <ul class="tl-desc">
 <li style="margin-bottom:10px;">▸ Operated Exchange-based mail infrastructure supporting approximately 50,000 users across 40+ servers, responsible for performance optimization, availability management, and incident response.</li>
 <li style="margin-bottom:10px;">▸ Participated in a new mail system deployment project at the holding company, conducting architecture review, server build, and post-cutover stabilization.</li>
-<li style="margin-bottom:0;">▸ Implemented Exchange configurations and automation logic based on organizational operational requirements, translating organizational requirements into Exchange configuration and automation.</li>
+<li style="margin-bottom:0;">▸ Implemented Exchange configurations and automation logic based on organizational operational requirements, improving operational efficiency.</li>
 </ul>
 </div>
 </div>
@@ -407,9 +457,17 @@ footer {
 <div class="award-item">
 <div class="award-head">
 <div class="award-title">Microsoft FY26 CSS Award — Individual Award</div>
-<div class="award-meta">2026</div>
+<div class="award-meta">Apr 2026</div>
 </div>
 <div class="award-desc">Recognized at the global CSS level for cross-product root cause analysis</div>
+</div>
+<div class="award-item">
+<div class="award-head">
+<div class="award-title">Best Project Award — Graduate School of Engineering, Yonsei University</div>
+<div class="award-meta">Seoul, Korea · Feb 2026</div>
+</div>
+<div class="award-role">Team Lead</div>
+<div class="award-desc">Capstone Project: <a href="ecall-portfolio.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">E-Call AI.ssistant</a></div>
 </div>
 <div class="award-item">
 <div class="award-head">
