@@ -315,6 +315,7 @@ body {
   font-weight: 550;
 }
 .problem-narrative p + p { margin-top: 16px; }
+.problem-narrative + .problem-grid { margin-top: 16px; }
 
 .callout {
   background: var(--bg-subtle);
@@ -387,6 +388,8 @@ body {
 }
 .stack-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .stack-grid + .problem-grid { margin-top: 16px; }
+.shot-label + .stack-grid { margin-top: 0; }
+.stack-grid + .shot-label { margin-top: 40px; }
 
 /* ─────────────────────────────────────────
    ARCHITECTURE FLOW
@@ -506,8 +509,7 @@ body {
   cursor: zoom-in;
   transition: opacity 0.2s;
 }
-.shot-frame img:hover { opacity: 0.94; }
-.shot-caption {
+.shot-frame img:hover { opacity: 0.94; }.shot-caption {
   margin-top: 10px;
   font-size: 12.5px;
   line-height: 1.5;
@@ -584,6 +586,20 @@ body {
 }
 .decision-a strong { color: var(--fg-2); font-weight: 550; }
 .decision-a p + p { margin-top: 8px; }
+.v-row { display: grid; grid-template-columns: 64px 1fr; gap: 12px; }
+.v-row + .v-row { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border-soft); }
+.v-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+@media (max-width: 560px) {
+  .v-row { grid-template-columns: 1fr; gap: 4px; }
+}
 
 .data-table {
   width: 100%;
@@ -686,41 +702,32 @@ body {
         <div class="hero-stat-meta">별도 서버 없음</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-label">Scope</div>
-        <div class="hero-stat-value">20 features</div>
-        <div class="hero-stat-meta">MVP 완료</div>
+        <div class="hero-stat-label">Offline</div>
+        <div class="hero-stat-value">기록 손실 0</div>
+        <div class="hero-stat-meta">local-first · 자동 동기화 확인</div>
       </div>
     </div>
   </section>
 
   <!-- ════════════════════════════════════════
-       PROBLEM
+       PROBLEM · CONCEPT
        ════════════════════════════════════════ -->
   <section id="problem" class="section fade">
-    <div class="section-eyebrow">Problem</div>
+    <div class="section-eyebrow">Problem · Concept</div>
     <h2 class="section-title">콘셉트가 먼저, 기능은 그 위에</h2>
     <p class="section-desc">타깃은 러닝을 습관으로 만들고 싶은 20~40대입니다.</p>
 
     <div class="problem-narrative">
       <p>기존 러닝 앱은 훈련과 기록에 집중합니다. 누적 레벨 같은 장치가 있어도 숫자나 색깔로 보여주는 <strong>기록 기능의 부가 요소</strong>에 가깝습니다.</p>
-      <p>Run Earth는 반대로 <strong>"내가 달린 거리만큼 지구를 여행한다"</strong>는 하나의 콘셉트를 먼저 정하고 기능을 그 위에 올렸습니다. 홈의 다음 도시까지 남은 거리, 도시마다 바뀌는 배경, 도시 배지 22종, 종료 때 남은 여정 거리를 읽어주는 음성 안내까지 모두 이 여정 하나를 중심으로 설계했습니다.</p>
+      <p>Run Earth는 반대로 <strong>"내가 달린 거리만큼 지구를 여행한다"</strong>는 하나의 콘셉트를 먼저 정하고 기능을 그 위에 올렸습니다. 한 번 달릴 때의 기록이 아니라 지금까지 쌓인 거리가 지구 위 어디쯤에 와 있는지를 보여주고, 서울에서 출발해 국내 도시와 해외 G20 수도 18곳을 거쳐 부에노스아이레스에 도착하면 한 바퀴가 끝납니다.</p>
     </div>
-  </section>
-
-  <!-- ════════════════════════════════════════
-       CONCEPT
-       ════════════════════════════════════════ -->
-  <section id="concept" class="section fade">
-    <div class="section-eyebrow">Concept</div>
-    <h2 class="section-title">달린 거리가 곧 여정</h2>
-    <p class="section-desc">한 번 달릴 때의 기록이 아니라, 지금까지 쌓인 거리가 지구 위 어디쯤에 와 있는지를 보여줍니다. 서울에서 출발해 국내 도시를 지나 해외 G20 수도 18곳을 거쳐 부에노스아이레스에 도착하면 한 바퀴가 끝납니다.</p>
 
     <div class="problem-grid">
       <div class="problem-card">
         <div class="problem-card-num">01 — Journey</div>
         <div class="problem-card-figure">22<span class="unit">cities</span></div>
         <div class="problem-card-title">도시 단위로 쪼갠 긴 목표</div>
-        <div class="problem-card-desc">서울 0 → 인천 27 → 전주 194 → 부산 325km, 이어서 베이징 952km부터 부에노스아이레스 19,432km까지. 홈 화면에 현재 구간과 다음 도시까지 남은 거리가 보입니다.</div>
+        <div class="problem-card-desc">서울 0 → 인천 27 → 전주 194 → 부산 325km, 이어서 베이징 952km부터 부에노스아이레스 19,432km까지. 홈 화면에 현재 구간과 다음 도시까지 남은 거리가 보입니다. 거리는 서울시청에서 각 도시까지의 직선거리이고, 가까운 도시부터 차례로 열립니다.</div>
       </div>
       <div class="problem-card">
         <div class="problem-card-num">02 — Habit</div>
@@ -733,131 +740,6 @@ body {
         <div class="problem-card-figure">1<span class="unit">km 마다</span></div>
         <div class="problem-card-title">여정을 읽어주는 음성 안내</div>
         <div class="problem-card-desc">1km마다 구간·평균 페이스를 읽고, 종료 때는 화면에 이미 있는 거리·시간 대신 <strong>"전주까지 142.6km 남았습니다"</strong>처럼 여정 잔여 거리를 읽습니다. 기기 내장 음성 합성이라 오프라인에서도 동작합니다.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════
-       FLOW
-       ════════════════════════════════════════ -->
-  <section id="flow" class="section fade">
-    <div class="section-eyebrow">Data Flow</div>
-    <h2 class="section-title">기록이 흘러가는 길</h2>
-    <p class="section-desc">달리는 순간부터 계정을 지울 때까지, 기록 한 건이 기기와 서버 사이를 어떻게 오가는지입니다.</p>
-
-    <div class="arch-flow">
-      <div class="arch-flow-row">
-        <div class="arch-node">
-          <span class="arch-node-icon">🏃</span>
-          <div class="arch-node-name">Run</div>
-          <div class="arch-node-sub">GPS 추적 · 화면 꺼도 계속</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node primary">
-          <span class="arch-node-icon">📱</span>
-          <div class="arch-node-name">Local DB</div>
-          <div class="arch-node-sub">1차 저장소 · 오프라인 조회</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <span class="arch-node-icon">🔁</span>
-          <div class="arch-node-name">Sync</div>
-          <div class="arch-node-sub">연결되면 업로드 · 실패해도 재시도</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <span class="arch-node-icon">☁️</span>
-          <div class="arch-node-name">Supabase</div>
-          <div class="arch-node-sub">Postgres + RLS · Storage</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-card-num">새 기기 · 재설치</div>
-        <div class="problem-card-title">서버 기록 내려받기</div>
-        <div class="problem-card-desc">기기를 바꾸거나 앱을 다시 설치해도 서버에 있는 기록을 내려받아 그대로 돌아옵니다.</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-card-num">로그아웃</div>
-        <div class="problem-card-title">기기 기록 비우기</div>
-        <div class="problem-card-desc">한 폰에서 계정을 바꿔도 기록이 섞이지 않도록 기기 사본을 비웁니다. 아직 못 올린 기록이 있으면 업로드를 한 번 시도하고, 남은 건수를 경고합니다.</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-card-num">회원탈퇴</div>
-        <div class="problem-card-title">30일 후 영구 삭제</div>
-        <div class="problem-card-desc">매일 새벽 예약 작업(pg_cron → Edge Function)이 탈퇴 30일이 지난 계정의 사진·계정·기록을 지웁니다.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════
-       SCOPE
-       ════════════════════════════════════════ -->
-  <section id="scope" class="section fade">
-    <div class="section-eyebrow">Scope</div>
-    <h2 class="section-title">MVP 구현 범위</h2>
-    <p class="section-desc">MVP에서 완료한 기능과, 그 이후 진행할 단계입니다.</p>
-
-    <div class="stack-grid cols-2">
-      <div class="stack-card">
-        <div class="stack-card-label">Run</div>
-        <div class="stack-items">
-          <span class="stack-pill">GPS 추적</span>
-          <span class="stack-pill">화면 꺼짐 추적 (포그라운드 서비스)</span>
-          <span class="stack-pill">강제 종료 복원 (10초 스냅샷)</span>
-          <span class="stack-pill">GPS 노이즈 필터</span>
-          <span class="stack-pill">1km 구간 페이스 (경계 보간)</span>
-          <span class="stack-pill">음성 안내</span>
-          <span class="stack-pill">날씨 · 미세먼지</span>
-          <span class="stack-pill">절전 모드 경고</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-card-label">Journey · Habit</div>
-        <div class="stack-items">
-          <span class="stack-pill">22개 도시 여정</span>
-          <span class="stack-pill">주간 스트릭</span>
-          <span class="stack-pill">도시 배지 22종</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-card-label">Record · Data</div>
-        <div class="stack-items">
-          <span class="stack-pill">local-first 동기화 (무제한 재시도)</span>
-          <span class="stack-pill">새 기기 기록 복구</span>
-          <span class="stack-pill">사진 모드 · 대표 이미지</span>
-          <span class="stack-pill">0km 미완료 처리</span>
-          <span class="stack-pill">칼로리 추정</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-card-label">Account</div>
-        <div class="stack-items">
-          <span class="stack-pill">구글 로그인</span>
-          <span class="stack-pill">프로필</span>
-          <span class="stack-pill">로그아웃 시 기기 사본 삭제</span>
-          <span class="stack-pill">탈퇴 30일 후 영구 삭제</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-card-num">STEP 1</div>
-        <div class="problem-card-title">베타 출시 준비</div>
-        <div class="problem-card-desc">릴리스 서명 키 교체, 에어코리아 운영계정 전환, 개인정보처리방침 확정.</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-card-num">STEP 2</div>
-        <div class="problem-card-title">비공개 베타</div>
-        <div class="problem-card-desc">Play 내부 테스트로 실사용자를 받아, 다양한 기기의 GPS 데이터와 사용 피드백을 모읍니다.</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-card-num">STEP 3</div>
-        <div class="problem-card-title">온라인 마라톤</div>
-        <div class="problem-card-desc">샘플 데이터를 실제 대회 데이터로 바꾸고, 5분 주기 랭킹을 Edge Functions · pg_cron으로 붙입니다.</div>
       </div>
     </div>
   </section>
@@ -935,20 +817,21 @@ body {
         </div>
         <div>
           <div class="shot-frame">
-            <img src="img/runearth/10-run-finish-photo.jpg" alt="종료 요약 — 직접 찍은 사진 위에 기록과 경로" loading="lazy" onclick="openLb(this)">
+            <img src="img/runearth/09b-run-paused.jpg" alt="일시정지 — 일시정지됨 배지, 멈춘 시간·거리, 재개와 종료 버튼" loading="lazy" onclick="openLb(this)">
           </div>
           <div class="shot-caption">
-            <strong>사진 위에 기록과 경로</strong>
-            달리며 찍은 사진 위에 거리 · 페이스 · 시간과 경로 선을 얹습니다. 사진이 없으면 경로 그림만 보여줍니다.
+            <strong>일시정지 · 재개</strong>
+            멈추면 상단에 "일시정지됨"이 뜨고 시간 · 거리가 멈춥니다. 재개하면 같은 경로에 이어서 기록합니다.
           </div>
         </div>
         <div>
           <div class="shot-frame">
-            <img src="img/runearth/11-run-finish-splits.jpg" alt="종료 요약 하단 — 상세 기록 6칸, 경로, 1km 구간별 페이스" loading="lazy" onclick="openLb(this)">
+            <img src="img/runearth/10-run-finish-map.jpg" alt="기록 — 다크 지도 위 실제 경로와 거리·페이스·시간·칼로리" loading="lazy" onclick="openLb(this)">
           </div>
           <div class="shot-caption">
-            <strong>1km 구간별 페이스</strong>
-            상세 기록과 경로, 1km 단위로 자동 분할한 구간 페이스.          </div>
+            <strong>지도 위에 기록과 경로</strong>
+            달린 직후에는 다크 지도를 배경으로 실제 경로와 거리 · 페이스 · 시간 · 칼로리를 보여줍니다. 카메라 버튼으로 사진을 새로 찍거나 갤러리에서 고르면 경로와 함께 배경이 바뀝니다.
+          </div>
         </div>
       </div>
     </div>
@@ -977,10 +860,10 @@ body {
         </div>
         <div>
           <div class="shot-frame">
-            <img src="img/runearth/18-records-detail-night-photo.jpg" alt="기록 상세 — 밤 러닝 2.41km, 어두운 사진 위 기록과 경로" loading="lazy" onclick="openLb(this)">
+            <img src="img/runearth/18-records-detail-night-photo.jpg" alt="기록 상세 — 밤 러닝 3.00km, 어두운 사진 위 기록과 경로" loading="lazy" onclick="openLb(this)">
           </div>
           <div class="shot-caption">
-            <strong>밤 러닝 2.41km</strong>
+            <strong>밤 러닝 3.00km</strong>
             어두운 사진에서도 흰 글씨와 네온그린 경로가 구분됩니다.
           </div>
         </div>
@@ -990,14 +873,14 @@ body {
           </div>
           <div class="shot-caption">
             <strong>같은 기록 아래쪽</strong>
-            20분 2.41km를 1km 단위 네 구간으로 나눈 페이스.
+            20분 3.00km를 1km 단위로 자동 분할한 구간별 페이스. 구간 경계는 앞뒤 GPS 좌표 사이를 보간해 정확히 1km 지점에서 자릅니다.
           </div>
         </div>
       </div>    </div>
 
     <div class="shot-section">
       <div class="shot-label">04 — Content · Profile</div>
-      <p class="shot-meta-text">테마 러닝과 온라인 마라톤은 여정 콘셉트를 넓히는 콘텐츠로, 기획과 화면 설계까지 완료했습니다. 온라인 마라톤은 GPS 인정 기준과 재도전 시 최고 기록 반영 규칙을 정했고, 테마 러닝은 코스를 지도에 겹쳐 보여주되 경쟁 없이 코스를 벗어나도 막지 않는 방식입니다. 랭킹과 코스 실측 좌표는 MVP 이후에 붙입니다.</p>
+      <p class="shot-meta-text">테마 러닝과 온라인 마라톤은 여정 콘셉트를 넓히는 콘텐츠입니다. 테마 러닝은 실측 좌표로 만든 코스를 달리기 화면 지도에 겹쳐 보여주되, 경쟁 요소 없이 코스를 벗어나도 막지 않는 방식으로 구현했습니다. 온라인 마라톤은 GPS 인정 기준과 재도전 시 최고 기록 반영 규칙을 정하고 화면까지 설계했습니다.</p>
       <div class="shot-phones">
         <div>
           <div class="shot-frame">
@@ -1014,8 +897,7 @@ body {
           </div>
           <div class="shot-caption">
             <strong>코스 상세 · 붕어빵런</strong>
-            코스 소개와 "달리러 가기".
-            <span class="shot-note">가운데 칸은 코스 실측 좌표가 들어오면 경로가 그려지는 자리로, 지금은 비어 있습니다.</span>
+            실측 좌표로 그린 2.9km 코스. "달리러 가기"를 누르면 같은 코스가 달리기 화면 지도 위에 겹쳐 표시됩니다.
           </div>
         </div>
         <div>
@@ -1025,7 +907,7 @@ body {
           <div class="shot-caption">
             <strong>온라인 마라톤</strong>
             대회 목록과 참여 화면.
-            <span class="shot-note">화면만 구현한 상태로, 참가자 수 · 순위 · D-day는 모두 샘플 값입니다. 랭킹은 MVP 이후로 잡혀 있습니다.</span>
+            <span class="shot-note">화면만 구현한 상태로, 참가자 수 · 순위 · D-day는 모두 샘플 값입니다.</span>
           </div>
         </div>
         <div>
@@ -1042,23 +924,58 @@ body {
   </section>
 
   <!-- ════════════════════════════════════════
-       CORE DESIGN
+       SCOPE
        ════════════════════════════════════════ -->
-  <section id="design" class="section fade">
-    <div class="section-eyebrow">Core Design</div>
-    <h2 class="section-title">local-first — 기기가 먼저, 서버는 뒤따라</h2>
-    <p class="section-desc">러닝은 산속이나 지하처럼 통신이 끊기는 곳에서도 합니다. 서버 저장이 먼저면 그때 뛴 기록은 사라집니다.</p>
+  <section id="scope" class="section fade">
+    <div class="section-eyebrow">Scope</div>
+    <h2 class="section-title">MVP 구현 범위</h2>
+    <p class="section-desc">MVP에서 완료한 기능과 사용한 기술 스택입니다.</p>
 
-    <div class="problem-narrative">
-      <p>Run Earth는 <strong>기기 안의 로컬 DB를 1차 저장소</strong>로 둡니다. 달리기가 끝나면 기록은 먼저 기기에 저장되고, 서버(Supabase)에는 연결될 때 뒤따라 올라갑니다. 그래서 비행기 모드로 뛰어도 기록이 남고, 지난 기록도 서버 없이 열립니다.</p>
-      <p>서버는 기록을 <strong>잃지 않게 하는 두 번째 사본</strong>이자 기기를 바꿨을 때 기록을 되돌려 주는 곳입니다. 로그인·DB·권한 규칙·사진 저장·예약 작업을 모두 Supabase로 처리해 <strong>별도 서버 없이</strong> 운영합니다.</p>
+    <div class="stack-grid cols-2">
+      <div class="stack-card">
+        <div class="stack-card-label">Run</div>
+        <div class="stack-items">
+          <span class="stack-pill">GPS 추적</span>
+          <span class="stack-pill">화면 꺼짐 추적 (포그라운드 서비스)</span>
+          <span class="stack-pill">강제 종료 복원 (10초 스냅샷)</span>
+          <span class="stack-pill">GPS 노이즈 필터</span>
+          <span class="stack-pill">1km 구간 페이스 (경계 보간)</span>
+          <span class="stack-pill">음성 안내</span>
+          <span class="stack-pill">날씨 · 미세먼지</span>
+          <span class="stack-pill">절전 모드 경고</span>
+          <span class="stack-pill">테마 코스 지도 오버레이</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-label">Journey · Habit</div>
+        <div class="stack-items">
+          <span class="stack-pill">22개 도시 여정</span>
+          <span class="stack-pill">주간 스트릭</span>
+          <span class="stack-pill">도시 배지 22종</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-label">Record · Data</div>
+        <div class="stack-items">
+          <span class="stack-pill">local-first 동기화 (무제한 재시도)</span>
+          <span class="stack-pill">새 기기 기록 복구</span>
+          <span class="stack-pill">사진 모드 · 대표 이미지</span>
+          <span class="stack-pill">0km 미완료 처리</span>
+          <span class="stack-pill">칼로리 추정</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-label">Account</div>
+        <div class="stack-items">
+          <span class="stack-pill">구글 로그인</span>
+          <span class="stack-pill">프로필</span>
+          <span class="stack-pill">로그아웃 시 기기 사본 삭제</span>
+          <span class="stack-pill">탈퇴 30일 후 영구 삭제</span>
+        </div>
+      </div>
     </div>
 
-    <div class="callout">
-      <div class="callout-label">Principle</div>
-      <div class="callout-text"><strong>"기록은 절대 잃지 않는다."</strong> 동기화 정책, 백그라운드 추적, 0km 기록 처리까지 — 아래 의사결정들은 모두 이 한 문장에서 출발했습니다.</div>
-    </div>
-
+    <div class="shot-label">Stack</div>
     <div class="stack-grid">
       <div class="stack-card">
         <div class="stack-card-label">App</div>
@@ -1087,6 +1004,61 @@ body {
           <span class="stack-pill">기상청 단기예보</span>
           <span class="stack-pill">에어코리아 실시간 측정</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FLOW
+       ════════════════════════════════════════ -->
+  <section id="flow" class="section fade">
+    <div class="section-eyebrow">Data Flow</div>
+    <h2 class="section-title">기록이 흘러가는 길</h2>
+    <p class="section-desc">러닝은 산속이나 지하처럼 통신이 끊기는 곳에서도 합니다. 그래서 기록은 기기에 먼저 저장하고(local-first), 서버는 연결될 때 뒤따라 올라가는 두 번째 사본으로 둡니다. 달리는 순간부터 계정을 지울 때까지, 기록 한 건이 기기와 서버 사이를 어떻게 오가는지입니다.</p>
+
+    <div class="arch-flow">
+      <div class="arch-flow-row">
+        <div class="arch-node">
+          <span class="arch-node-icon">🏃</span>
+          <div class="arch-node-name">Run</div>
+          <div class="arch-node-sub">GPS 추적 · 화면 꺼도 계속</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node primary">
+          <span class="arch-node-icon">📱</span>
+          <div class="arch-node-name">Local DB</div>
+          <div class="arch-node-sub">1차 저장소 · 오프라인 조회</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <span class="arch-node-icon">🔁</span>
+          <div class="arch-node-name">Sync</div>
+          <div class="arch-node-sub">연결되면 업로드 · 실패해도 재시도</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <span class="arch-node-icon">☁️</span>
+          <div class="arch-node-name">Supabase</div>
+          <div class="arch-node-sub">Postgres + RLS · Storage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-num">새 기기 · 재설치</div>
+        <div class="problem-card-title">서버 기록 내려받기</div>
+        <div class="problem-card-desc">기기를 바꾸거나 앱을 다시 설치해도 서버에 있는 기록을 내려받아 그대로 돌아옵니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">로그아웃</div>
+        <div class="problem-card-title">기기 기록 비우기</div>
+        <div class="problem-card-desc">한 폰에서 계정을 바꿔도 기록이 섞이지 않도록 기기 사본을 비웁니다. 아직 못 올린 기록이 있으면 업로드를 한 번 시도하고, 남은 건수를 경고합니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">회원탈퇴</div>
+        <div class="problem-card-title">30일 후 영구 삭제</div>
+        <div class="problem-card-desc">매일 새벽 예약 작업(pg_cron → Edge Function)이 탈퇴 30일이 지난 계정의 사진·계정·기록을 지웁니다.</div>
       </div>
     </div>
   </section>
@@ -1135,15 +1107,16 @@ body {
   <section id="verification" class="section fade">
     <div class="section-eyebrow">Verification</div>
     <h2 class="section-title">실측으로 잡은 문제들</h2>
-    <p class="section-desc">정적 분석과 테스트를 통과한 뒤에도, 야외에서 직접 달리며 측정해야 드러난 문제들입니다.</p>
+    <p class="section-desc">정적 분석과 테스트를 통과한 뒤에도, 야외에서 직접 달리며 측정해야 드러난 문제와 해결 방법입니다.</p>
 
     <div class="decisions">
       <div class="decision-card">
         <div class="decision-num">V-01</div>
         <div class="decision-q">화면을 끄자 거리가 35% 부풀었다</div>
         <div class="decision-a">
-          <p>화면을 끄면 안드로이드가 위치 갱신을 3초에서 8~11초로 늦췄고, 그 사이 GPS 흔들림이 몰려 들어와 시속 65km 같은 불가능한 구간이 25개 생겼습니다.</p>
-          <p><strong>초속 6m를 넘는 좌표는 버리고, 30초 넘게 끊긴 뒤 돌아온 구간은 거리에서 뺐습니다.</strong> 5.14km로 잘못 기록됐던 러닝이 3.52km로 바로잡혔습니다.</p>
+          <div class="v-row"><span class="v-label">Cause</span><p>화면을 끄면 안드로이드가 위치 갱신을 3초에서 8~11초로 늦췄고, 그 사이 GPS 흔들림이 몰려 들어와 시속 65km 같은 불가능한 구간이 25개 생겼습니다.</p></div>
+          <div class="v-row"><span class="v-label">Fix</span><p><strong>초속 6m를 넘는 좌표는 버리고, 30초 넘게 끊긴 뒤 돌아온 구간은 거리에서 뺐습니다.</strong></p></div>
+          <div class="v-row"><span class="v-label">Result</span><p>5.14km로 잘못 기록됐던 러닝이 3.52km로 바로잡혔습니다.</p></div>
         </div>
       </div>
 
@@ -1151,14 +1124,16 @@ body {
         <div class="decision-num">V-02</div>
         <div class="decision-q">거리는 맞는데 경로가 틀렸다</div>
         <div class="decision-a">
-          <p>같은 기기 · 같은 빌드에서 절전 모드만 바꿔 대조 측정했습니다.</p>
-          <table class="data-table">
-            <tr><th></th><th>절전 ON</th><th>절전 OFF</th></tr>
-            <tr><td>정확도 중앙값</td><td>20m</td><td>4m</td></tr>
-            <tr><td>30m 넘게 튄 점프</td><td>19건</td><td>0건</td></tr>
-            <tr><td>최대 샘플 간격</td><td>205초</td><td>7초</td></tr>
-          </table>
-          <p>원인을 절전 모드로 확정한 뒤, <strong>필터를 더하지 않고 START 전에 경고하는 방식</strong>을 택했습니다. 정상 데이터에는 걸러낼 좌표가 없어서 필터를 넣어도 효과를 검증할 수 없었기 때문입니다.</p>
+          <div class="v-row"><span class="v-label">Cause</span><div>
+            <p>같은 기기 · 같은 빌드에서 절전 모드만 바꿔 대조 측정해 원인을 절전 모드로 확정했습니다.</p>
+            <table class="data-table">
+              <tr><th></th><th>절전 ON</th><th>절전 OFF</th></tr>
+              <tr><td>정확도 중앙값</td><td>20m</td><td>4m</td></tr>
+              <tr><td>30m 넘게 튄 점프</td><td>19건</td><td>0건</td></tr>
+              <tr><td>최대 샘플 간격</td><td>205초</td><td>7초</td></tr>
+            </table>
+          </div></div>
+          <div class="v-row"><span class="v-label">Fix</span><p><strong>필터를 더하지 않고 START 전에 경고하는 방식</strong>을 택했습니다. 정상 데이터에는 걸러낼 좌표가 없어서 필터를 넣어도 효과를 검증할 수 없었기 때문입니다.</p></div>
         </div>
       </div>
 
@@ -1166,7 +1141,8 @@ body {
         <div class="decision-num">V-03</div>
         <div class="decision-q">에러 없이 실패하는 탈퇴 처리</div>
         <div class="decision-a">
-          <p>세션을 먼저 지우면 RLS에 막힌 UPDATE가 에러 없이 "0건 수정"으로 끝나 try/catch로도 잡히지 않습니다. 그래서 <strong>"소프트 삭제 → 세션 삭제" 순서로 고정</strong>했습니다.</p>
+          <div class="v-row"><span class="v-label">Cause</span><p>세션을 먼저 지우면 RLS에 막힌 UPDATE가 에러 없이 "0건 수정"으로 끝나 try/catch로도 잡히지 않습니다.</p></div>
+          <div class="v-row"><span class="v-label">Fix</span><p><strong>"소프트 삭제 → 세션 삭제" 순서로 고정</strong>했습니다.</p></div>
         </div>
       </div>
 
@@ -1174,8 +1150,35 @@ body {
         <div class="decision-num">V-04</div>
         <div class="decision-q">오프라인 러닝 후 자동 동기화</div>
         <div class="decision-a">
-          <p>인터넷 없이 시작부터 종료까지 달린 기록이, Wi-Fi에 다시 연결되자 '동기화 대기' 표시 없이 자동으로 업로드됐습니다. local-first 설계가 실제 환경에서 의도대로 동작함을 확인했습니다.</p>
+          <div class="v-row"><span class="v-label">Result</span><p>인터넷 없이 시작부터 종료까지 달린 기록이, Wi-Fi에 다시 연결되자 '동기화 대기' 표시 없이 자동으로 업로드됐습니다. local-first 설계가 실제 환경에서 의도대로 동작함을 확인했습니다.</p></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       NEXT
+       ════════════════════════════════════════ -->
+  <section id="next" class="section fade">
+    <div class="section-eyebrow">Next</div>
+    <h2 class="section-title">MVP 이후</h2>
+    <p class="section-desc">스토어 출시와 콘텐츠 확장까지 이어지는 다음 단계입니다.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-num">STEP 1</div>
+        <div class="problem-card-title">베타 출시 준비</div>
+        <div class="problem-card-desc">릴리스 서명 키 교체, 에어코리아 운영계정 전환, 개인정보처리방침 확정.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">STEP 2</div>
+        <div class="problem-card-title">비공개 베타</div>
+        <div class="problem-card-desc">Play 내부 테스트로 실사용자를 받아, 다양한 기기의 GPS 데이터와 사용 피드백을 모읍니다.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">STEP 3</div>
+        <div class="problem-card-title">온라인 마라톤</div>
+        <div class="problem-card-desc">샘플 데이터를 실제 대회 데이터로 바꾸고, 5분 주기 랭킹을 Edge Functions · pg_cron으로 붙입니다.</div>
       </div>
     </div>
   </section>
