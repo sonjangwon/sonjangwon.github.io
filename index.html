@@ -57,34 +57,58 @@ body {
   font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: -0.5px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.hero-subtitle {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
 }
 
 .hero-tagline {
-  font-size: 0.88rem;
-  color: #666;
-  line-height: 1.65;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  max-width: 100%;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 840px;
+  text-align: justify;
+}
+
+.hero-tagline p {
+  margin-bottom: 14px;
+}
+
+.hero-tagline p:last-child {
+  margin-bottom: 0;
 }
 
 .hero-links {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
 }
 
-.hero-links a,
-.hero-links span {
+.hero-links a {
   font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--muted);
+  font-size: 0.84rem;
+  color: #888;
   text-decoration: none;
   letter-spacing: 0.02em;
+  transition: color 0.15s ease;
 }
 
 .hero-links a:hover { color: var(--accent); }
+
+.hero-links .sep {
+  color: var(--border);
+  margin: 0 10px;
+  font-size: 0.8rem;
+  user-select: none;
+}
 
 hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 
@@ -100,20 +124,20 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 .exp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 48px;
+  gap: 32px 48px;
 }
 .exp-wide { grid-column: span 2; }
 
 .exp-title {
   font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 5px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
 }
 
 .exp-desc {
-  font-size: 0.85rem;
-  color: #555;
-  line-height: 1.7;
+  font-size: 0.88rem;
+  color: #444;
+  line-height: 1.75;
 }
 
 .tl-item {
@@ -278,6 +302,8 @@ footer {
   .wrap { padding: 56px 20px 84px; }
   .hero { gap: 18px; }
   .hero-photo { width: 88px; height: 88px; }
+  .hero-tagline { font-size: 0.95rem; }
+  .hero-links { flex-wrap: wrap; }
   .exp-grid { grid-template-columns: 1fr; gap: 16px; }
   .exp-wide { grid-column: auto; }
   .tl-item { grid-template-columns: 1fr; gap: 3px; }
@@ -298,10 +324,14 @@ footer {
 <img class="hero-photo" src="img/손장원_2023.jpg" alt="Jangwon Son">
 <div>
 <div class="hero-name">Jangwon Son</div>
-<div class="hero-tagline">Enterprise support engineer with about 8 years working with large enterprises across hybrid infrastructure, identity, and security. Experienced in email and messaging architecture, cross-product troubleshooting, and building AI/LLM tools for operational workflows.</div>
+<div class="hero-subtitle">Enterprise Infrastructure · Technical Advisory · Cloud &amp; AI</div>
+<div class="hero-tagline">
+<p>With 8 years of experience across hybrid infrastructure, identity, messaging, and security, I have advised large enterprise customers on complex technical challenges and supported their technical decision-making.</p>
+<p>I have led root cause analysis of critical production incidents and collaborated with global engineering teams to improve service reliability, earning the FY26 Microsoft Global CSS Award while consistently maintaining CSAT scores of 4.98–5.00.</p>
+<p>I have also expanded my experience in cloud architecture and AI by designing and building practical solutions, including RAG pipelines and MCP-based tools, to address real-world operational challenges.</p>
+</div>
 <div class="hero-links">
-<a href="https://linkedin.com/in/jangwon-son/" rel="noopener noreferrer" target="_blank">linkedin.com/in/jangwon-son</a>
-<a href="mailto:jangwonson31@gmail.com">jangwonson31@gmail.com</a>
+<a href="https://linkedin.com/in/jangwon-son/" rel="noopener noreferrer" target="_blank">LinkedIn</a><span class="sep">|</span><a href="mailto:jangwonson31@gmail.com">Email</a><span class="sep">|</span><a href="https://jangsonlab.tistory.com/" rel="noopener noreferrer" target="_blank">Tech Blog</a>
 </div>
 </div>
 </div>
@@ -309,24 +339,24 @@ footer {
 <div class="label">Expertise</div>
 <div class="exp-grid">
   <div>
-    <div class="exp-title">Email &amp; Messaging (Exchange)</div>
-    <div class="exp-desc">Exchange Server 2010–2019 · Subscription Edition<br>Exchange Online · Outlook · DAG · Mail flow<br>Coexistence · Migration</div>
+    <div class="exp-title">Enterprise Infrastructure &amp; Messaging</div>
+    <div class="exp-desc">Exchange Server 2010–2019 · Subscription Edition · Exchange Online · Outlook · High Availability (DAG) · Mail Flow · Hybrid Coexistence · Migration</div>
   </div>
   <div>
-    <div class="exp-title">Hybrid Identity &amp; Cloud</div>
-    <div class="exp-desc">Entra ID (Conditional Access · MFA) · Entra Connect<br>ADFS · OAuth · Directory synchronization<br>On-premises ↔ cloud hybrid architecture · Migration strategy</div>
+    <div class="exp-title">Identity &amp; Hybrid Cloud</div>
+    <div class="exp-desc">Microsoft Entra ID · Conditional Access · MFA · Entra Connect · ADFS · OAuth · Directory Synchronization · Hybrid Architecture</div>
   </div>
   <div>
     <div class="exp-title">Security &amp; Compliance</div>
-    <div class="exp-desc">Microsoft Defender for Office 365 · Microsoft Purview (DLP)<br>Data protection across Microsoft 365 workloads</div>
+    <div class="exp-desc">Microsoft Defender for Office 365 · Microsoft Purview (DLP) · Data Protection · Security Configuration &amp; Policy</div>
   </div>
   <div>
-    <div class="exp-title">AI &amp; LLM</div>
-    <div class="exp-desc">Azure OpenAI · RAG (Azure AI Search) · Speech AI<br>Copilot Studio · M365 Copilot</div>
+    <div class="exp-title">Cloud &amp; AI Solutions</div>
+    <div class="exp-desc">Azure OpenAI · RAG · Azure AI Search · Copilot Studio · M365 Copilot · AI Agents · MCP</div>
   </div>
   <div class="exp-wide">
     <div class="exp-title">Development &amp; Automation</div>
-    <div class="exp-desc">PowerShell · Python · Azure (Functions, Container Apps, Blob Storage) · Power Automate · Docker · Supabase · Flutter</div>
+    <div class="exp-desc">Python · PowerShell · Java · Docker · Azure Functions · Azure Container Apps · Power Automate · Supabase · Flutter</div>
   </div>
 </div>
 <hr/>
@@ -345,16 +375,6 @@ footer {
 <div class="proj-item">
 <div>
 <div class="proj-head">
-<div class="proj-name"><a href="ecall-portfolio.html">E-Call AI.ssistant →</a></div>
-<div class="proj-meta">Aug 2025 – Nov 2025</div>
-</div>
-<div class="proj-sub">Real-time AI analysis for 112/119 emergency calls</div>
-<div class="proj-note">Best Project Award — Graduate School of Engineering, Yonsei University</div>
-</div>
-</div>
-<div class="proj-item">
-<div>
-<div class="proj-head">
 <div class="proj-name"><a href="m365-roadmap-agent.html">M365 Roadmap Copilot Agent →</a></div>
 <div class="proj-meta">Jan 2026 – Feb 2026</div>
 </div>
@@ -365,8 +385,18 @@ footer {
 <div class="proj-item">
 <div>
 <div class="proj-head">
+<div class="proj-name"><a href="ecall-portfolio.html">E-Call AI.ssistant →</a></div>
+<div class="proj-meta">Aug 2025 – Nov 2025</div>
+</div>
+<div class="proj-sub">Real-time AI analysis for 112/119 emergency calls</div>
+<div class="proj-note">Best Project Award — Graduate School of Engineering, Yonsei University</div>
+</div>
+</div>
+<div class="proj-item">
+<div>
+<div class="proj-head">
 <div class="proj-name"><a href="run-earth.html">Run Earth →</a></div>
-<div class="proj-meta">Aug 2026 – Present</div>
+<div class="proj-meta">Aug 2026 – Nov 2026</div>
 </div>
 <div class="proj-sub">Local-first running app that turns accumulated distance into a journey around the globe</div>
 <div class="proj-note">MVP complete · solo build with Flutter + Supabase</div>
@@ -381,14 +411,14 @@ footer {
 <div>
 <div class="tl-title">Support Escalation Engineer</div>
 <div class="tl-org">Microsoft Korea · Modern Workplace</div>
-<p style="font-size:0.88rem; color:var(--text); font-style:italic; border-left:3px solid var(--accent); padding-left:10px; margin-bottom:10px; line-height:1.7;">Escalation point for the most complex enterprise cases across Exchange Hybrid, identity, and security workloads — advising decision-makers at Korea's largest enterprises and building AI/LLM tools to improve support operations.</p>
+<p style="font-size:0.88rem; color:var(--text); font-style:italic; border-left:3px solid var(--accent); padding-left:10px; margin-bottom:10px; line-height:1.7;">Addressing complex technical challenges across hybrid infrastructure, identity, security, enterprise messaging, and M365 Copilot — advising customers on technical options and risks, supporting informed decision-making, and developing AI-powered tools for operational workflows.</p>
 <ul class="tl-desc">
-<li style="margin-bottom:10px;">▸ FY26 CSS Award (Individual, Global) — Recognized for cross-product root cause analysis of a recurring Exchange outage involving third-party security software across multiple enterprise customers, contributing to long-term operational stability.</li>
-<li style="margin-bottom:10px;">▸ Served as the trusted technical advisor to Strategic and Premier enterprise customers' decision-makers across Exchange Hybrid, Entra ID, and Security workloads — providing architectural trade-off analysis, migration sequencing guidance, and risk assessment that shaped their final technical direction.</li>
-<li style="margin-bottom:10px;">▸ Conducted root cause analysis and resolution for the most complex escalated cases across Exchange, identity, and security workloads — collaborating with Microsoft product engineering teams on issues spanning product boundaries.</li>
-<li style="margin-bottom:10px;">▸ Led Severity A and cross-region incidents, including English-language support for global customers — making real-time technical decisions during active outages and aligning engineering teams and customer stakeholders around a single path forward.</li>
+<li style="margin-bottom:10px;">▸ FY26 CSS Award (Individual, Global) — recognized at the global CSS level for cross-product root cause analysis on a recurring Exchange availability failure.</li>
+<li style="margin-bottom:10px;">▸ Maintained CSAT 4.98–5.00 / 5.00 through sustained technical communication and trusted relationships with Strategic and Premier enterprise customers.</li>
+<li style="margin-bottom:10px;">▸ Served as a dedicated Technical Advisor to internal engineering teams supporting strategic enterprise customers, analyzing dependencies across multiple product domains and guiding technical decision-making.</li>
+<li style="margin-bottom:10px;">▸ Led architectural root cause analysis and remediation direction across complex enterprise environments spanning Exchange Hybrid, Identity, and Security workloads.</li>
+<li style="margin-bottom:10px;">▸ Led cross-region technical response during global Severity-A incidents, contributing to operational stability and minimizing business impact for enterprise customers.</li>
 <li style="margin-bottom:10px;">▸ Advocated for enterprise customers by submitting product feature requests to Microsoft engineering — translating unmet operational needs into structured requirements that influenced product roadmap decisions.</li>
-<li style="margin-bottom:10px;">▸ Sustained CSAT 4.98–5.00 / 5.00 across strategic enterprise customers.</li>
 <li style="margin-bottom:10px;">▸ Built a natural-language log analysis tool for support engineers as project owner (Microsoft Global Hackathon 2026) — logs are aggregated and time-aligned locally in DuckDB, and GitHub Copilot reasons over the summaries via MCP to identify root causes across multiple log sources.</li>
 <li style="margin-bottom:0;">▸ Built an AI-powered security intelligence service for Microsoft Teams (Microsoft Global Hackathon 2024) — designed an end-to-end Azure OpenAI + RAG pipeline, delivering curated insights as a custom Copilot/Teams app.</li>
 </ul>
@@ -414,7 +444,7 @@ footer {
 <div class="tl-period">Dec 2018 – Aug 2020</div>
 <div>
 <div class="tl-title">System Engineer</div>
-<div class="tl-org">Hanwha Systems · Groupware / Exchange</div>
+<div class="tl-org">Hanwha Systems · Groupware</div>
 <ul class="tl-desc">
 <li style="margin-bottom:10px;">▸ Operated Exchange-based mail infrastructure supporting approximately 50,000 users across 40+ servers, responsible for performance optimization, availability management, and incident response.</li>
 <li style="margin-bottom:10px;">▸ Participated in a new mail system deployment project at the holding company, conducting architecture review, server build, and post-cutover stabilization.</li>
